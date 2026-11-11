@@ -1,0 +1,77 @@
+CATALOGO DE PRODUCTOS - Servic Sosa
+========================================================================================================
+Precio: valor de referencia en pesos argentinos. Corregilo vos segun tu stock real.
+Tipo: 'propia' = foto que vos sacaste | 'referencia' = imagen de muestra (Wikimedia Commons).
+Link del producto en el sitio: assets/productos/<archivo>
+
+  #  Archivo                            Categoria           Precio  Tipo      Descripcion
+--------------------------------------------------------------------------------------------------------
+  1  memoria-ram-ddr4.webp              Memoria RAM        $45.000  referencia Memoria RAM DDR4 16GB 3200MHz
+  2  memoria-ram-ddr5.webp              Memoria RAM        $95.000  referencia Memoria RAM DDR5 32GB
+  3  real-ram-notebook.webp             Memoria RAM       $215.641  propia    Memoria RAM Notebook (tu foto)
+  4  memoria-ram-so-dimm.webp           Memoria RAM        $75.000  referencia Memoria RAM Notebook SO-DIMM
+  5  memoria-ram-disipador.webp         Memoria RAM        $55.000  referencia Memoria RAM con disipador de cobre
+  6  real-ram-pc.webp                   Memoria RAM        $95.000  propia    Memoria RAM de escritorio (tu foto)
+  7  memoria-ram-dimm.webp              Memoria RAM        $60.000  referencia Memoria RAM de escritorio DIMM
+  8  memoria-ram-dimm2.webp             Memoria RAM       $180.000  referencia Memoria RAM servidor RDIMM
+  9  memoria-ram-cooling.webp           Memoria RAM        $40.000  referencia Tipos de memoria RAM comparados
+ 10  adaptador-ssd-usb.webp             Almacenamiento     $18.000  referencia Adaptador USB para disco SSD M.2
+ 11  protector-antiestatica.webp        Almacenamiento      $1.500  referencia Bolsa antiestatica para componentes
+ 12  real-ssd-m2.webp                   Almacenamiento     $85.000  propia    Disco SSD M.2 (tu foto)
+ 13  ssd-m2-nvme.webp                   Almacenamiento     $85.000  referencia Disco SSD M.2 NVMe
+ 14  ssd-sata-25.webp                   Almacenamiento     $55.000  referencia Disco SSD SATA 2.5 pulgadas
+ 15  ssd-placa.webp                     Almacenamiento   a definir  referencia Disco SSD destapado (reparacion)
+ 16  disco-duro-35.webp                 Almacenamiento     $42.000  referencia Disco duro 3.5 pulgadas
+ 17  real-hdd.webp                      Almacenamiento     $45.000  propia    Disco duro HDD (tu foto)
+ 18  disco-duro-placa.webp              Almacenamiento   a definir  referencia Disco duro destapado (reparacion)
+ 19  disco-duro-externo.webp            Almacenamiento     $68.000  referencia Disco duro externo USB
+ 20  fuente-alimentacion.webp           Almacenamiento     $38.000  referencia Fuente de alimentacion ATX
+ 21  tarjeta-memoria-sd.webp            Almacenamiento      $6.000  referencia Tarjeta de memoria SD
+ 22  disco-optico.webp                  Almacenamiento     $25.000  referencia Unidad de CD / DVD
+ 23  procesador-cpu.webp                Procesador        $220.000  referencia Procesador AMD Ryzen 7
+ 24  procesador-intel.webp              Procesador        $260.000  referencia Procesador Intel Core i7
+ 25  placa-madre-atx.webp               Placa madre       $120.000  referencia Placa madre ATX
+ 26  placa-madre-microatx.webp          Placa madre        $85.000  referencia Placa madre Micro ATX
+ 27  placa-madre-sockets.webp           Placa madre        $95.000  referencia Placa madre Mini ITX
+ 28  socket-cpu.webp                    Placa madre      a definir  referencia Socket CPU Intel LGA 1150 (repuesto)
+ 29  tarjeta-grafica-amd.webp           Placa de video    $280.000  referencia Tarjeta grafica AMD Radeon Pro
+ 30  tarjeta-grafica-nvidia.webp        Placa de video    $300.000  referencia Tarjeta grafica NVIDIA GeForce
+ 31  tarjeta-grafica-ventilador.webp    Placa de video     $12.000  referencia Ventilador de placa de video
+ 32  gabinete-atx.webp                  Gabinete          $110.000  referencia Gabinete ATX
+ 33  gabinete-torre.webp                Gabinete           $95.000  referencia Gabinete de escritorio
+ 34  real-cooler-rgb.webp               Refrigeracion       $9.500  propia    Cooler RGB 120mm (tu foto)
+ 35  disipador-cpu-amd.webp             Refrigeracion      $55.000  referencia Disipador de CPU con heatpipes
+ 36  disipador-cpu-torre.webp           Refrigeracion      $28.000  referencia Disipador de CPU tipo torre
+ 37  pasta-termica.webp                 Refrigeracion    a definir  referencia Pasta termica
+ 38  real-pasta-termica.webp            Refrigeracion      $12.000  propia    Pasta termica (tu foto)
+ 39  ventilador-cpu-92.webp             Refrigeracion       $7.000  referencia Ventilador de CPU 92mm
+ 40  ventilador-gabinete.webp           Refrigeracion       $9.500  referencia Ventilador de gabinete 120mm
+ 41  mando-juego.webp                   Periferico         $25.000  referencia Mando USB para juegos
+ 42  microfono-usb.webp                 Periferico         $35.000  referencia Microfono USB
+ 43  monitor.webp                       Periferico        $180.000  referencia Monitor LCD
+ 44  monitor-soporte.webp               Periferico         $22.000  referencia Monitor con brazo VESA
+ 45  mouse.webp                         Periferico         $12.000  referencia Mouse
+ 46  parlantes.webp                     Periferico         $30.000  referencia Parlantes para PC
+ 47  teclado-inalambrico.webp           Periferico         $25.000  referencia Teclado inalambrico
+ 48  teclado-mecanico.webp              Periferico         $45.000  referencia Teclado mecanico
+ 49  webcam.webp                        Periferico         $18.000  referencia Webcam
+ 50  adaptador-vga.webp                 Conectividad        $5.000  referencia Adaptador VGA / D-sub
+ 51  adaptador-wifi.webp                Conectividad       $15.000  referencia Adaptador WiFi USB
+ 52  bateria-laptop.webp                Conectividad       $45.000  referencia Bateria de notebook
+ 53  cable-hdmi.webp                    Conectividad        $4.500  referencia Cable HDMI
+ 54  cable-usb-a-b.webp                 Conectividad        $2.500  referencia Cable USB-A a USB-B
+ 55  cable-usb-c-a.webp                 Conectividad        $4.000  referencia Cable USB-C a USB-A
+ 56  cable-sata.webp                    Conectividad        $3.500  referencia Cable de datos SATA
+ 57  cable-red-patch.webp               Conectividad        $3.000  referencia Cable de red RJ45
+ 58  cargador-laptop.webp               Conectividad       $22.000  referencia Cargador de notebook
+ 59  dock-usbc.webp                     Conectividad       $35.000  referencia Dock / hub USB-C
+ 60  hub-usb-4.webp                     Conectividad       $12.000  referencia Hub USB de 4 puertos
+ 61  lector-tarjetas.webp               Conectividad        $9.000  referencia Lector de tarjetas USB
+ 62  memoria-usb.webp                   Conectividad        $8.000  referencia Pendrive / memoria USB
+ 63  alcohol-limpiador.webp             Herramientas        $5.000  referencia Alcohol isopropilico / liquido limpiador
+ 64  cepillo-limpiador.webp             Herramientas        $6.000  referencia Cepillo y kit de limpieza
+ 65  herramienta-crimpar.webp           Herramientas       $28.000  referencia Pinza crimpadora y tester RJ45
+ 66  pulsera-antiestatica.webp          Herramientas        $9.000  referencia Pulsera antiestatica
+ 67  destornilladores.webp              Herramientas       $12.000  referencia Set de destornilladores de precision
+
+Total de imagenes listas para el catalogo: 67

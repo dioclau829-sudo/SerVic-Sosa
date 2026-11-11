@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Panel de administración de Servic PC">
+  <title>Panel de administración - Servic PC</title>
+
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+  <script src="https://kit.fontawesome.com/6c857664ba.js" crossorigin="anonymous"></script>
+
+  <style>
+    /* ============================================================
+       PANEL DE ADMINISTRACION DE SERVIC PC
+       Mismos colores que la pagina publica:
+       #141414 negro | #C1272D rojo | #CD9F2C dorado | #3A9639 verde
+       ============================================================ */
+    :root{
+      --negro:#141414;
+      --negro-2:#1C1C1C;
+      --rojo:#C1272D;
+      --dorado:#CD9F2C;
+      --verde:#3A9639;
+      --fondo:#F4F5F7;
+      --blanco:#FFFFFF;
+      --borde:#E2E5EA;
+      --texto:#1A1A1A;
+      --texto-2:#5A5F6A;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: var(--fondo);
+      margin: 0;
+      color: var(--texto);
+      line-height: 1.5;
+    }
+
+    .oculto { display: none !important; }
+
+    /* ---------- PANTALLA DE INGRESO ---------- */
+    .login {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--negro);
+      padding: 20px;
+    }
+
+    .login-caja {
+      background-color: var(--blanco);
+      border-radius: 14px;
+      padding: 34px 30px;
+      width: 100%;
+      max-width: 380px;
+      text-align: center;
+      border-top: 5px solid var(--rojo);
+    }
+
+    .login-caja img {
+      width: 96px;
+      height: 96px;
+      object-fit: contain;
+    }
+
+    .login-caja h1 {
+      font-size: 1.3em;
+      color: var(--negro);
+      margin: 6px 0 2px;
+    }
+
+    .login-caja p.sub {
+      color: var(--texto-2);
+      font-size: 0.9em;
+      margin: 0 0 22px;
+    }
+
+    .campo {
+      display: block;
+      text-align: left;
+      margin-bottom: 14px;
+    }
+
+    .campo span {
+      display: block;
+      font-size: 0.85em;
+      font-weight: bold;
+      color: var(--texto-2);
+      margin-bottom: 5px;
+    }
+
+    .campo input, .campo select, .campo textarea {
+      width: 100%;
+      padding: 11px 12px;
+      border: 1px solid var(--borde);
+      border-radius: 8px;
+      font-size: 1em;
+      font-family: inherit;
+      background-color: #FAFAFB;
+    }
+
+    .campo input:focus, .campo select:focus, .campo textarea:focus {
+      outline: none;
+      border-color: var(--dorado);
+      background-color: var(--blanco);
+    }
+
+    .error-login {
+      background-color: #FBE9EA;
+      border: 1px solid var(--rojo);
+      color: #8E1C21;
+      padding: 9px 12px;
+      border-radius: 6px;
+      font-size: 0.88em;
+      margin-bottom: 14px;
+    }
+
+    /* ---------- BARRA SUPERIOR DEL PANEL ---------- */
+    .barra-admin {
+      background-color: var(--negro);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 22px;
+      border-bottom: 3px solid var(--rojo);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .barra-marca {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .barra-marca img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+
+    .barra-marca strong {
+      display: block;
+      font-size: 1.05em;
+      letter-spacing: 1px;
+    }
+
+    .barra-marca small {
+      color: var(--dorado);
+      font-size: 0.78em;
+    }
+
+    .barra-acciones {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .barra-acciones a, .barra-acciones button {
+      color: #E6E6E6;
+      text-decoration: none;
+      background: none;
+      border: 1px solid #3A3A3A;
+      border-radius: 6px;
+      padding: 7px 12px;
+      font-size: 0.88em;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .barra-acciones a:hover, .barra-acciones button:hover {
+      border-color: var(--dorado);
+      color: var(--dorado);
+    }
+
+    /* Aviso de "guardado" */
+    .aviso-guardado {
+      background-color: var(--verde);
+      color: #FFFFFF;
+      border-radius: 6px;
+      padding: 7px 12px;
+      font-size: 0.85em;
+      font-weight: bold;
+    }
+
+    .aviso-guardado.error {
+      background-color: var(--rojo);
+    }
+
+    /* ---------- CAMPANA DE NOTIFICACIONES ---------- */
+    .campana-caja {
+      position: relative;
+    }
+
+    .campana {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.25em;
+      color: #9A9A9A;
+      position: relative;
+      padding: 6px 8px;
+    }
+
+    /* La campana cambia de color segun las reseñas pendientes:
+       verde si son buenas, rojo si hay alguna mala */
+    .campana.buena { color: var(--verde); }
+    .campana.mala  { color: var(--rojo); }
+
+    .insignia {
+      position: absolute;
+      top: -2px;
+      right: -4px;
+      background-color: var(--rojo);
+      color: #FFFFFF;
+      border-radius: 10px;
+      font-size: 0.6em;
+      padding: 2px 6px;
+      font-weight: bold;
+    }
+
+    .panel-notificaciones {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 46px;
+      width: 340px;
+      max-height: 420px;
+      overflow-y: auto;
+      background-color: var(--blanco);
+      color: var(--texto);
+      border-radius: 10px;
+      border: 1px solid var(--borde);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.22);
+      z-index: 60;
+    }
+
+    .panel-notificaciones.visible { display: block; }
+
+    .panel-notificaciones h4 {
+      margin: 0;
+      padding: 12px 14px;
+      background-color: var(--negro);
+      color: #FFFFFF;
+      font-size: 0.9em;
+      position: sticky;
+      top: 0;
+    }
+
+    .notificacion {
+      display: flex;
+      gap: 10px;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--borde);
+      font-size: 0.85em;
+    }
+
+    .notificacion i.estado {
+      font-size: 1.3em;
+      margin-top: 2px;
+    }
+
+    .notificacion i.estado.buena { color: var(--verde); }
+    .notificacion i.estado.mala  { color: var(--rojo); }
+
+    .notificacion .quien {
+      font-weight: bold;
+      color: var(--negro);
+    }
+
+    .notificacion .texto {
+      color: var(--texto-2);
+      margin: 3px 0;
+    }
+
+    .notificacion .fecha {
+      color: #9AA0A6;
+      font-size: 0.9em;
+    }
+
+    .notificacion .acciones-notif {
+      display: flex;
+      gap: 6px;
+      margin-top: 7px;
+    }
+
+    .notificacion button {
+      border: none;
+      border-radius: 5px;
+      padding: 5px 9px;
+      font-size: 0.85em;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: bold;
+    }
+
+    .btn-aprobar { background-color: var(--verde); color: #FFFFFF; }
+    .btn-rechazar { background-color: var(--rojo); color: #FFFFFF; }
+    .btn-ver { background-color: #E9EAEC; color: var(--texto); }
+
+    .vacio {
+      padding: 26px 16px;
+      text-align: center;
+      color: var(--texto-2);
+      font-size: 0.9em;
+    }
+
+    /* ---------- PESTAÑAS ---------- */
+    .pestanas {
+      background-color: var(--negro-2);
+      padding: 0 18px;
+      display: flex;
+      gap: 4px;
+      overflow-x: auto;
+    }
+
+    .pestanas button {
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      color: #B9B9B9;
+      padding: 13px 16px;
+      font-size: 0.95em;
+      cursor: pointer;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+
+    .pestanas button:hover { color: #FFFFFF; }
+
+    .pestanas button.activa {
+      color: var(--dorado);
+      border-bottom-color: var(--dorado);
+      font-weight: bold;
+    }
+
+    /* ---------- CONTENIDO ---------- */
+    .contenido {
+      max-width: 1200px;
+      margin: 24px auto;
+      padding: 0 18px 40px;
+    }
+
+    .tarjeta-panel {
+      background-color: var(--blanco);
+      border: 1px solid var(--borde);
+      border-radius: 12px;
+      padding: 20px 22px;
+      margin-bottom: 20px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+      transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    /* Se resalta cuando estas editando algo */
+    .tarjeta-panel.resaltando {
+      border-color: var(--dorado);
+      box-shadow: 0 0 0 3px rgba(205, 159, 44, 0.35);
+    }
+
+    .tarjeta-panel h2 {
+      margin: 0 0 4px;
+      font-size: 1.15em;
+      color: var(--negro);
+    }
+
+    .tarjeta-panel > p {
+      color: var(--texto-2);
+      font-size: 0.9em;
+      margin: 0 0 16px;
+    }
+
+    .rejilla-form {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 14px;
+      align-items: start;
+    }
+
+    .boton {
+      display: inline-block;
+      padding: 11px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      border: 2px solid var(--rojo);
+      cursor: pointer;
+      font-size: 0.95em;
+      font-family: inherit;
+    }
+
+    .boton-principal { background-color: var(--rojo); color: #FFFFFF; }
+    .boton-principal:hover { background-color: #A01F24; }
+    .boton-ok { background-color: var(--verde); color: #FFFFFF; border-color: var(--verde); }
+    .boton-ok:hover { background-color: #2E7A33; }
+    .boton-neutro { background-color: #E9EAEC; color: var(--texto); border-color: #E9EAEC; }
+    .boton-neutro:hover { background-color: #DCDDE0; }
+    .boton-mini { padding: 6px 11px; font-size: 0.8em; border-width: 1px; }
+
+    /* ---------- TABLA DE PRODUCTOS ---------- */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9em;
+    }
+
+    table th, table td {
+      border-bottom: 1px solid var(--borde);
+      padding: 9px 8px;
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    table th {
+      background-color: var(--negro);
+      color: #FFFFFF;
+      font-size: 0.9em;
+    }
+
+    table tr:hover td { background-color: #FAFAFB; }
+
+    .miniatura {
+      width: 52px;
+      height: 46px;
+      object-fit: contain;
+      background-color: #F2F3F5;
+      border-radius: 6px;
+      padding: 3px;
+    }
+
+    .etiqueta {
+      display: inline-block;
+      font-size: 0.72em;
+      font-weight: bold;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .etiqueta.verde { background-color: #E3F3E4; color: #27692C; }
+    .etiqueta.roja { background-color: #FBE9EA; color: #8E1C21; }
+    .etiqueta.dorada { background-color: #FBF2DA; color: #8A6A12; }
+    .etiqueta.gris { background-color: #ECEDEF; color: #55595F; }
+
+    /* ---------- LISTA DE RESENAS ---------- */
+    .resena-panel {
+      border: 1px solid var(--borde);
+      border-left: 5px solid var(--negro);
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      background-color: #FAFAFB;
+    }
+
+    .resena-panel.pendiente { border-left-color: var(--dorado); }
+    .resena-panel.rechazada { border-left-color: #C4C6C9; opacity: 0.75; }
+    .resena-panel .fila {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .resena-panel .quien { font-weight: bold; color: var(--negro); }
+    .resena-panel .estrellas { color: var(--dorado); letter-spacing: 2px; }
+    .resena-panel .comentario { color: #444; font-style: italic; margin: 6px 0 10px; }
+    .resena-panel .acciones { display: flex; gap: 7px; flex-wrap: wrap; }
+
+    /* ---------- GALERIA DE TRABAJOS ---------- */
+    .rejilla-trabajos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 16px;
+    }
+
+    .trabajo {
+      border: 1px solid var(--borde);
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: var(--blanco);
+    }
+
+    .trabajo img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      background-color: #F2F3F5;
+      display: block;
+    }
+
+    .trabajo .cuerpo { padding: 12px; }
+    .trabajo h3 { margin: 0 0 5px; font-size: 0.98em; color: var(--negro); }
+    .trabajo p { margin: 0 0 10px; font-size: 0.85em; color: var(--texto-2); }
+    .trabajo .acciones { display: flex; gap: 6px; }
+
+    .aviso {
+      background-color: #FBF2DA;
+      border: 1px solid var(--dorado);
+      color: #6F5510;
+      padding: 11px 14px;
+      border-radius: 8px;
+      font-size: 0.88em;
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 700px) {
+      .barra-admin { flex-direction: column; gap: 10px; align-items: flex-start; }
+      .barra-acciones { flex-wrap: wrap; }
+      .panel-notificaciones { right: -10px; width: 300px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       PANTALLA DE INGRESO: solo el administrador entra por aca
+       ============================================================ -->
+  <div class="login" id="pantallaLogin">
+    <form class="login-caja" onsubmit="return entrar()">
+      <img src="assets/logo-servic-circular.webp" alt="Logo de Servic PC">
+      <h1>Servic PC</h1>
+      <p class="sub">Panel de administración</p>
+
+      <div class="error-login oculto" id="errorLogin">Usuario o contraseña incorrectos.</div>
+
+      <label class="campo">
+        <span>Usuario</span>
+        <input type="text" id="campoUsuario" autocomplete="username" placeholder="admin">
+      </label>
+
+      <label class="campo">
+        <span>Contraseña</span>
+        <input type="password" id="campoClave" autocomplete="current-password" placeholder="••••••">
+      </label>
+
+      <button type="submit" class="boton boton-principal" style="width:100%;">Entrar al panel</button>
+
+      <p class="sub" style="margin:16px 0 0; font-size:0.82em; background:#FAFAFB; border:1px solid #E2E5EA; border-radius:6px; padding:9px;">
+        <strong>Primer ingreso:</strong> usuario <strong>admin</strong> · contraseña <strong>servicpc</strong><br>
+        <span style="font-size:0.94em;">Después cambiala en la pestaña "Datos y acceso".</span>
+      </p>
+
+      <p class="sub" style="margin-top:16px; margin-bottom:0;">
+        <a href="index.html" style="color:#5A5F6A;">Volver a la página</a>
+      </p>
+    </form>
+  </div>
+
+  <!-- ============================================================
+       EL PANEL
+       ============================================================ -->
+  <div id="pantallaPanel" class="oculto">
+
+    <!-- BARRA SUPERIOR: nombre de la empresa + campana de avisos -->
+    <div class="barra-admin">
+      <div class="barra-marca">
+        <img src="assets/logo-servic-circular.webp" alt="Logo de Servic PC">
+        <div>
+          <strong>Servic PC</strong>
+          <small>Panel de administración</small>
+        </div>
+      </div>
+
+      <div class="barra-acciones">
+        <!-- Aviso de "guardado": aparece al lado de la campana -->
+        <span class="aviso-guardado oculto" id="avisoGuardado"></span>
+
+        <!-- CAMPANA con el desplegable de novedades -->
+        <div class="campana-caja">
+          <button class="campana" id="botonCampana" onclick="alternarNotificaciones()" title="Novedades">
+            <i class="fas fa-bell"></i>
+            <span class="insignia oculto" id="insigniaCampana">0</span>
+          </button>
+          <div class="panel-notificaciones" id="panelNotificaciones"></div>
+        </div>
+
+        <span id="nombreAdmin" style="color:#CD9F2C; font-size:0.9em;"></span>
+        <a href="index.html" target="_blank"><i class="fas fa-globe"></i> Ver el sitio</a>
+        <button onclick="salir()"><i class="fas fa-right-from-bracket"></i> Salir</button>
+      </div>
+    </div>
+
+    <!-- PESTAÑAS -->
+    <div class="pestanas">
+      <button class="activa" onclick="cambiarPestana('productos', this)"><i class="fas fa-box-open"></i> Productos</button>
+      <button onclick="cambiarPestana('resenas', this)"><i class="fas fa-star"></i> Reseñas</button>
+      <button onclick="cambiarPestana('trabajos', this)"><i class="fas fa-images"></i> Trabajos realizados</button>
+      <button onclick="cambiarPestana('mantenimiento', this)"><i class="fas fa-screwdriver-wrench"></i> Mantenimiento</button>
+      <button onclick="cambiarPestana('datos', this)"><i class="fas fa-gear"></i> Datos y acceso</button>
+    </div>
+
+    <div class="contenido">
+
+      <!-- AVISO: si el navegador no deja guardar los datos, se avisa acá -->
+      <div class="tarjeta-panel" id="avisoAlmacenamiento" style="display:none; border-left:5px solid #C1272D;">
+        <h2 style="color:#C1272D;"><i class="fas fa-triangle-exclamation"></i> Tu navegador está bloqueando el guardado</h2>
+        <p style="margin-bottom:10px;">
+          Esta versión del panel necesita guardar datos en el navegador (localStorage) para que
+          los cambios que hacés se guarden. Estás abriendo la página con doble clic, y algunos
+          navegadores bloquean el guardado en ese caso.
+        </p>
+        <p style="margin-bottom:0;">
+          <strong>Cómo resolverlo:</strong> abrí la carpeta con un servidor local, en vez de
+          hacer doble clic. Podés usar el <strong>Live Server</strong> de Visual Studio Code
+          (botón derecho sobre el archivo → <em>Open with Live Server</em>) o, en una terminal,
+          escribir <code>python -m http.server 8080</code> y entrar a
+          <code>http://localhost:8080/panel.html</code>.
+        </p>
+      </div>
+
+      <!-- ============ PRODUCTOS ============ -->
+      <div id="pestana-productos">
+        <div class="tarjeta-panel" id="formProducto">
+          <h2 id="tituloProducto">Nuevo producto</h2>
+          <p>Agregá un producto al catálogo o modificá uno que ya está.</p>
+
+          <div class="rejilla-form">
+            <label class="campo">
+              <span>Nombre del producto</span>
+              <input type="text" id="pNombre" placeholder="Memoria RAM Notebook DDR4 16GB">
+            </label>
+            <label class="campo">
+              <span>Categoría</span>
+              <select id="pCategoria"></select>
+            </label>
+            <label class="campo">
+              <span>Precio</span>
+              <input type="text" id="pPrecio" placeholder="$45.000">
+            </label>
+            <label class="campo">
+              <span>Imagen (archivo del equipo)</span>
+              <input type="file" id="pImagen" accept="image/*">
+            </label>
+          </div>
+
+          <div id="vistaPreviaProducto" style="margin:10px 0;"></div>
+
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button class="boton boton-principal" onclick="guardarProducto()"><i class="fas fa-floppy-disk"></i> Guardar producto</button>
+            <button class="boton boton-neutro" onclick="limpiarFormularioProducto()"><i class="fas fa-eraser"></i> Cancelar edición</button>
+          </div>
+        </div>
+
+        <div class="tarjeta-panel">
+          <h2>Catálogo</h2>
+          <p id="contadorProductos"></p>
+          <div style="overflow-x:auto;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Imagen</th>
+                  <th>Producto</th>
+                  <th>Categoría</th>
+                  <th>Precio</th>
+                  <th>Estado</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="tablaProductos"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ RESEÑAS ============
+           Desde aca NO se cargan reseñas: las escriben los clientes
+           desde la web. El administrador solo decide si se publican. -->
+      <div id="pestana-resenas" class="oculto">
+        <div class="tarjeta-panel">
+          <h2>Revisión de reseñas</h2>
+          <p>Las reseñas que escriben los clientes en la página llegan acá. Solo las que están
+             <strong>aprobadas</strong> se ven en el sitio: las demás quedan ocultas.</p>
+
+          <div class="aviso">
+            <i class="fas fa-circle-info"></i>
+            Las reseñas que llegan desde el formulario de la página se guardan en <strong>este navegador</strong>.
+            Para que le lleguen desde otras computadoras hay que usar un servidor (por ejemplo Python)
+            o un formulario externo. Está explicado en la guía.
+          </div>
+
+          <div id="listaResenas"></div>
+        </div>
+      </div>
+
+      <!-- ============ TRABAJOS REALIZADOS ============ -->
+      <div id="pestana-trabajos" class="oculto">
+        <div class="tarjeta-panel" id="formTrabajo">
+          <h2>Subir un trabajo realizado</h2>
+          <p>Estas imágenes son las que pasan solas en el carrusel de la página de inicio.</p>
+
+          <div class="rejilla-form">
+            <label class="campo">
+              <span>Título</span>
+              <input type="text" id="tTitulo" placeholder="Cambio de disco a SSD">
+            </label>
+            <label class="campo">
+              <span>Imagen (foto del trabajo)</span>
+              <input type="file" id="tImagen" accept="image/*">
+            </label>
+          </div>
+          <label class="campo">
+            <span>Descripción</span>
+            <textarea id="tTexto" rows="3" placeholder="Contá qué se hizo y cómo quedó"></textarea>
+          </label>
+
+          <div id="vistaPreviaTrabajo" style="margin:10px 0;"></div>
+
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button class="boton boton-principal" onclick="guardarTrabajo()"><i class="fas fa-upload"></i> Publicar en el carrusel</button>
+            <button class="boton boton-neutro" onclick="limpiarFormularioTrabajo()"><i class="fas fa-eraser"></i> Cancelar edición</button>
+          </div>
+        </div>
+
+        <div class="tarjeta-panel">
+          <h2>Trabajos publicados</h2>
+          <p id="contadorTrabajos"></p>
+          <div class="rejilla-trabajos" id="rejillaTrabajos"></div>
+        </div>
+      </div>
+
+      <!-- ============ MANTENIMIENTO ============ -->
+      <div id="pestana-mantenimiento" class="oculto">
+        <div class="tarjeta-panel" id="formMantenimiento">
+          <h2 id="tituloMantenimiento">Nuevo servicio de mantenimiento</h2>
+          <p>
+            Estos servicios se muestran en la portada como tarjetas, y cada una tiene una
+            <strong>vista previa</strong> con el video o la foto del trabajo.
+          </p>
+
+          <div class="rejilla-form">
+            <label class="campo">
+              <span>Nombre del servicio</span>
+              <input type="text" id="mTitulo" placeholder="Limpieza interna completa">
+            </label>
+            <label class="campo">
+              <span>Precio</span>
+              <input type="text" id="mPrecio" placeholder="$15.000">
+            </label>
+            <label class="campo">
+              <span>Imagen (foto del trabajo)</span>
+              <input type="file" id="mImagen" accept="image/*">
+            </label>
+            <label class="campo">
+              <span>Video (opcional)</span>
+              <input type="text" id="mVideo" placeholder="assets/trabajos/limpieza.mp4">
+            </label>
+          </div>
+
+          <label class="campo">
+            <span>Descripción</span>
+            <textarea id="mTexto" rows="3" placeholder="Contá qué incluye el servicio"></textarea>
+          </label>
+
+          <div id="vistaPreviaMantenimiento" style="margin:10px 0;"></div>
+
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button class="boton boton-principal" onclick="guardarMantenimiento()"><i class="fas fa-floppy-disk"></i> Guardar servicio</button>
+            <button class="boton boton-neutro" onclick="limpiarFormularioMantenimiento()"><i class="fas fa-eraser"></i> Cancelar edición</button>
+          </div>
+
+          <div class="aviso" style="margin-top:16px;">
+            <i class="fas fa-circle-info"></i>
+            Para el video: copiá el archivo en la carpeta <code>assets/trabajos/</code> de la página
+            y escribí acá el nombre, por ejemplo <code>assets/trabajos/limpieza.mp4</code>.
+            Si el archivo no está, la vista previa muestra la foto.
+          </div>
+        </div>
+
+        <div class="tarjeta-panel">
+          <h2>Servicios publicados</h2>
+          <p id="contadorMantenimientos"></p>
+          <div class="rejilla-trabajos" id="rejillaMantenimientos"></div>
+        </div>
+      </div>
+
+      <!-- ============ DATOS Y ACCESO ============ -->
+      <div id="pestana-datos" class="oculto">
+        <div class="tarjeta-panel">
+          <h2>Publicar los cambios en el servidor</h2>
+          <p>
+            Los cambios que hacés se guardan en <strong>este navegador</strong>, así que los ves al
+            instante pero todavía no los ven los demás. Para publicarlos: exportá el archivo
+            <code>datos.json</code>, copialo en la carpeta <code>assets/js/</code> de la página y
+            subilo al hosting.
+          </p>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button class="boton boton-principal" onclick="Tienda.exportar()"><i class="fas fa-download"></i> Exportar datos.json</button>
+            <label class="boton boton-neutro" style="cursor:pointer;">
+              <i class="fas fa-upload"></i> Importar un datos.json
+              <input type="file" id="archivoImportar" accept="application/json" style="display:none;" onchange="importarDatos(this)">
+            </label>
+            <button class="boton boton-neutro" onclick="restablecerTodo()"><i class="fas fa-rotate-left"></i> Volver a los datos originales</button>
+          </div>
+        </div>
+
+        <div class="tarjeta-panel">
+          <h2>Cambiar la contraseña</h2>
+          <p>La clave no se guarda escrita: se guarda su "huella" (un hash), así que nadie puede leerla desde el código.</p>
+          <div class="rejilla-form">
+            <label class="campo">
+              <span>Usuario</span>
+              <input type="text" id="nuevoUsuario">
+            </label>
+            <label class="campo">
+              <span>Contraseña nueva</span>
+              <input type="password" id="nuevaClave">
+            </label>
+          </div>
+          <button class="boton boton-principal" onclick="cambiarClave()"><i class="fas fa-key"></i> Guardar clave</button>
+        </div>
+
+        <div class="tarjeta-panel">
+          <h2>Estado</h2>
+          <p id="infoEstado"></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SCRIPTS
+       ============================================================ -->
+  <script src="assets/js/catalogo.js"></script>
+  <script src="assets/js/datos.js"></script>
+
+  <script>
+    /* ============================================================
+       1) INGRESO Y SALIDA
+       ============================================================ */
+    var editandoProducto = null;   /* id del producto que se esta editando */
+    var editandoTrabajo = null;
+    var imagenProductoTemporal = "";
+    var imagenTrabajoTemporal = "";
+
+    function entrar() {
+      var usuario = document.getElementById("campoUsuario").value.trim();
+      var clave = document.getElementById("campoClave").value;
+      var config = Tienda.config();
+
+      if (usuario === config.usuario && hash(clave) === config.clave) {
+        sessionStorage.setItem(CLAVES.sesion, JSON.stringify({ usuario: usuario, momento: Date.now() }));
+        abrirPanel();
+      } else {
+        document.getElementById("errorLogin").classList.remove("oculto");
+      }
+      return false;   /* evita que se recargue la pagina */
+    }
+
+    function abrirPanel() {
+      var sesion = JSON.parse(sessionStorage.getItem(CLAVES.sesion) || "null");
+      if (!sesion) {
+        document.getElementById("pantallaPanel").classList.add("oculto");
+        document.getElementById("pantallaLogin").classList.remove("oculto");
+        return;
+      }
+      document.getElementById("pantallaLogin").classList.add("oculto");
+      document.getElementById("pantallaPanel").classList.remove("oculto");
+      document.getElementById("nombreAdmin").textContent = sesion.usuario;
+
+      /* Si el navegador no deja guardar, se avisa arriba de todo */
+      if (!puedeGuardar()) {
+        document.getElementById("avisoAlmacenamiento").style.display = "block";
+      }
+
+      cargarCategorias();
+      pintarProductos();
+      pintarResenas();
+      pintarTrabajos();
+      pintarMantenimientos();
+      pintarNotificaciones();
+      pintarEstado();
+    }
+
+    /* Muestra el cartelito verde con lo que se acaba de guardar */
+    var temporizadorAviso = null;
+    function avisarGuardado(mensaje) {
+      var aviso = document.getElementById("avisoGuardado");
+      aviso.textContent = "✓ " + mensaje;
+      aviso.className = "aviso-guardado";
+      if (temporizadorAviso) { clearTimeout(temporizadorAviso); }
+      temporizadorAviso = setTimeout(function () {
+        aviso.classList.add("oculto");
+      }, 3000);
+    }
+
+    /* Muestra el cartelito rojo cuando no se pudo guardar */
+    function avisarError(mensaje) {
+      var aviso = document.getElementById("avisoGuardado");
+      aviso.textContent = "⚠ " + mensaje;
+      aviso.className = "aviso-guardado error";
+      if (temporizadorAviso) { clearTimeout(temporizadorAviso); }
+      temporizadorAviso = setTimeout(function () {
+        aviso.classList.add("oculto");
+      }, 6000);
+    }
+
+    /* Cuando se edita algo, el formulario se resalta para que se vea
+       que quedo en modo edicion */
+    function resaltarFormulario(idTarjeta) {
+      var tarjeta = document.getElementById(idTarjeta);
+      if (!tarjeta) { return; }
+      tarjeta.classList.add("resaltando");
+      setTimeout(function () { tarjeta.classList.remove("resaltando"); }, 1600);
+    }
+
+    function salir() {
+      sessionStorage.removeItem(CLAVES.sesion);
+      location.reload();
+    }
+
+    /* Si ya habia sesion abierta, se entra directo */
+    (function () {
+      if (sessionStorage.getItem(CLAVES.sesion)) {
+        abrirPanel();
+      }
+      Tienda.iniciar().then(function () {
+        if (sessionStorage.getItem(CLAVES.sesion)) {
+          pintarProductos(); pintarResenas(); pintarTrabajos(); pintarNotificaciones();
+        }
+      });
+    })();
+
+    /* ============================================================
+       2) PESTAÑAS
+       ============================================================ */
+    function cambiarPestana(nombre, boton) {
+      ["productos", "resenas", "trabajos", "mantenimiento", "datos"].forEach(function (p) {
+        document.getElementById("pestana-" + p).classList.add("oculto");
+      });
+      document.getElementById("pestana-" + nombre).classList.remove("oculto");
+
+      var botones = document.querySelectorAll(".pestanas button");
+      for (var i = 0; i < botones.length; i++) { botones[i].classList.remove("activa"); }
+      boton.classList.add("activa");
+    }
+
+    /* ============================================================
+       3) PRODUCTOS
+       ============================================================ */
+    function cargarCategorias() {
+      var select = document.getElementById("pCategoria");
+      if (select.options.length > 0) { return; }
+      Object.keys(CATEGORIAS).forEach(function (clave) {
+        var opcion = document.createElement("option");
+        opcion.value = clave;
+        opcion.textContent = CATEGORIAS[clave];
+        select.appendChild(opcion);
+      });
+    }
+
+    function pintarProductos() {
+      var productos = quitarBorrados(Tienda.productos());
+      var cuerpo = document.getElementById("tablaProductos");
+      cuerpo.innerHTML = "";
+
+      document.getElementById("contadorProductos").textContent =
+        productos.length + " productos en el catálogo.";
+
+      productos.forEach(function (p) {
+        var fila = document.createElement("tr");
+
+        var tdImg = document.createElement("td");
+        var img = document.createElement("img");
+        img.className = "miniatura";
+        img.src = p.imagen || ("assets/productos/" + p.archivo);
+        img.alt = p.nombre;
+        tdImg.appendChild(img);
+
+        var tdNombre = document.createElement("td");
+        tdNombre.innerHTML = "<strong>" + escapar(p.nombre) + "</strong>";
+
+        var tdCat = document.createElement("td");
+        tdCat.textContent = CATEGORIAS[p.categoria] || p.categoria;
+
+        var tdPrecio = document.createElement("td");
+        tdPrecio.innerHTML = "<strong>" + escapar(p.precio) + "</strong>";
+
+        var tdEstado = document.createElement("td");
+        tdEstado.innerHTML = p.publicado === false
+          ? '<span class="etiqueta gris">Oculto</span>'
+          : '<span class="etiqueta verde">Publicado</span>';
+
+        var tdAcciones = document.createElement("td");
+        var botonEditar = document.createElement("button");
+        botonEditar.className = "boton boton-neutro boton-mini";
+        botonEditar.innerHTML = '<i class="fas fa-pen"></i> Editar';
+        botonEditar.onclick = function () { editarProducto(p.id); };
+
+        var botonOcultar = document.createElement("button");
+        botonOcultar.className = "boton boton-neutro boton-mini";
+        botonOcultar.innerHTML = p.publicado === false
+          ? '<i class="fas fa-eye"></i> Publicar'
+          : '<i class="fas fa-eye-slash"></i> Ocultar';
+        botonOcultar.onclick = function () { cambiarPublicado(p.id); };
+
+        var botonBorrar = document.createElement("button");
+        botonBorrar.className = "boton boton-neutro boton-mini";
+        botonBorrar.innerHTML = '<i class="fas fa-trash"></i> Borrar';
+        botonBorrar.onclick = function () { borrarProducto(p.id); };
+
+        tdAcciones.appendChild(botonEditar);
+        tdAcciones.appendChild(botonOcultar);
+        tdAcciones.appendChild(botonBorrar);
+
+        fila.appendChild(tdImg);
+        fila.appendChild(tdNombre);
+        fila.appendChild(tdCat);
+        fila.appendChild(tdPrecio);
+        fila.appendChild(tdEstado);
+        fila.appendChild(tdAcciones);
+        cuerpo.appendChild(fila);
+      });
+    }
+
+    function guardarProducto() {
+      var nombre = document.getElementById("pNombre").value.trim();
+      var categoria = document.getElementById("pCategoria").value;
+      var precio = document.getElementById("pPrecio").value.trim();
+
+      if (!nombre || !precio) {
+        alert("Cargá el nombre y el precio del producto.");
+        return;
+      }
+
+      var productos = Tienda.productos();
+      var imagen = imagenProductoTemporal;
+
+      if (editandoProducto) {
+        productos.forEach(function (p) {
+          if (p.id === editandoProducto) {
+            p.nombre = nombre;
+            p.categoria = categoria;
+            p.precio = precio;
+            if (imagen) { p.imagen = imagen; }
+          }
+        });
+      } else {
+        productos.push({
+          id: "p" + Date.now(),
+          nombre: nombre,
+          categoria: categoria,
+          precio: precio,
+          tipo: "propia",
+          publicado: true,
+          imagen: imagen || ""
+        });
+      }
+
+      Tienda.guardarProductos(productos);
+      avisarGuardado(editandoProducto ? "Producto actualizado." : "Producto agregado al catálogo.");
+      limpiarFormularioProducto();
+      pintarProductos();
+      pintarEstado();
+    }
+
+    function editarProducto(id) {
+      var productos = Tienda.productos();
+      productos.forEach(function (p) {
+        if (p.id !== id) { return; }
+        editandoProducto = id;
+        imagenProductoTemporal = p.imagen || "";
+        document.getElementById("tituloProducto").textContent = "Editando: " + p.nombre;
+        document.getElementById("pNombre").value = p.nombre;
+        document.getElementById("pCategoria").value = p.categoria;
+        document.getElementById("pPrecio").value = p.precio;
+        mostrarPrevia("vistaPreviaProducto", imagenProductoTemporal);
+        resaltarFormulario("formProducto");
+        window.scrollTo(0, 0);
+      });
+    }
+
+    function cambiarPublicado(id) {
+      var productos = Tienda.productos();
+      var estadoNuevo = true;
+      productos.forEach(function (p) {
+        if (p.id === id) { estadoNuevo = (p.publicado === false); p.publicado = estadoNuevo; }
+      });
+      if (Tienda.guardarProductos(productos)) {
+        avisarGuardado(estadoNuevo ? "Producto publicado en la web." : "Producto oculto de la web.");
+      }
+      pintarProductos();
+    }
+
+    function borrarProducto(id) {
+      if (!confirm("¿Seguro que querés borrar este producto del catálogo?")) { return; }
+      /* Se marca como borrado en vez de sacarlo de la lista: si lo sacamos,
+         al volver a leer los datos vuelve a aparecer. */
+      var productos = marcarBorrado(Tienda.productos(), id);
+      if (Tienda.guardarProductos(productos)) {
+        avisarGuardado("Producto borrado del catálogo.");
+      }
+      if (editandoProducto === id) { limpiarFormularioProducto(); }
+      pintarProductos();
+      pintarEstado();
+    }
+
+    function limpiarFormularioProducto() {
+      editandoProducto = null;
+      imagenProductoTemporal = "";
+      document.getElementById("tituloProducto").textContent = "Nuevo producto";
+      document.getElementById("pNombre").value = "";
+      document.getElementById("pPrecio").value = "";
+      document.getElementById("pImagen").value = "";
+      document.getElementById("vistaPreviaProducto").innerHTML = "";
+    }
+
+    /* Al elegir una imagen, se la achica antes de guardarla */
+    document.getElementById("pImagen").addEventListener("change", function () {
+      var archivo = this.files[0];
+      if (!archivo) { return; }
+      redimensionarImagen(archivo, 700, 0.8).then(function (datos) {
+        imagenProductoTemporal = datos;
+        mostrarPrevia("vistaPreviaProducto", datos);
+      });
+    });
+
+    function mostrarPrevia(idContenedor, datos) {
+      var contenedor = document.getElementById(idContenedor);
+      if (!datos) { contenedor.innerHTML = ""; return; }
+      contenedor.innerHTML = '<img src="' + datos + '" alt="Vista previa" style="max-height:120px; border-radius:8px; border:1px solid #E2E5EA;">';
+    }
+
+    /* ============================================================
+       4) RESEÑAS
+       ============================================================ */
+    function pintarResenas() {
+      var resenas = quitarBorrados(Tienda.resenas());
+      var lista = document.getElementById("listaResenas");
+      lista.innerHTML = "";
+
+      if (resenas.length === 0) {
+        lista.innerHTML = '<div class="vacio">Todavía no hay reseñas.</div>';
+        return;
+      }
+
+      resenas.sort(function (a, b) { return (b.fecha || "").localeCompare(a.fecha || ""); });
+
+      resenas.forEach(function (r) {
+        var caja = document.createElement("div");
+        caja.className = "resena-panel " + (r.estado || "pendiente");
+
+        var estrellas = "";
+        for (var i = 0; i < 5; i++) {
+          estrellas += '<i class="' + (i < r.estrellas ? "fas" : "far") + ' fa-star"></i>';
+        }
+
+        var estadoTexto = r.estado === "aprobada" ? '<span class="etiqueta verde">Publicada</span>'
+          : (r.estado === "rechazada" ? '<span class="etiqueta roja">Rechazada</span>'
+          : '<span class="etiqueta dorada">Pendiente</span>');
+
+        var html = '<div class="fila">' +
+          '<div><span class="quien">' + escapar(r.nombre) + '</span> ' +
+          '<span class="estrellas">' + estrellas + '</span> ' +
+          '<span style="color:#9AA0A6; font-size:0.85em;">' + fechaCorta(r.fecha) + '</span></div>' +
+          estadoTexto + '</div>' +
+          '<p class="comentario">' + escapar(r.texto) + '</p>' +
+          '<div class="acciones"></div>';
+
+        caja.innerHTML = html;
+        var acciones = caja.querySelector(".acciones");
+
+        if (r.estado !== "aprobada") {
+          var bAprobar = document.createElement("button");
+          bAprobar.className = "boton boton-ok boton-mini";
+          bAprobar.innerHTML = '<i class="fas fa-check"></i> Aprobar y publicar';
+          bAprobar.onclick = function () { cambiarEstadoResena(r.id, "aprobada"); };
+          acciones.appendChild(bAprobar);
+        }
+        if (r.estado !== "rechazada") {
+          var bRechazar = document.createElement("button");
+          bRechazar.className = "boton boton-neutro boton-mini";
+          bRechazar.innerHTML = '<i class="fas fa-times"></i> Rechazar';
+          bRechazar.onclick = function () { cambiarEstadoResena(r.id, "rechazada"); };
+          acciones.appendChild(bRechazar);
+        }
+        var bBorrar = document.createElement("button");
+        bBorrar.className = "boton boton-neutro boton-mini";
+        bBorrar.innerHTML = '<i class="fas fa-trash"></i> Borrar';
+        bBorrar.onclick = function () { borrarResena(r.id); };
+        acciones.appendChild(bBorrar);
+
+        lista.appendChild(caja);
+      });
+    }
+
+    function cambiarEstadoResena(id, estado) {
+      var resenas = Tienda.resenas();
+      resenas.forEach(function (r) { if (r.id === id) { r.estado = estado; } });
+      if (Tienda.guardarResenas(resenas)) {
+        avisarGuardado(estado === "aprobada"
+          ? "Reseña aprobada: ya se ve en la web."
+          : "Reseña rechazada: no se publica.");
+      }
+      pintarResenas();
+      pintarNotificaciones();
+    }
+
+    function borrarResena(id) {
+      if (!confirm("¿Borrar esta reseña?")) { return; }
+      var resenas = marcarBorrado(Tienda.resenas(), id);
+      if (Tienda.guardarResenas(resenas)) {
+        avisarGuardado("Reseña borrada.");
+      }
+      pintarResenas();
+      pintarNotificaciones();
+    }
+
+    /* ============================================================
+       5) CAMPANA DE NOTIFICACIONES
+       Verde si las novedades son buenas, roja si hay alguna mala.
+       ============================================================ */
+    function pintarNotificaciones() {
+      var pendientes = Tienda.resenasPendientes();
+      var boton = document.getElementById("botonCampana");
+      var insignia = document.getElementById("insigniaCampana");
+      var panel = document.getElementById("panelNotificaciones");
+
+      boton.classList.remove("buena", "mala");
+      if (pendientes.length > 0) {
+        insignia.textContent = pendientes.length;
+        insignia.classList.remove("oculto");
+        var hayMala = pendientes.some(function (r) { return r.estrellas <= 3; });
+        boton.classList.add(hayMala ? "mala" : "buena");
+      } else {
+        insignia.classList.add("oculto");
+      }
+
+      panel.innerHTML = "<h4>Novedades de clientes</h4>";
+
+      var todas = Tienda.resenas().slice().sort(function (a, b) {
+        return (b.fecha || "").localeCompare(a.fecha || "");
+      });
+
+      if (todas.length === 0) {
+        panel.innerHTML += '<div class="vacio">Todavía no hay reseñas cargadas.</div>';
+        return;
+      }
+
+      todas.slice(0, 12).forEach(function (r) {
+        var buena = r.estrellas >= 4;
+        var estrellas = "";
+        for (var i = 0; i < r.estrellas; i++) { estrellas += '<i class="fas fa-star"></i>'; }
+
+        var caja = document.createElement("div");
+        caja.className = "notificacion";
+        caja.innerHTML =
+          '<i class="fas ' + (buena ? "fa-circle-check" : "fa-circle-exclamation") + ' estado ' + (buena ? "buena" : "mala") + '"></i>' +
+          '<div style="flex:1;">' +
+            '<div class="quien">' + escapar(r.nombre) +
+              ' <span style="color:#CD9F2C; font-size:0.9em;">' + estrellas + '</span></div>' +
+            '<div class="texto">' + escapar(r.texto).slice(0, 120) + '</div>' +
+            '<div class="fecha">' + fechaCorta(r.fecha) +
+              (r.estado === "pendiente" ? " · pendiente de revisión" :
+               (r.estado === "aprobada" ? " · publicada" : " · rechazada")) + '</div>' +
+            '<div class="acciones-notif"></div>' +
+          '</div>';
+
+        var acciones = caja.querySelector(".acciones-notif");
+        if (r.estado === "pendiente") {
+          var b1 = document.createElement("button");
+          b1.className = "btn-aprobar";
+          b1.textContent = "Aprobar";
+          b1.onclick = function () { cambiarEstadoResena(r.id, "aprobada"); };
+          var b2 = document.createElement("button");
+          b2.className = "btn-rechazar";
+          b2.textContent = "Rechazar";
+          b2.onclick = function () { cambiarEstadoResena(r.id, "rechazada"); };
+          acciones.appendChild(b1);
+          acciones.appendChild(b2);
+        }
+        panel.appendChild(caja);
+      });
+    }
+
+    function alternarNotificaciones() {
+      var panel = document.getElementById("panelNotificaciones");
+      panel.classList.toggle("visible");
+    }
+
+    /* Cierra el desplegable si se hace clic afuera */
+    document.addEventListener("click", function (evento) {
+      var caja = document.querySelector(".campana-caja");
+      if (caja && !caja.contains(evento.target)) {
+        document.getElementById("panelNotificaciones").classList.remove("visible");
+      }
+    });
+
+    /* ============================================================
+       6) TRABAJOS REALIZADOS
+       ============================================================ */
+    function pintarTrabajos() {
+      var trabajos = quitarBorrados(Tienda.trabajos());
+      var rejilla = document.getElementById("rejillaTrabajos");
+      rejilla.innerHTML = "";
+
+      document.getElementById("contadorTrabajos").textContent =
+        trabajos.length + " trabajos en el carrusel de la página de inicio.";
+
+      trabajos.forEach(function (t) {
+        var caja = document.createElement("div");
+        caja.className = "trabajo";
+        caja.innerHTML =
+          '<img src="' + escapar(t.imagen) + '" alt="' + escapar(t.titulo) + '">' +
+          '<div class="cuerpo">' +
+            '<h3>' + escapar(t.titulo) + '</h3>' +
+            '<p>' + escapar(t.texto) + '</p>' +
+            '<div class="acciones"></div>' +
+          '</div>';
+
+        var acciones = caja.querySelector(".acciones");
+        var bEditar = document.createElement("button");
+        bEditar.className = "boton boton-neutro boton-mini";
+        bEditar.innerHTML = '<i class="fas fa-pen"></i> Editar';
+        bEditar.onclick = function () { editarTrabajo(t.id); };
+
+        var bBorrar = document.createElement("button");
+        bBorrar.className = "boton boton-neutro boton-mini";
+        bBorrar.innerHTML = '<i class="fas fa-trash"></i> Borrar';
+        bBorrar.onclick = function () { borrarTrabajo(t.id); };
+
+        acciones.appendChild(bEditar);
+        acciones.appendChild(bBorrar);
+        rejilla.appendChild(caja);
+      });
+    }
+
+    function guardarTrabajo() {
+      var titulo = document.getElementById("tTitulo").value.trim();
+      var texto = document.getElementById("tTexto").value.trim();
+      if (!titulo || !imagenTrabajoTemporal) {
+        alert("Cargá el título y la imagen del trabajo.");
+        return;
+      }
+
+      var trabajos = Tienda.trabajos();
+      if (editandoTrabajo) {
+        trabajos.forEach(function (t) {
+          if (t.id === editandoTrabajo) {
+            t.titulo = titulo;
+            t.texto = texto;
+            t.imagen = imagenTrabajoTemporal;
+          }
+        });
+      } else {
+        trabajos.push({
+          id: "t" + Date.now(),
+          titulo: titulo,
+          texto: texto,
+          imagen: imagenTrabajoTemporal
+        });
+      }
+
+      Tienda.guardarTrabajos(trabajos);
+      avisarGuardado(editandoTrabajo ? "Trabajo actualizado." : "Trabajo publicado en el carrusel.");
+      limpiarFormularioTrabajo();
+      pintarTrabajos();
+    }
+
+    function editarTrabajo(id) {
+      Tienda.trabajos().forEach(function (t) {
+        if (t.id !== id) { return; }
+        editandoTrabajo = id;
+        imagenTrabajoTemporal = t.imagen;
+        document.getElementById("tTitulo").value = t.titulo;
+        document.getElementById("tTexto").value = t.texto;
+        mostrarPrevia("vistaPreviaTrabajo", t.imagen);
+        resaltarFormulario("formTrabajo");
+        window.scrollTo(0, 0);
+      });
+    }
+
+    function borrarTrabajo(id) {
+      if (!confirm("¿Borrar este trabajo del carrusel?")) { return; }
+      var trabajos = marcarBorrado(Tienda.trabajos(), id);
+      if (Tienda.guardarTrabajos(trabajos)) {
+        avisarGuardado("Trabajo borrado del carrusel.");
+      }
+      if (editandoTrabajo === id) { limpiarFormularioTrabajo(); }
+      pintarTrabajos();
+    }
+
+    function limpiarFormularioTrabajo() {
+      editandoTrabajo = null;
+      imagenTrabajoTemporal = "";
+      document.getElementById("tTitulo").value = "";
+      document.getElementById("tTexto").value = "";
+      document.getElementById("tImagen").value = "";
+      document.getElementById("vistaPreviaTrabajo").innerHTML = "";
+    }
+
+    document.getElementById("tImagen").addEventListener("change", function () {
+      var archivo = this.files[0];
+      if (!archivo) { return; }
+      redimensionarImagen(archivo, 1000, 0.8).then(function (datos) {
+        imagenTrabajoTemporal = datos;
+        mostrarPrevia("vistaPreviaTrabajo", datos);
+      });
+    });
+
+    /* ============================================================
+       7) SERVICIOS DE MANTENIMIENTO (tarjetas con vista previa)
+       ============================================================ */
+    var editandoMantenimiento = null;
+    var imagenMantenimientoTemporal = "";
+
+    function pintarMantenimientos() {
+      var lista = quitarBorrados(Tienda.mantenimientos());
+      var rejilla = document.getElementById("rejillaMantenimientos");
+      rejilla.innerHTML = "";
+
+      document.getElementById("contadorMantenimientos").textContent =
+        lista.length + " servicios de mantenimiento publicados en la portada.";
+
+      lista.forEach(function (m) {
+        var caja = document.createElement("div");
+        caja.className = "trabajo";
+        caja.innerHTML =
+          '<img src="' + escapar(m.imagen) + '" alt="' + escapar(m.titulo) + '">' +
+          '<div class="cuerpo">' +
+            '<h3>' + escapar(m.titulo) + '</h3>' +
+            '<p>' + escapar(m.texto) + '</p>' +
+            '<p style="font-weight:bold; color:#C1272D; margin-bottom:10px;">' + escapar(m.precio) + '</p>' +
+            '<div class="acciones"></div>' +
+          '</div>';
+
+        var acciones = caja.querySelector(".acciones");
+        var bEditar = document.createElement("button");
+        bEditar.className = "boton boton-neutro boton-mini";
+        bEditar.innerHTML = '<i class="fas fa-pen"></i> Editar';
+        bEditar.onclick = function () { editarMantenimiento(m.id); };
+
+        var bBorrar = document.createElement("button");
+        bBorrar.className = "boton boton-neutro boton-mini";
+        bBorrar.innerHTML = '<i class="fas fa-trash"></i> Borrar';
+        bBorrar.onclick = function () { borrarMantenimiento(m.id); };
+
+        acciones.appendChild(bEditar);
+        acciones.appendChild(bBorrar);
+        rejilla.appendChild(caja);
+      });
+    }
+
+    function guardarMantenimiento() {
+      var titulo = document.getElementById("mTitulo").value.trim();
+      var texto = document.getElementById("mTexto").value.trim();
+      var precio = document.getElementById("mPrecio").value.trim();
+      var video = document.getElementById("mVideo").value.trim();
+
+      if (!titulo || !texto) {
+        alert("Cargá el nombre y la descripción del servicio.");
+        return;
+      }
+
+      var lista = Tienda.mantenimientos();
+      if (editandoMantenimiento) {
+        lista.forEach(function (m) {
+          if (m.id === editandoMantenimiento) {
+            m.titulo = titulo;
+            m.texto = texto;
+            m.precio = precio;
+            m.video = video;
+            if (imagenMantenimientoTemporal) { m.imagen = imagenMantenimientoTemporal; }
+          }
+        });
+      } else {
+        lista.push({
+          id: "m" + Date.now(),
+          titulo: titulo,
+          texto: texto,
+          precio: precio,
+          video: video,
+          imagen: imagenMantenimientoTemporal || "assets/logo-servic-circular.webp"
+        });
+      }
+
+      Tienda.guardarMantenimientos(lista);
+      avisarGuardado(editandoMantenimiento ? "Servicio actualizado." : "Servicio agregado a la portada.");
+      limpiarFormularioMantenimiento();
+      pintarMantenimientos();
+      pintarEstado();
+    }
+
+    function editarMantenimiento(id) {
+      Tienda.mantenimientos().forEach(function (m) {
+        if (m.id !== id) { return; }
+        editandoMantenimiento = id;
+        imagenMantenimientoTemporal = m.imagen || "";
+        document.getElementById("tituloMantenimiento").textContent = "Editando: " + m.titulo;
+        document.getElementById("mTitulo").value = m.titulo;
+        document.getElementById("mTexto").value = m.texto;
+        document.getElementById("mPrecio").value = m.precio;
+        document.getElementById("mVideo").value = m.video || "";
+        mostrarPrevia("vistaPreviaMantenimiento", imagenMantenimientoTemporal);
+        resaltarFormulario("formMantenimiento");
+        window.scrollTo(0, 0);
+      });
+    }
+
+    function borrarMantenimiento(id) {
+      if (!confirm("¿Borrar este servicio de mantenimiento?")) { return; }
+      var lista = marcarBorrado(Tienda.mantenimientos(), id);
+      if (Tienda.guardarMantenimientos(lista)) {
+        avisarGuardado("Servicio borrado de la portada.");
+      }
+      if (editandoMantenimiento === id) { limpiarFormularioMantenimiento(); }
+      pintarMantenimientos();
+    }
+
+    function limpiarFormularioMantenimiento() {
+      editandoMantenimiento = null;
+      imagenMantenimientoTemporal = "";
+      document.getElementById("tituloMantenimiento").textContent = "Nuevo servicio de mantenimiento";
+      document.getElementById("mTitulo").value = "";
+      document.getElementById("mTexto").value = "";
+      document.getElementById("mPrecio").value = "";
+      document.getElementById("mVideo").value = "";
+      document.getElementById("mImagen").value = "";
+      document.getElementById("vistaPreviaMantenimiento").innerHTML = "";
+    }
+
+    document.getElementById("mImagen").addEventListener("change", function () {
+      var archivo = this.files[0];
+      if (!archivo) { return; }
+      redimensionarImagen(archivo, 900, 0.8).then(function (datos) {
+        imagenMantenimientoTemporal = datos;
+        mostrarPrevia("vistaPreviaMantenimiento", datos);
+      });
+    });
+
+    /* ============================================================
+       8) DATOS Y ACCESO
+       ============================================================ */
+    function importarDatos(input) {
+      if (input.files[0]) { Tienda.importar(input.files[0]); }
+    }
+
+    function restablecerTodo() {
+      if (!confirm("¿Volver todos los datos a los originales? Se pierden los cambios del panel.")) { return; }
+      Tienda.restablecer();
+      location.reload();
+    }
+
+    function cambiarClave() {
+      var usuario = document.getElementById("nuevoUsuario").value.trim();
+      var clave = document.getElementById("nuevaClave").value;
+      if (!usuario || !clave) {
+        alert("Cargá el usuario y la contraseña nueva.");
+        return;
+      }
+      var config = Tienda.config();
+      config.usuario = usuario;
+      config.clave = hash(clave);
+      Tienda.guardarConfig(config);
+      sessionStorage.setItem(CLAVES.sesion, JSON.stringify({ usuario: usuario, momento: Date.now() }));
+      document.getElementById("nombreAdmin").textContent = usuario;
+      alert("Clave guardada. La próxima vez entrás con estos datos.");
+    }
+
+    function pintarEstado() {
+      var productos = quitarBorrados(Tienda.productos()).length;
+      var resenas = quitarBorrados(Tienda.resenas()).length;
+      var pendientes = Tienda.resenasPendientes().length;
+      var trabajos = quitarBorrados(Tienda.trabajos()).length;
+      var mantenimientos = quitarBorrados(Tienda.mantenimientos()).length;
+      var remoto = Tienda.publicados ? "sí (assets/js/datos.json)" : "no";
+
+      document.getElementById("infoEstado").innerHTML =
+        "<ul style='margin:0; padding-left:20px;'>" +
+        "<li>Productos en el catálogo: <strong>" + productos + "</strong></li>" +
+        "<li>Reseñas cargadas: <strong>" + resenas + "</strong> (pendientes de revisar: <strong>" + pendientes + "</strong>)</li>" +
+        "<li>Trabajos en el carrusel: <strong>" + trabajos + "</strong></li>" +
+        "<li>Servicios de mantenimiento: <strong>" + mantenimientos + "</strong></li>" +
+        "<li>Datos publicados en el servidor: <strong>" + remoto + "</strong></li>" +
+        "</ul>";
+    }
+  </script>
+
+</body>
+</html>

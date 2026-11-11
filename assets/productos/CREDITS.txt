@@ -1,0 +1,78 @@
+CREDITOS Y LICENCIAS DE LAS IMAGENES - Catalogo Servic Sosa
+==============================================================================
+
+Archivo	Categoria	Descripcion	KB	Licencia	Autor	Pagina de origen
+------------------------------------------------------------------------------
+Archivo	Categoria	Descripcion	KB	Licencia	Autor	Pagina de origen
+adaptador-ssd-usb	Almacenamiento	Disco SSD externo	62	CC0	User5515	https://commons.wikimedia.org/wiki/File:M.2_2242_SSD_connected_into_USB_3.0_adapter.jpg
+adaptador-vga	Conectividad	Adaptador VGA / D-sub	18	CC BY-SA 3.0	Joydeep	https://commons.wikimedia.org/wiki/File:Standard_VGA_adapter_14072012.jpg
+adaptador-wifi	Conectividad	Adaptador WiFi USB	121	CC BY-SA 4.0	deavmi	https://commons.wikimedia.org/wiki/File:Engenius_WiFi_USB_Adapter.jpg
+alcohol-limpiador	Herramientas	Alcohol isopropilico / liquido limpiador	11	CC BY-SA 4.0	NeoBatfreak	https://commons.wikimedia.org/wiki/File:A_16_oz._DIY_hand_sanitizer.jpg
+bateria-laptop	Conectividad	Bateria de notebook	41	CC BY-SA 3.0	Vaky z	https://commons.wikimedia.org/wiki/File:90laptopbattery.jpg
+cable-hdmi	Conectividad	Cable HDMI	179	FAL	Smial ( talk )	https://commons.wikimedia.org/wiki/File:Adapter_cable_hdmi_dvi-d_IMGP1646_smial_wp.jpg
+cable-red-patch	Conectividad	Cable de red RJ45	14	CC BY 4.0	www.heimnetzwerke.net	https://commons.wikimedia.org/wiki/File:Patch_cable_with_RJ45_connector.jpg
+cable-sata	Conectividad	Cable de datos SATA	213	CC BY 4.0	Evan0512	https://commons.wikimedia.org/wiki/File:Dell_Inspiron_3880_SATA_hard_drive_cable.jpg
+cable-usb-a-b	Conectividad	Cable USB-A a USB-B	17	CC BY-SA 2.0	oomlout	https://commons.wikimedia.org/wiki/File:A-B_Usb_Cable.jpg
+cable-usb-c-a	Conectividad	Adaptador USB-C a USB-A	20	CC BY-SA 3.0	ItzANormalFioko	https://commons.wikimedia.org/wiki/File:Cavo_USB-C_%3D_USB-C_della_Samsung.jpg
+cargador-laptop	Conectividad	Cargador de notebook	77	CC BY-SA 3.0	Mixabest	https://commons.wikimedia.org/wiki/File:ASUS_notebook_power_supply_in_Ukraine_20110115.jpg
+cepillo-limpiador	Herramientas	Cepillo y kit de limpieza	103	CC BY-SA 4.0	Gausanchennai	https://commons.wikimedia.org/wiki/File:Keyboard_cleaner3.jpg
+destornilladores	Herramientas	Set de destornilladores	27	CC BY 2.0	cogdogblog	https://commons.wikimedia.org/wiki/File:@dailyshoot-_2010-08-25-_Make_a_photo_of_a_tool_today._Screwdriver._Pliers._Computer._What%27s_the_tool_you_find_most_important_on_a_daily_basis%3F_-ds283_(4928594646).jpg
+disco-duro-35	Almacenamiento	Disco duro 3.5 pulgadas	45	CC BY 2.0	Shixart1985	https://commons.wikimedia.org/wiki/File:Computer_hard_disk_drives_with_blue_neon_light_from_above.jpg
+disco-duro-externo	Almacenamiento	Disco duro externo	17	CC BY-SA 3.0	Coyau	https://commons.wikimedia.org/wiki/File:Blue_external_USB_hard_drive_01.jpg
+disco-duro-placa	Almacenamiento	Disco duro abierto (placa interna)	54	CC BY-SA 2.0	Steve Elliott from UK	https://commons.wikimedia.org/wiki/File:Disk_Platters_Storage_sizes._(51333057174).jpg
+disco-optico	Almacenamiento	Lector / unidad de CD-DVD	137	CC BY-SA 4.0	Raimond Spekking	https://commons.wikimedia.org/wiki/File:Asatech_ASA-9829B-B01-01_-_optical_disc_drive_-_chassis_wth_optical_read_write_head_and_motors-3232.jpg
+disipador-cpu-amd	Refrigeracion	Disipador de CPU con heatpipes	128	CC BY-SA 4.0	ITEagle Europe - Sebastiaan Broekhoven	https://commons.wikimedia.org/wiki/File:AMD_Ryzen_5_1600_processor_with_Wraith_Spire_cooler_-_detail_view_of_processor.jpg
+disipador-cpu-torre	Refrigeracion	Disipador de CPU tipo torre	25	CC BY-SA 4.0	ITEagle Europe - Sebastiaan Broekhoven	https://commons.wikimedia.org/wiki/File:AMD_Ryzen_5_1600_processor_with_Wraith_Spire_cooler_-_detail_view_of_cooler.jpg
+dock-usbc	Conectividad	Dock / hub USB-C	17	Public domain	しろうるり	https://commons.wikimedia.org/wiki/File:ALMIGHTY_DOCK_C1.jpg
+fuente-alimentacion	Almacenamiento	Fuente de alimentacion ATX	59	GFDL 1.2	Ralf Roletschek ( talk ) - Fahrradtechnik auf fahrradmonteur.de	https://commons.wikimedia.org/wiki/File:Black_PC_power_supply_1.jpg
+gabinete-atx	Gabinete	Gabinete ATX	123	CC BY-SA 4.0	Bretwa	https://commons.wikimedia.org/wiki/File:ATX_computer_case_-_left_-_2018-05-18.jpg
+gabinete-torre	Catalogo		68	CC BY-SA 4.0	Jacek Halicki	https://commons.wikimedia.org/wiki/File:2018_Komputer_PC_03.jpg
+herramienta-crimpar	Herramientas	Pinza crimpadora RJ45	103	CC BY 4.0	www.heimnetzwerke.net	https://commons.wikimedia.org/wiki/File:Cable_stripper,_cable_tester_(RJ45,_RJ11),_LSA-Tool_and_crimping_tool.jpg
+hub-usb-4	Conectividad	Hub USB de 4 puertos	64	CC BY 2.0	cogdogblog	https://commons.wikimedia.org/wiki/File:2010-365-48_Best._USB_Hub._Evah._(4367289690).jpg
+lector-tarjetas	Conectividad	Lector de tarjetas USB	28	CC BY 2.0	Thejas Panarkandy	https://commons.wikimedia.org/wiki/File:Card_reader_(3243177509).jpg
+mando-juego	Periferico	Mando USB para juegos	187	CC BY 2.0	I G	https://commons.wikimedia.org/wiki/File:E149_XH-2028_USB_Gamepad_Closeup_Grey_Background_(12248129143).jpg
+memoria-ram-cooling	Memoria RAM	Tipos de memoria RAM comparados	170	CC BY 3.0	KB Alpha	https://commons.wikimedia.org/wiki/File:RamTypes.JPG
+memoria-ram-ddr4	Catalogo		52	CC BY 4.0	PantheraLeo1359531	https://commons.wikimedia.org/wiki/File:16_GiB-DDR4-RAM-Riegel_RAM019FIX_Small_Crop_90_PCNT.png
+memoria-ram-ddr5	Catalogo		136	CC BY-SA 4.0	ITEagle Europe - Sebastiaan Broekhoven	https://commons.wikimedia.org/wiki/File:Kingston_FURY_Impact_DDR5_SO-DIMM_Laptop_Memory_32GB_Module_-_front_view.jpg
+memoria-ram-dimm	Catalogo		133	CC BY 4.0	Veeblefetzer	https://commons.wikimedia.org/wiki/File:168_pin_and_184_pin_DIMM.jpg
+memoria-ram-dimm2	Memoria RAM	Memoria RAM servidor RDIMM	75	CC BY-SA 4.0	ITEagle Europe - Sebastiaan Broekhoven	https://commons.wikimedia.org/wiki/File:Samsung_8GB_DDR4-2400_ECC_Registered_RDIMM_M393A1G40EB1-CRC0Q_-_front_view.jpg
+memoria-ram-disipador	Memoria RAM	Memoria RAM con disipador	125	CC BY 3.0	Altonbr	https://commons.wikimedia.org/wiki/File:OCZ_Technology_RAM_with_heat_spreaders.jpg
+memoria-ram-so-dimm	Catalogo		78	CC BY-SA 4.0	D-Kuru	https://commons.wikimedia.org/wiki/File:DDR_4_RAM_SO-DIMM_16GB_by_Micron-top_back_PNr%C2%B00841.jpg
+memoria-usb	Conectividad	Pendrive / memoria USB	71	CC BY-SA 4.0	Cjp24	https://commons.wikimedia.org/wiki/File:16_USB_flash_drives.jpg
+microfono-usb	Periferico	Microfono USB	29	CC BY-SA 3.0	Lucasbosch	https://commons.wikimedia.org/wiki/File:AKG_Perception_120_USB_condenser_microphone_with_SH_100_shock_mount.jpg
+monitor	Periferico	Monitor LCD	11	Public domain	Zzubnik	https://commons.wikimedia.org/wiki/File:Computer_monitor.jpg
+monitor-soporte	Periferico	Monitor con brazo VESA	106	CC BY-SA 4.0	Kyu3a	https://commons.wikimedia.org/wiki/File:Ultra-wide_display_with_VESA_arm_-_1.jpg
+mouse	Periferico	Mouse	15	CC BY-SA 4.0	Rico Shen	https://commons.wikimedia.org/wiki/File:2008_Taipei_IT_Month_Day9_Elecom_Optical_EGG_Mouse_in_Orange.jpg
+parlantes	Periferico	Parlantes para PC	48	CC BY-SA 3.0	Sheep221	https://commons.wikimedia.org/wiki/File:Acer_AL1716_and_AIWA_speakers_20070526.jpg
+pasta-termica	Refrigeracion	Pasta termica	55	FAL	Smial ( talk )	https://commons.wikimedia.org/wiki/File:Prozessork%C3%BChler_mit_verschmutzter_w%C3%A4rmeleitpaste_out_of_the_box_IMGP9528_smial_wp.jpg
+placa-madre-atx	Placa madre	Placa madre ATX	240	CC BY 4.0	PantheraLeo1359531	https://commons.wikimedia.org/wiki/File:Asus-ROG-Strix-Z390-F-Gaming-Motherboard_20201120_DSC6025.jpg
+placa-madre-microatx	Catalogo		118	CC BY-SA 4.0	Jacek Halicki	https://commons.wikimedia.org/wiki/File:2023_P%C5%82yta_g%C5%82%C3%B3wna_ASRock_A320M-DVS.jpg
+placa-madre-sockets	Placa madre	Placa madre mini ITX	126	GFDL 1.2	Johann H. Addicks - addicks@gmx.net	https://commons.wikimedia.org/wiki/File:Computer_auf_Platform_Mini-ITX_-_IMGP1040.JPG
+procesador-cpu	Procesador	Procesador AMD Ryzen	140	CC BY-SA 2.0	Brian Wong	https://commons.wikimedia.org/wiki/File:AMD_Ryzen_7_1800X.jpg
+procesador-intel	Procesador	Procesador Intel Core i7	111	CC BY-SA 4.0	ElooKoN	https://commons.wikimedia.org/wiki/File:Intel_i7_8700K.jpg
+protector-antiestatica	Almacenamiento	Bolsa antiestatica para componentes	96	CC BY-SA 4.0	Cjp24	https://commons.wikimedia.org/wiki/File:Antistatic_bag_with_conductive_grid.jpg
+pulsera-antiestatica	Herramientas	Pulsera antiestatica	62	CC0	RickyBennison	https://commons.wikimedia.org/wiki/File:An_ESD_band_with_a_crocodile_clip_and_a_sock.jpg
+real-cooler-rgb	Refrigeracion	Cooler RGB 120mm (su foto)	20	Foto propia del alumno	Servic Sosa	material propio del proyecto
+real-hdd	Almacenamiento	Disco duro HDD (su foto)	14	Foto propia del alumno	Servic Sosa	material propio del proyecto
+real-pasta-termica	Refrigeracion	Pasta termica (su foto)	12	Foto propia del alumno	Servic Sosa	material propio del proyecto
+real-ram-notebook	Memoria RAM	Memoria RAM Notebook (su foto)	14	Foto propia del alumno	Servic Sosa	material propio del proyecto
+real-ram-pc	Memoria RAM	Memoria RAM de escritorio (su foto)	42	Foto propia del alumno	Servic Sosa	material propio del proyecto
+real-ssd-m2	Almacenamiento	Disco SSD M.2 (su foto)	16	Foto propia del alumno	Servic Sosa	material propio del proyecto
+socket-cpu	Placa madre	Placa madre con socket CPU	236	FAL	Smial ( talk )	https://commons.wikimedia.org/wiki/File:Intel_Socket_1150_IMGP8593_smial_wp.jpg
+ssd-m2-nvme	Almacenamiento	Disco SSD M.2 NVMe	186	CC BY-SA 4.0	Phiarc	https://commons.wikimedia.org/wiki/File:M.2_2230_M-key_SSD_in_comparison_with_Micro-SD_card.jpg
+ssd-placa	Almacenamiento	Disco SSD destapado	203	CC BY-SA 4.0	Phiarc	https://commons.wikimedia.org/wiki/File:OCZ_Agility_3_PCB.jpg
+ssd-sata-25	Almacenamiento	Disco SSD SATA 2.5 pulgadas	104	CC BY-SA 4.0	Rico Shen	https://commons.wikimedia.org/wiki/File:2008Computex_Ritek_RiDATA_Ultra-S_IDE_SATA2_SSD.jpg
+tarjeta-grafica-amd	Catalogo		177	CC BY-SA 4.0	David290	https://commons.wikimedia.org/wiki/File:AMD_RADEON_PRO_WX_3100_video_card(1).jpg
+tarjeta-grafica-nvidia	Catalogo		32	CC BY-SA 3.0	Joydeep	https://commons.wikimedia.org/wiki/File:NVIDIA_GeForce_7300_LE.JPG
+tarjeta-grafica-ventilador	Catalogo		88	CC BY-SA 3.0	Tobias "ToMar" Maier	https://commons.wikimedia.org/wiki/File:2017_mid_range_pc_in_late_1990s_case.jpg
+tarjeta-memoria-sd	Almacenamiento	Tarjeta de memoria SD	58	CC BY-SA 4.0	Dineshkumar Nallaveerappan	https://commons.wikimedia.org/wiki/File:Micro_SD_card_16_GB.jpg
+teclado-inalambrico	Periferico	Teclado inalambrico	43	CC BY-SA 4.0	TaurusEmerald	https://commons.wikimedia.org/wiki/File:Amazon_Basics_Wireless_Computer_Keyboard.jpg
+teclado-mecanico	Periferico	Teclado mecanico	18	Public domain	Snuci	https://commons.wikimedia.org/wiki/File:Albert_computer_keyboard_front.JPG
+ventilador-cpu-92	Refrigeracion	Ventilador de CPU 92mm	73	CC BY-SA 3.0	142012 Vladimir	https://commons.wikimedia.org/wiki/File:Fanera.jpg
+ventilador-gabinete	Refrigeracion	Ventilador de gabinete 120mm	59	CC BY 2.0	Creative Tools from Halmstad, Sweden	https://commons.wikimedia.org/wiki/File:CreativeTools.se_-_PackshotCreator_-_Computer_fan_tunnel_(4331560119).jpg
+webcam	Conectividad	Webcam	14	CC BY-SA 3.0	Zephyris	https://commons.wikimedia.org/wiki/File:AdventWebcam.jpg
+
+- Las que dicen Foto propia del alumno son las que vos fotografiaste.
+- Las demas vienen de Wikimedia Commons con licencia libre (dominio publico,
+  CC0, CC BY o CC BY-SA). Los .webp son copias optimizadas de las originales.
+- Si publicas la web, conserva este archivo: es el credito de las imagenes.

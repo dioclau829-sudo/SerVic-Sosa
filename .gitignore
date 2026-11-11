@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+# Materiales de la materia y respaldos: son locales, no se suben
+_materiales/
+_respaldo-original/

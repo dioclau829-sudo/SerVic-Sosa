@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Servic PC - Planes de mantenimiento, tarifas y sistemas de información a medida para pymes y consultorios en Wanda, Misiones.">
+  <meta name="author" content="Servic PC - Claudio Sosa">
+  <title>Servic PC - Tarifas, Planes y Sistemas para Negocios</title>
+
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+
+  <meta property="og:title" content="Servic PC - Servicios y tarifas">
+  <meta property="og:description" content="Planes de mantenimiento, reparación y sistemas de cobro o turnos para tu negocio.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/logo-servic-circular.webp">
+
+  <script src="https://kit.fontawesome.com/6c857664ba.js" crossorigin="anonymous"></script>
+
+  <style>
+    /* ============================================================
+       PALETA DE COLORES TOMADA DEL LOGO:
+       #141414 negro | #C1272D rojo | #CD9F2C dorado | #3A9639 verde
+       ============================================================ */
+    :root{
+      --negro:#141414;
+      --rojo:#C1272D;
+      --dorado:#CD9F2C;
+      --verde:#3A9639;
+      --fondo:#F4F5F7;
+      --blanco:#FFFFFF;
+      --borde:#E2E5EA;
+      --texto:#1A1A1A;
+      --texto-2:#5A5F6A;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: var(--fondo);
+      margin: 0;
+      padding: 0;
+      color: var(--texto);
+      line-height: 1.5;
+    }
+
+    header {
+      background-color: var(--negro);
+      color: #FFFFFF;
+      text-align: center;
+      padding: 26px 20px 30px;
+      border-bottom: 4px solid var(--rojo);
+    }
+
+    header h1 {
+      margin: 0;
+      color: #FFFFFF;
+      font-size: clamp(34px, 7vw, 60px);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    header p {
+      margin: 6px 0 0;
+      font-size: 1.25em;
+      color: var(--dorado);
+      font-weight: bold;
+    }
+
+    header .datos-contacto {
+      margin-top: 12px;
+      font-size: 1em;
+      color: #D4D4D4;
+    }
+
+    header .datos-contacto a {
+      color: var(--dorado);
+      text-decoration: none;
+    }
+
+    header .datos-contacto a:hover {
+      text-decoration: underline;
+    }
+
+    header img {
+      margin-top: 16px;
+      width: 190px;
+      height: 190px;
+      object-fit: contain;
+    }
+
+    .marquee-wrapper {
+      background-color: var(--dorado);
+      padding: 6px 0;
+      font-weight: bold;
+      font-size: 1.15em;
+      color: var(--negro);
+    }
+
+    nav {
+      background-color: #1E1E1E;
+      padding: 12px;
+      text-align: center;
+    }
+
+    nav a {
+      color: #E6E6E6;
+      text-decoration: none;
+      margin: 0 12px;
+      padding: 6px 2px;
+      font-size: 1.1em;
+      border-bottom: 2px solid transparent;
+    }
+
+    nav a:hover {
+      color: var(--dorado);
+      border-bottom-color: var(--dorado);
+    }
+
+    nav a.activo {
+      color: #FFFFFF;
+      border-bottom-color: var(--rojo);
+      font-weight: bold;
+    }
+
+    section {
+      background-color: var(--blanco);
+      margin: 24px auto;
+      padding: 24px 28px;
+      max-width: 1100px;
+      border: 1px solid var(--borde);
+      border-radius: 14px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+    }
+
+    section h2 {
+      color: var(--rojo);
+      border-bottom: 2px solid var(--dorado);
+      padding-bottom: 6px;
+      margin-top: 0;
+    }
+
+    .icono-titulo {
+      margin-right: 8px;
+      color: var(--dorado);
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    /* ---------- NOTA DESTACADA ---------- */
+    .nota-enlace {
+      background-color: var(--negro);
+      color: #FFFFFF;
+      padding: 14px 16px;
+      border-radius: 8px;
+      margin: 18px 0;
+      font-size: 1em;
+    }
+
+    .nota-enlace a {
+      color: var(--dorado);
+      font-weight: bold;
+    }
+
+    /* ---------- TARJETAS DE PRECIOS ---------- */
+    .precios-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      justify-content: center;
+      margin-top: 25px;
+    }
+
+    .tarjeta-precio {
+      background-color: #FFFFFF;
+      border: 1px solid var(--borde);
+      border-top: 5px solid var(--rojo);
+      border-radius: 10px;
+      width: 270px;
+      padding: 20px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .tarjeta-precio:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.14);
+      border-top-color: var(--dorado);
+    }
+
+    .icono-plan {
+      font-size: 2.4em;
+      color: var(--rojo);
+      margin-bottom: 10px;
+    }
+
+    .titulo-plan {
+      font-size: 1.2em;
+      color: var(--negro);
+      margin: 0 0 10px 0;
+      font-weight: bold;
+    }
+
+    .descripcion-plan {
+      font-size: 0.9em;
+      color: var(--texto-2);
+      text-align: left;
+      line-height: 1.4em;
+      min-height: 110px;
+    }
+
+    .costo {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: var(--rojo);
+      margin: 15px 0 5px 0;
+    }
+
+    .detalles-adicionales {
+      font-size: 0.8em;
+      color: var(--texto-2);
+      margin: 0;
+    }
+
+    /* ---------- TARJETAS DE SISTEMAS ---------- */
+    .rejilla-tarjetas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .tarjeta-sistema {
+      background-color: #FAFAFB;
+      border: 1px solid var(--borde);
+      border-left: 5px solid var(--rojo);
+      border-radius: 10px;
+      width: 290px;
+      padding: 18px;
+      box-sizing: border-box;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .tarjeta-sistema:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.10);
+      border-left-color: var(--dorado);
+    }
+
+    .tarjeta-sistema i {
+      font-size: 1.8em;
+      color: var(--rojo);
+      margin-bottom: 8px;
+    }
+
+    .tarjeta-sistema p {
+      color: var(--texto-2);
+      font-size: 0.92em;
+      margin: 0 0 12px;
+    }
+
+    /* ---------- TABLA ---------- */
+    /* Con el scroll, la tabla ancha se desliza en vez de romper la pagina en el celular */
+    .tabla-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    table, th, td {
+      border: 1px solid var(--borde);
+      border-collapse: collapse;
+    }
+
+    table {
+      width: 100%;
+      margin: 18px 0;
+      font-size: 0.95em;
+    }
+
+    th, td {
+      padding: 10px 12px;
+      text-align: center;
+    }
+
+    th {
+      background-color: var(--negro);
+      color: #FFFFFF;
+    }
+
+    tr:nth-child(even) td {
+      background-color: #FAFAFB;
+    }
+
+    /* ---------- BOTONES ---------- */
+    .boton {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      border: 2px solid var(--rojo);
+      cursor: pointer;
+      font-size: 1em;
+    }
+
+    .boton-principal {
+      background-color: var(--rojo);
+      color: #FFFFFF;
+    }
+
+    .boton-principal:hover {
+      background-color: #A01F24;
+    }
+
+    .boton-secundario {
+      background-color: transparent;
+      color: var(--rojo);
+    }
+
+    .boton-secundario:hover {
+      background-color: var(--rojo);
+      color: #FFFFFF;
+    }
+
+    .boton-whatsapp {
+      background-color: var(--verde);
+      border-color: var(--verde);
+      color: #FFFFFF;
+    }
+
+    .boton-whatsapp:hover {
+      background-color: #2E7A33;
+      border-color: #2E7A33;
+    }
+
+    .centro {
+      text-align: center;
+    }
+
+    /* ---------- PIE DE PAGINA ---------- */
+    footer {
+      background-color: var(--negro);
+      color: #C4C4C4;
+      text-align: center;
+      padding: 26px 16px;
+      margin-top: 34px;
+      border-top: 4px solid var(--dorado);
+    }
+
+    footer a {
+      color: var(--dorado);
+      text-decoration: none;
+      margin: 0 6px;
+    }
+
+    footer a:hover {
+      color: #FFFFFF;
+      text-decoration: underline;
+    }
+
+    footer .icono-footer {
+      color: var(--dorado);
+    }
+
+    @media (max-width: 700px) {
+      nav a {
+        margin: 0 5px;
+        font-size: 0.95em;
+      }
+      section {
+        margin: 14px 10px;
+        padding: 18px;
+      }
+      header img {
+        width: 140px;
+        height: 140px;
+      }
+      .tarjeta-precio, .tarjeta-sistema {
+        width: 100%;
+      }
+      .tabla-scroll table {
+        min-width: 540px;
+        font-size: 0.8em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= ENCABEZADO ================= -->
+  <header>
+    <a href="index.html" title="Ir al inicio">
+      <img src="assets/logo-servic-circular.webp" alt="Logo de Servic PC" width="190" height="190">
+    </a>
+
+    <h1>Servic PC</h1>
+    <p>Reparación, mantenimiento y soporte técnico informático</p>
+
+    <p class="datos-contacto">
+      Wanda, Misiones &nbsp;|&nbsp;
+      <a href="tel:+543757587830">Tel: 3757 587830</a> &nbsp;|&nbsp;
+      <a href="https://wa.me/5493757587830" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    </p>
+  </header>
+
+  <!-- ================= TEXTO EN MOVIMIENTO ================= -->
+  <div class="marquee-wrapper">
+    <marquee direction="left" scrollamount="5" scrolldelay="10" bgcolor="#CD9F2C" loop="infinite">
+      ¡Bienvenido a Servic PC! — Reparación de computadoras — Formateos — Mantenimiento preventivo — Venta de repuestos — ¡Consultanos sin cargo!
+    </marquee>
+  </div>
+
+  <!-- ================= NAVEGACION ================= -->
+  <nav>
+    <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a> |
+    <a href="Servicios.html" class="activo"><i class="fas fa-tools"></i> Servicios</a> |
+    <a href="Productos.html"><i class="fas fa-box-open"></i> Productos</a> |
+    <a href="Reseñas.html"><i class="fas fa-star"></i> Reseñas</a> |
+    <a href="Reseñas.html#dejar-resena"><i class="fas fa-pen-to-square"></i> Dejar reseña</a> |
+    <a href="https://wa.me/5493757587830" target="_blank"><i class="fab fa-whatsapp"></i> Contacto</a>
+  </nav>
+
+  <!-- ================= PLANES Y TARIFAS ================= -->
+  <section id="planes">
+    <h2><i class="fas fa-tags icono-titulo"></i>Planes y tarifas de servicio técnico</h2>
+    <p>Diseñamos opciones específicas adaptadas a la demanda de hardware y al perfil de cada usuario:</p>
+
+    <div class="precios-container">
+
+      <div class="tarjeta-precio">
+        <div>
+          <i class="fas fa-broom icono-plan"></i>
+          <h3 class="titulo-plan">Mantenimiento</h3>
+          <p class="descripcion-plan">
+            Soporte físico preventivo básico. Incluye limpieza general de disipadores, remoción de polvo interno y reemplazo o instalación de componentes básicos que no requieran configuraciones complejas.
+          </p>
+        </div>
+        <div>
+          <p class="costo">$15.000</p>
+          <p class="detalles-adicionales">No incluye repuestos</p>
+        </div>
+      </div>
+
+      <div class="tarjeta-precio">
+        <div>
+          <i class="fas fa-laptop icono-plan"></i>
+          <h3 class="titulo-plan">Uso Estándar</h3>
+          <p class="descripcion-plan">
+            Orientado a computadoras del hogar o estudiantes con cargas de trabajo básicas, pero que presenten fallas lógicas o de sistema operativo moderadas. Optimización inicial y resolución de problemas frecuentes de lentitud.
+          </p>
+        </div>
+        <div>
+          <p class="costo">$25.000</p>
+          <p class="detalles-adicionales">Soporte técnico integral</p>
+        </div>
+      </div>
+
+      <div class="tarjeta-precio">
+        <div>
+          <i class="fas fa-briefcase icono-plan"></i>
+          <h3 class="titulo-plan">Uso Profesional</h3>
+          <p class="descripcion-plan">
+            Para usuarios exigentes con flujos de trabajo avanzados (oficinas comerciales, desarrollo de software o diseño multimedia). Solución a fallas complejas de sistema, diagnóstico profundo de hardware y respaldo de datos críticos.
+          </p>
+        </div>
+        <div>
+          <p class="costo">$40.000</p>
+          <p class="detalles-adicionales">Prioridad en tiempo de entrega</p>
+        </div>
+      </div>
+
+      <div class="tarjeta-precio">
+        <div>
+          <i class="fas fa-gamepad icono-plan"></i>
+          <h3 class="titulo-plan">Alto Rendimiento</h3>
+          <p class="descripcion-plan">
+            Soporte especializado para hardware demandante (jugadores, streamers y creadores de contenido). Mantenimiento térmico premium, calibración para máxima exigencia de recursos del procesador o la placa de video y asesoramiento técnico de optimización.
+          </p>
+        </div>
+        <div>
+          <p class="costo">$55.000</p>
+          <p class="detalles-adicionales">Incluye pasta térmica premium</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="nota-enlace">
+      <i class="fas fa-circle-info"></i> ¿Necesitás instalar un repuesto o mejorar tu almacenamiento?
+      Consultá el stock de hardware disponible en nuestra sección de
+      <a href="Productos.html">catálogo de productos</a>.
+    </div>
+  </section>
+
+  <!-- ================= SISTEMAS PARA NEGOCIOS ================= -->
+  <section id="sistemas">
+    <h2><i class="fas fa-building icono-titulo"></i>Sistemas de información para negocios y profesiones</h2>
+    <p>
+      Un sistema bien armado le ahorra horas de trabajo por día a un negocio. Armamos programas
+      sencillos, que se usan en la computadora del cliente, sin depender de internet y con
+      los datos guardados en el propio equipo o en una copia de seguridad.
+    </p>
+
+    <div class="rejilla-tarjetas">
+
+      <div class="tarjeta-sistema">
+        <i class="fas fa-cash-register"></i>
+        <h3>Sistema de cobro (punto de venta)</h3>
+        <p>
+          Para kioscos, almacenes y comercios. Registra cada venta, descuenta el stock
+          automáticamente, guarda el total del día y emite ticket o comprobante.
+          Pensado para trabajar con teclado numérico y sin conexión a internet.
+        </p>
+        <a class="boton boton-principal" href="https://wa.me/5493757587830" target="_blank">Consultar</a>
+      </div>
+
+      <div class="tarjeta-sistema">
+        <i class="fas fa-user-doctor"></i>
+        <h3>Turnos y fichas para consultorios</h3>
+        <p>
+          Para médicos, dentistas, veterinarios y otros profesionales de la salud.
+          Agenda de turnos por día y por profesional, ficha de cada paciente con su historial
+          y lista de espera que se actualiza sola.
+        </p>
+        <a class="boton boton-principal" href="https://wa.me/5493757587830" target="_blank">Consultar</a>
+      </div>
+
+      <div class="tarjeta-sistema">
+        <i class="fas fa-boxes-stacked"></i>
+        <h3>Control de stock e inventario</h3>
+        <p>
+          Para negocios con mercadería: entrada y salida de productos, aviso de stock mínimo,
+          valorización del inventario y reporte de los artículos que más se venden.
+        </p>
+        <a class="boton boton-principal" href="https://wa.me/5493757587830" target="_blank">Consultar</a>
+      </div>
+
+      <div class="tarjeta-sistema">
+        <i class="fas fa-file-invoice-dollar"></i>
+        <h3>Facturación y cuentas a cobrar</h3>
+        <p>
+          Para negocios que venden a crédito o a cuotas: registro de cada venta,
+          control de vencimientos, lista de deudores y resumen mensual de lo cobrado.
+        </p>
+        <a class="boton boton-principal" href="https://wa.me/5493757587830" target="_blank">Consultar</a>
+      </div>
+
+      <div class="tarjeta-sistema">
+        <i class="fas fa-desktop"></i>
+        <h3>Red y mantenimiento de equipos</h3>
+        <p>
+          Para negocios con varias máquinas: armado y mantenimiento de la red WiFi,
+          cuentas de usuario con permisos, copias de seguridad automáticas y plan
+          de mantenimiento preventivo de todas las computadoras.
+        </p>
+        <a class="boton boton-principal" href="https://wa.me/5493757587830" target="_blank">Consultar</a>
+      </div>
+
+      <div class="tarjeta-sistema">
+        <i class="fas fa-globe"></i>
+        <h3>Página web y catálogo online</h3>
+        <p>
+          Presencia en internet: catálogo de productos, formulario de pedidos, link directo
+          a WhatsApp y publicación en Google para que te encuentren los clientes de la zona.
+        </p>
+        <a class="boton boton-principal" href="https://wa.me/5493757587830" target="_blank">Consultar</a>
+      </div>
+
+    </div>
+
+    <!-- TABLA: comparacion de los sistemas (etiquetas table, th y td con bordes).
+         Va dentro de un div con scroll: en el celular la tabla se desliza
+         en lugar de romper el ancho de la pagina. -->
+    <h3 style="margin-top:28px;">Comparación rápida</h3>
+    <div class="tabla-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Sistema</th>
+          <th>Para quién es</th>
+          <th>¿Necesita internet?</th>
+          <th>Inversión</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Cobro / punto de venta</td>
+          <td>Kioscos, almacenes, comercios</td>
+          <td>No</td>
+          <td>A cotizar</td>
+        </tr>
+        <tr>
+          <td>Turnos y fichas</td>
+          <td>Consultorios y profesionales de la salud</td>
+          <td>No (opcional para respaldar)</td>
+          <td>A cotizar</td>
+        </tr>
+        <tr>
+          <td>Stock e inventario</td>
+          <td>Negocios con mercadería</td>
+          <td>No</td>
+          <td>A cotizar</td>
+        </tr>
+        <tr>
+          <td>Facturación y cuentas a cobrar</td>
+          <td>Negocios que venden a crédito</td>
+          <td>No</td>
+          <td>A cotizar</td>
+        </tr>
+        <tr>
+          <td>Página web y catálogo</td>
+          <td>Cualquier negocio que quiera vender online</td>
+          <td>Sí</td>
+          <td>A cotizar</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3 style="margin-top:26px;">Cómo trabajamos un sistema a medida</h3>
+    <ol>
+      <li>Nos contás qué hace tu negocio y qué querés que el sistema resuelva</li>
+      <li>Definimos qué datos se guardan y qué se muestra en pantalla</li>
+      <li>Te mostramos un prototipo para que pruebes cómo va a funcionar</li>
+      <li>Lo instalamos en tu equipo, te capacitamos y queda andando</li>
+      <li>Lo mantenemos y actualizamos si el negocio crece o cambia</li>
+    </ol>
+
+    <p class="centro" style="margin-top:22px;">
+      <a class="boton boton-whatsapp" href="https://wa.me/5493757587830" target="_blank">
+        <i class="fab fa-whatsapp"></i> Contanos qué necesitás para tu negocio
+      </a>
+      <a class="boton boton-secundario" href="https://www.instagram.com/c_l_a_u_.2007" target="_blank">
+        <i class="fab fa-instagram"></i> Instagram
+      </a>
+    </p>
+  </section>
+
+  <!-- ================= PIE DE PAGINA ================= -->
+  <footer>
+    <p>
+      <i class="fas fa-desktop icono-footer"></i>
+      © 2026 — Servic PC — Servicio técnico informático — Wanda, Misiones — Tel: 3757 587830
+    </p>
+    <p>
+      <a href="https://wa.me/5493757587830" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp 3757 587830</a> |
+      <a href="https://www.instagram.com/c_l_a_u_.2007" target="_blank"><i class="fab fa-instagram"></i> Instagram @c_l_a_u_.2007</a> |
+      <a href="index.html">Inicio</a> |
+      <a href="Productos.html">Productos</a>
+    </p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Opiniones de clientes de Servic PC en Wanda, Misiones: reparaciones, formateos, venta de repuestos y sistemas de cobro para negocios.">
+  <meta name="author" content="Servic PC - Claudio Sosa">
+  <title>Servic PC - Reseñas y Opiniones de Clientes</title>
+
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+
+  <meta property="og:title" content="Reseñas de clientes - Servic PC">
+  <meta property="og:description" content="Reparaciones, repuestos y sistemas para negocios. Conocé lo que dicen nuestros clientes.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/logo-servic-circular.webp">
+
+  <script src="https://kit.fontawesome.com/6c857664ba.js" crossorigin="anonymous"></script>
+
+  <style>
+    /* ============================================================
+       PALETA DE COLORES TOMADA DEL LOGO:
+       #141414 negro | #C1272D rojo | #CD9F2C dorado | #3A9639 verde
+       ============================================================ */
+    :root{
+      --negro:#141414;
+      --rojo:#C1272D;
+      --dorado:#CD9F2C;
+      --verde:#3A9639;
+      --fondo:#F4F5F7;
+      --blanco:#FFFFFF;
+      --borde:#E2E5EA;
+      --texto:#1A1A1A;
+      --texto-2:#5A5F6A;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: var(--fondo);
+      margin: 0;
+      padding: 0;
+      color: var(--texto);
+      line-height: 1.5;
+    }
+
+    .oculto {
+      display: none !important;
+    }
+
+    header {
+      background-color: var(--negro);
+      color: #FFFFFF;
+      text-align: center;
+      padding: 26px 20px 30px;
+      border-bottom: 4px solid var(--rojo);
+    }
+
+    header h1 {
+      margin: 0;
+      color: #FFFFFF;
+      font-size: clamp(34px, 7vw, 60px);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    header p {
+      margin: 6px 0 0;
+      font-size: 1.25em;
+      color: var(--dorado);
+      font-weight: bold;
+    }
+
+    header .datos-contacto {
+      margin-top: 12px;
+      font-size: 1em;
+      color: #D4D4D4;
+    }
+
+    header .datos-contacto a {
+      color: var(--dorado);
+      text-decoration: none;
+    }
+
+    header .datos-contacto a:hover {
+      text-decoration: underline;
+    }
+
+    header img {
+      margin-top: 16px;
+      width: 190px;
+      height: 190px;
+      object-fit: contain;
+    }
+
+    .marquee-wrapper {
+      background-color: var(--dorado);
+      padding: 6px 0;
+      font-weight: bold;
+      font-size: 1.15em;
+      color: var(--negro);
+    }
+
+    nav {
+      background-color: #1E1E1E;
+      padding: 12px;
+      text-align: center;
+    }
+
+    nav a {
+      color: #E6E6E6;
+      text-decoration: none;
+      margin: 0 12px;
+      padding: 6px 2px;
+      font-size: 1.1em;
+      border-bottom: 2px solid transparent;
+    }
+
+    nav a:hover {
+      color: var(--dorado);
+      border-bottom-color: var(--dorado);
+    }
+
+    nav a.activo {
+      color: #FFFFFF;
+      border-bottom-color: var(--rojo);
+      font-weight: bold;
+    }
+
+    section {
+      background-color: var(--blanco);
+      margin: 24px auto;
+      padding: 24px 28px;
+      max-width: 1000px;
+      border: 1px solid var(--borde);
+      border-radius: 14px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+    }
+
+    section h2 {
+      color: var(--rojo);
+      border-bottom: 2px solid var(--dorado);
+      padding-bottom: 6px;
+      margin-top: 0;
+    }
+
+    .icono-titulo {
+      margin-right: 8px;
+      color: var(--dorado);
+    }
+
+    /* ---------- TABLA DE CALIFICACIONES ---------- */
+    /* Con el scroll, la tabla se desliza en vez de romper la pagina en el celular */
+    .tabla-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    table, th, td {
+      border: 1px solid var(--borde);
+      border-collapse: collapse;
+    }
+
+    table {
+      width: 100%;
+      max-width: 560px;
+      margin: 18px auto;
+    }
+
+    th, td {
+      padding: 10px 12px;
+      text-align: center;
+    }
+
+    th {
+      background-color: var(--negro);
+      color: #FFFFFF;
+    }
+
+    tr:nth-child(even) td {
+      background-color: #FAFAFB;
+    }
+
+    .estrellas {
+      color: var(--dorado);
+      font-size: 1.1em;
+      letter-spacing: 2px;
+    }
+
+    /* ---------- TARJETAS DE OPINIONES ---------- */
+    .opiniones-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .tarjeta-resena {
+      background-color: #FAFAFB;
+      border-left: 5px solid var(--negro);
+      border-top: 1px solid var(--borde);
+      border-right: 1px solid var(--borde);
+      border-bottom: 1px solid var(--borde);
+      border-radius: 8px;
+      padding: 16px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .tarjeta-resena:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.10);
+      border-left-color: var(--rojo);
+    }
+
+    .info-usuario {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .nombre-usuario {
+      font-weight: bold;
+      color: var(--negro);
+    }
+
+    .comentario {
+      margin: 6px 0 0 0;
+      font-style: italic;
+      color: #444444;
+    }
+
+    /* ---------- FORMULARIO DE RESEÑA ---------- */
+    .formulario-resena {
+      max-width: 620px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .campo {
+      display: block;
+      margin-bottom: 14px;
+    }
+
+    .campo span {
+      display: block;
+      font-size: 0.85em;
+      font-weight: bold;
+      color: var(--texto-2);
+      margin-bottom: 5px;
+    }
+
+    .campo input, .campo select, .campo textarea {
+      width: 100%;
+      padding: 11px 12px;
+      border: 1px solid var(--borde);
+      border-radius: 8px;
+      font-size: 1em;
+      font-family: inherit;
+      background-color: #FAFAFB;
+    }
+
+    .campo input:focus, .campo select:focus, .campo textarea:focus {
+      outline: none;
+      border-color: var(--dorado);
+      background-color: var(--blanco);
+    }
+
+    .aviso-envio {
+      background-color: #E3F3E4;
+      border: 1px solid var(--verde);
+      color: #27692C;
+      padding: 10px 13px;
+      border-radius: 8px;
+      font-size: 0.9em;
+      margin-top: 12px;
+    }
+
+    /* ---------- BOTONES ---------- */
+    .boton {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      border: 2px solid var(--rojo);
+      cursor: pointer;
+      font-size: 1em;
+    }
+
+    .boton-whatsapp {
+      background-color: var(--verde);
+      border-color: var(--verde);
+      color: #FFFFFF;
+    }
+
+    .boton-whatsapp:hover {
+      background-color: #2E7A33;
+      border-color: #2E7A33;
+    }
+
+    .boton-secundario {
+      background-color: transparent;
+      color: var(--rojo);
+    }
+
+    .boton-secundario:hover {
+      background-color: var(--rojo);
+      color: #FFFFFF;
+    }
+
+    .centro {
+      text-align: center;
+    }
+
+    /* ---------- PIE DE PAGINA ---------- */
+    footer {
+      background-color: var(--negro);
+      color: #C4C4C4;
+      text-align: center;
+      padding: 26px 16px;
+      margin-top: 34px;
+      border-top: 4px solid var(--dorado);
+    }
+
+    footer a {
+      color: var(--dorado);
+      text-decoration: none;
+      margin: 0 6px;
+    }
+
+    footer a:hover {
+      color: #FFFFFF;
+      text-decoration: underline;
+    }
+
+    footer .icono-footer {
+      color: var(--dorado);
+    }
+
+    @media (max-width: 700px) {
+      nav a {
+        margin: 0 5px;
+        font-size: 0.95em;
+      }
+      section {
+        margin: 14px 10px;
+        padding: 18px;
+      }
+      header img {
+        width: 140px;
+        height: 140px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= ENCABEZADO ================= -->
+  <header>
+    <a href="index.html" title="Ir al inicio">
+      <img src="assets/logo-servic-circular.webp" alt="Logo de Servic PC" width="190" height="190">
+    </a>
+
+    <h1>Servic PC</h1>
+    <p>Reparación, mantenimiento y soporte técnico informático</p>
+
+    <p class="datos-contacto">
+      Wanda, Misiones &nbsp;|&nbsp;
+      <a href="tel:+543757587830">Tel: 3757 587830</a> &nbsp;|&nbsp;
+      <a href="https://wa.me/5493757587830" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    </p>
+  </header>
+
+  <!-- ================= TEXTO EN MOVIMIENTO ================= -->
+  <div class="marquee-wrapper">
+    <marquee direction="left" scrollamount="5" scrolldelay="10" bgcolor="#CD9F2C" loop="infinite">
+      ¡Bienvenido a Servic PC! — Reparación de computadoras — Formateos — Mantenimiento preventivo — Venta de repuestos — ¡Consultanos sin cargo!
+    </marquee>
+  </div>
+
+  <!-- ================= NAVEGACION ================= -->
+  <nav>
+    <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a> |
+    <a href="Servicios.html"><i class="fas fa-tools"></i> Servicios</a> |
+    <a href="Productos.html"><i class="fas fa-box-open"></i> Productos</a> |
+    <a href="Reseñas.html" class="activo"><i class="fas fa-star"></i> Reseñas</a> |
+    <a href="Reseñas.html#dejar-resena"><i class="fas fa-pen-to-square"></i> Dejar reseña</a> |
+    <a href="https://wa.me/5493757587830" target="_blank"><i class="fab fa-whatsapp"></i> Contacto</a>
+  </nav>
+
+  <!-- ================= RESUMEN DE CALIFICACIONES (tabla con bordes) ================= -->
+  <section id="calificaciones">
+    <h2><i class="fas fa-chart-simple icono-titulo"></i>Resumen de calificaciones</h2>
+    <p>Estructura general del nivel de satisfacción de nuestros clientes en Misiones:</p>
+
+    <div class="tabla-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Estrellas</th>
+          <th>Cantidad de reseñas</th>
+          <th>Porcentaje</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="estrellas"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></td>
+          <td>45</td>
+          <td>90%</td>
+        </tr>
+        <tr>
+          <td class="estrellas"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></td>
+          <td>4</td>
+          <td>8%</td>
+        </tr>
+        <tr>
+          <td class="estrellas"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></td>
+          <td>1</td>
+          <td>2%</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <!-- ================= OPINIONES =================
+       Las opiniones approved se dibujan con JavaScript a partir de la
+       capa de datos (assets/js/datos.js), asi el administrador puede
+       publicarlas o sacarlas desde el panel. -->
+  <section id="opiniones">
+    <h2><i class="fas fa-comments icono-titulo"></i>Opiniones recientes</h2>
+    <p>Esto es lo que dicen quienes confiaron el soporte técnico de sus computadoras a nuestro equipo:</p>
+
+    <div class="opiniones-container" id="listaOpiniones"></div>
+  </section>
+
+  <!-- ================= CIERRE CON CONTACTO ================= -->
+  <section class="centro">
+    <h2><i class="fab fa-whatsapp icono-titulo"></i>¿Tenés un problema o necesitás un repuesto?</h2>
+    <p>
+      Escribinos y te respondemos el mismo día. También podés llevarnos la computadora
+      al taller en Wanda o pedir la visita a domicilio.
+    </p>
+    <p>
+      <a class="boton boton-whatsapp" href="https://wa.me/5493757587830" target="_blank">
+        <i class="fab fa-whatsapp"></i> Escribir por WhatsApp
+      </a>
+      <a class="boton boton-secundario" href="https://www.instagram.com/c_l_a_u_.2007" target="_blank">
+        <i class="fab fa-instagram"></i> Ver en Instagram
+      </a>
+    </p>
+  </section>
+
+  <!-- ================= DEJAR UNA RESEÑA =================
+       El visitante manda su opinion; queda como "pendiente" y el
+       administrador la aprueba o la rechaza desde el panel. -->
+  <section id="dejar-resena">
+    <h2><i class="fas fa-pen-to-square icono-titulo"></i>¿Felicitaste con nuestro trabajo?</h2>
+    <p>Dejanos tu opinión: se publica después de revisarla, para que todos lean reseñas reales.</p>
+
+    <div class="formulario-resena">
+      <label class="campo">
+        <span>Tu nombre</span>
+        <input type="text" id="nombreCliente" placeholder="Nombre y apellido">
+      </label>
+
+      <label class="campo">
+        <span>Puntaje</span>
+        <select id="puntajeCliente">
+          <option value="5">5 estrellas - Excelente</option>
+          <option value="4">4 estrellas - Muy bueno</option>
+          <option value="3">3 estrellas - Bueno</option>
+          <option value="2">2 estrellas - Regular</option>
+          <option value="1">1 estrella - Malo</option>
+        </select>
+      </label>
+
+      <label class="campo campo-ancho">
+        <span>Tu opinión</span>
+        <textarea id="textoCliente" rows="3" placeholder="Contá cómo te fue con el servicio"></textarea>
+      </label>
+
+      <button class="boton boton-principal" onclick="enviarResena()">
+        <i class="fas fa-paper-plane"></i> Enviar mi opinión
+      </button>
+      <button class="boton boton-whatsapp" onclick="enviarResenaPorWhatsApp()">
+        <i class="fab fa-whatsapp"></i> Mandarla por WhatsApp
+      </button>
+      <p id="avisoResena" class="aviso-envio oculto"></p>
+
+      <p style="font-size:0.86em; color:#5A5F6A; margin-top:14px;">
+        <i class="fas fa-circle-info"></i>
+        Tu opinión se revisa antes de publicarse, para que en la página solo figuren reseñas
+        reales. Si preferís, mandala directo por WhatsApp que la leemos a diario.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= PIE DE PAGINA ================= -->
+  <footer>
+    <p>
+      <i class="fas fa-desktop icono-footer"></i>
+      © 2026 — Servic PC — Servicio técnico informático — Wanda, Misiones — Tel: 3757 587830
+    </p>
+    <p>
+      <a href="https://wa.me/5493757587830" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp 3757 587830</a> |
+      <a href="https://www.instagram.com/c_l_a_u_.2007" target="_blank"><i class="fab fa-instagram"></i> Instagram @c_l_a_u_.2007</a> |
+      <a href="index.html">Inicio</a> |
+      <a href="Productos.html">Productos</a>
+    </p>
+  </footer>
+
+  <script src="assets/js/datos.js"></script>
+  <script src="assets/js/resenas.js"></script>
+
+  <script>
+    /* Al cargar la pagina: se leen los datos y se pintan las opiniones */
+    iniciarResenas("listaOpiniones");
+  </script>
+
+</body>
+</html>

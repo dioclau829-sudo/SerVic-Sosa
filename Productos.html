@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Catálogo de repuestos para computadoras: memoria RAM, discos SSD y HDD, placas de video, fuentes, gabinetes, cables y herramientas. Consultá stock por WhatsApp.">
+  <meta name="author" content="Servic PC - Claudio Sosa">
+  <title>Servic PC - Catálogo de Repuestos y Productos</title>
+
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+
+  <meta property="og:title" content="Catálogo de productos - Servic PC">
+  <meta property="og:description" content="Más de 60 repuestos y componentes para computadoras. Pedidos por WhatsApp.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/logo-servic-circular.webp">
+
+  <script src="https://kit.fontawesome.com/6c857664ba.js" crossorigin="anonymous"></script>
+
+  <style>
+    /* ============================================================
+       PALETA DE COLORES TOMADA DEL LOGO:
+       #141414 negro | #C1272D rojo | #CD9F2C dorado | #3A9639 verde
+       ============================================================ */
+    :root{
+      --negro:#141414;
+      --rojo:#C1272D;
+      --dorado:#CD9F2C;
+      --verde:#3A9639;
+      --fondo:#F4F5F7;
+      --blanco:#FFFFFF;
+      --borde:#E2E5EA;
+      --texto:#1A1A1A;
+      --texto-2:#5A5F6A;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: var(--fondo);
+      margin: 0;
+      padding: 0;
+      color: var(--texto);
+      line-height: 1.5;
+    }
+
+    header {
+      background-color: var(--negro);
+      color: #FFFFFF;
+      text-align: center;
+      padding: 26px 20px 30px;
+      border-bottom: 4px solid var(--rojo);
+    }
+
+    header h1 {
+      margin: 0;
+      color: #FFFFFF;
+      font-size: clamp(34px, 7vw, 60px);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    header p {
+      margin: 6px 0 0;
+      font-size: 1.25em;
+      color: var(--dorado);
+      font-weight: bold;
+    }
+
+    header .datos-contacto {
+      margin-top: 12px;
+      font-size: 1em;
+      color: #D4D4D4;
+    }
+
+    header .datos-contacto a {
+      color: var(--dorado);
+      text-decoration: none;
+    }
+
+    header .datos-contacto a:hover {
+      text-decoration: underline;
+    }
+
+    header img {
+      margin-top: 16px;
+      width: 190px;
+      height: 190px;
+      object-fit: contain;
+    }
+
+    .marquee-wrapper {
+      background-color: var(--dorado);
+      padding: 6px 0;
+      font-weight: bold;
+      font-size: 1.15em;
+      color: var(--negro);
+    }
+
+    nav {
+      background-color: #1E1E1E;
+      padding: 12px;
+      text-align: center;
+    }
+
+    nav a {
+      color: #E6E6E6;
+      text-decoration: none;
+      margin: 0 12px;
+      padding: 6px 2px;
+      font-size: 1.1em;
+      border-bottom: 2px solid transparent;
+    }
+
+    nav a:hover {
+      color: var(--dorado);
+      border-bottom-color: var(--dorado);
+    }
+
+    nav a.activo {
+      color: #FFFFFF;
+      border-bottom-color: var(--rojo);
+      font-weight: bold;
+    }
+
+    section {
+      background-color: var(--blanco);
+      margin: 24px auto;
+      padding: 24px 28px;
+      max-width: 1200px;
+      border: 1px solid var(--borde);
+      border-radius: 14px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+    }
+
+    section h2 {
+      color: var(--rojo);
+      border-bottom: 2px solid var(--dorado);
+      padding-bottom: 6px;
+      margin-top: 0;
+    }
+
+    .icono-titulo {
+      margin-right: 8px;
+      color: var(--dorado);
+    }
+
+    /* ---------- FILTROS ---------- */
+    .filtros {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin: 20px 0 6px;
+    }
+
+    .filtro {
+      background-color: var(--blanco);
+      border: 1px solid var(--borde);
+      color: var(--texto-2);
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9em;
+      font-weight: bold;
+    }
+
+    .filtro:hover {
+      border-color: var(--dorado);
+      color: var(--negro);
+    }
+
+    .filtro.activo {
+      background-color: var(--negro);
+      color: var(--dorado);
+      border-color: var(--negro);
+    }
+
+    .contador-productos {
+      text-align: center;
+      color: var(--texto-2);
+      font-size: 0.9em;
+      margin: 10px 0 0;
+    }
+
+    /* ---------- TARJETAS DE PRODUCTO ---------- */
+    .catalogo-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 22px;
+    }
+
+    .tarjeta-producto {
+      background-color: var(--blanco);
+      border: 1px solid var(--borde);
+      border-radius: 12px;
+      width: 250px;
+      padding: 16px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .tarjeta-producto:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 22px rgba(0,0,0,0.14);
+      border-color: var(--dorado);
+    }
+
+    .contenedor-img {
+      width: 100%;
+      height: 170px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #FAFAFB;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      cursor: zoom-in;
+    }
+
+    .img-tarjeta {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .etiqueta-oferta {
+      background-color: var(--dorado);
+      color: #1A1A1A;
+      font-size: 0.72em;
+      font-weight: bold;
+      padding: 3px 8px;
+      border-radius: 4px;
+      align-self: flex-start;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .etiqueta-foto {
+      background-color: var(--negro);
+      color: var(--dorado);
+      font-size: 0.7em;
+      font-weight: bold;
+      padding: 3px 8px;
+      border-radius: 4px;
+      align-self: flex-start;
+      margin-bottom: 8px;
+    }
+
+    .titulo-producto {
+      font-size: 0.95em;
+      color: #333333;
+      margin: 0 0 8px 0;
+      line-height: 1.3;
+      min-height: 2.6em;
+    }
+
+    .precio-producto {
+      font-size: 1.45em;
+      font-weight: bold;
+      color: var(--rojo);
+      margin: 6px 0 2px;
+    }
+
+    .stock-producto {
+      color: var(--verde);
+      font-size: 0.82em;
+      font-weight: bold;
+      margin: 0 0 10px;
+    }
+
+    .acciones-producto {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .boton-producto {
+      display: block;
+      text-align: center;
+      padding: 9px 8px;
+      border-radius: 6px;
+      font-size: 0.85em;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .btn-whatsapp {
+      background-color: var(--verde);
+      color: #FFFFFF;
+    }
+
+    .btn-whatsapp:hover {
+      background-color: #2E7A33;
+    }
+
+    .btn-instagram {
+      background-color: #2A2A2A;
+      color: #FFFFFF;
+    }
+
+    .btn-instagram:hover {
+      background-color: #000000;
+    }
+
+    .nota-enlace {
+      background-color: var(--negro);
+      color: #FFFFFF;
+      padding: 14px 16px;
+      border-radius: 8px;
+      margin: 22px 0 0;
+    }
+
+    .nota-enlace a {
+      color: var(--dorado);
+      font-weight: bold;
+    }
+
+    /* ---------- VENTANA MODAL (ampliar foto) ---------- */
+    .modal {
+      display: none;                       /* oculta por defecto */
+      position: fixed;                     /* pegada a la pantalla */
+      inset: 0;                            /* ocupa toda la pantalla */
+      background-color: rgba(0,0,0,0.82);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal.visible {
+      display: flex;                       /* al agregar la clase, se ve */
+    }
+
+    .modal-contenido {
+      background-color: var(--blanco);
+      border-radius: 12px;
+      padding: 22px;
+      max-width: 620px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+    }
+
+    .modal-contenido img {
+      max-width: 100%;
+      max-height: 60vh;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .modal-contenido h3 {
+      margin: 14px 0 4px;
+      color: var(--negro);
+    }
+
+    .modal-contenido .precio-producto {
+      margin-top: 0;
+    }
+
+    .cerrar-modal {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 1.6em;
+      color: var(--texto-2);
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    .cerrar-modal:hover {
+      color: var(--rojo);
+    }
+
+    /* ---------- BOTONES ---------- */
+    .boton {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      border: 2px solid var(--rojo);
+      cursor: pointer;
+      font-size: 1em;
+    }
+
+    .boton-principal {
+      background-color: var(--rojo);
+      color: #FFFFFF;
+    }
+
+    .boton-principal:hover {
+      background-color: #A01F24;
+    }
+
+    .boton-whatsapp {
+      background-color: var(--verde);
+      border-color: var(--verde);
+      color: #FFFFFF;
+    }
+
+    .boton-whatsapp:hover {
+      background-color: #2E7A33;
+      border-color: #2E7A33;
+    }
+
+    .boton-secundario {
+      background-color: transparent;
+      color: var(--rojo);
+    }
+
+    .boton-secundario:hover {
+      background-color: var(--rojo);
+      color: #FFFFFF;
+    }
+
+    .centro {
+      text-align: center;
+    }
+
+    /* ---------- PIE DE PAGINA ---------- */
+    footer {
+      background-color: var(--negro);
+      color: #C4C4C4;
+      text-align: center;
+      padding: 26px 16px;
+      margin-top: 34px;
+      border-top: 4px solid var(--dorado);
+    }
+
+    footer a {
+      color: var(--dorado);
+      text-decoration: none;
+      margin: 0 6px;
+    }
+
+    footer a:hover {
+      color: #FFFFFF;
+      text-decoration: underline;
+    }
+
+    footer .icono-footer {
+      color: var(--dorado);
+    }
+
+    @media (max-width: 700px) {
+      nav a {
+        margin: 0 5px;
+        font-size: 0.95em;
+      }
+      section {
+        margin: 14px 10px;
+        padding: 18px;
+      }
+      header img {
+        width: 140px;
+        height: 140px;
+      }
+      .tarjeta-producto {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= ENCABEZADO ================= -->
+  <header>
+    <a href="index.html" title="Ir al inicio">
+      <img src="assets/logo-servic-circular.webp" alt="Logo de Servic PC" width="190" height="190">
+    </a>
+
+    <h1>Servic PC</h1>
+    <p>Reparación, mantenimiento y soporte técnico informático</p>
+
+    <p class="datos-contacto">
+      Wanda, Misiones &nbsp;|&nbsp;
+      <a href="tel:+543757587830">Tel: 3757 587830</a> &nbsp;|&nbsp;
+      <a href="https://wa.me/5493757587830" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    </p>
+  </header>
+
+  <!-- ================= TEXTO EN MOVIMIENTO ================= -->
+  <div class="marquee-wrapper">
+    <marquee direction="left" scrollamount="5" scrolldelay="10" bgcolor="#CD9F2C" loop="infinite">
+      ¡Bienvenido a Servic PC! — Reparación de computadoras — Formateos — Mantenimiento preventivo — Venta de repuestos — ¡Consultanos sin cargo!
+    </marquee>
+  </div>
+
+  <!-- ================= NAVEGACION ================= -->
+  <nav>
+    <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a> |
+    <a href="Servicios.html"><i class="fas fa-tools"></i> Servicios</a> |
+    <a href="Productos.html" class="activo"><i class="fas fa-box-open"></i> Productos</a> |
+    <a href="Reseñas.html"><i class="fas fa-star"></i> Reseñas</a> |
+    <a href="Reseñas.html#dejar-resena"><i class="fas fa-pen-to-square"></i> Dejar reseña</a> |
+    <a href="https://wa.me/5493757587830" target="_blank"><i class="fab fa-whatsapp"></i> Contacto</a>
+  </nav>
+
+  <!-- ================= CATALOGO =================
+       El listado de productos NO esta escrito a mano en el HTML:
+       esta en el arreglo CATALOGO (abajo, en el script) y JavaScript
+       dibuja cada tarjeta. Para agregar un producto alcanza con agregar
+       una linea mas en el arreglo. -->
+  <section id="seccion-catalogo">
+    <h2><i class="fas fa-boxes-stacked icono-titulo"></i>Catálogo de repuestos y componentes</h2>
+    <p>
+      Elegí la categoría para filtrar el catálogo. Cada producto tiene su botón de WhatsApp:
+      al tocarlo se abre el chat con el pedido ya escrito, así no tenés que explicar todo de nuevo.
+    </p>
+
+    <!-- FILTROS: se generan solos con JavaScript a partir del arreglo CATALOGO -->
+    <div class="filtros" id="filtros"></div>
+    <p class="contador-productos" id="contador"></p>
+
+    <!-- CONTENEDOR: aca JavaScript inserta las tarjetas.
+         OJO: el id de este div es "catalogo" y es el que usa el JavaScript
+         para insertar las tarjetas. No se puede repetir un id en la pagina. -->
+    <div class="catalogo-container" id="catalogo"></div>
+
+    <div class="nota-enlace">
+      <i class="fas fa-circle-info"></i>
+      Las fotos de productos son de referencia y el stock cambia seguido:
+      <strong>confirmá disponibilidad y precio por WhatsApp</strong>.
+      Retiro en Wanda, Misiones y envíos a todo el país.
+    </div>
+  </section>
+
+  <!-- ================= VENTANA MODAL =================
+       Estructura de la ventana flotante que se abre al hacer clic en una foto. -->
+  <div class="modal" id="modal">
+    <div class="modal-contenido">
+      <button class="cerrar-modal" onclick="cerrarModal()" aria-label="Cerrar">&times;</button>
+      <img id="modal-imagen" src="" alt="">
+      <h3 id="modal-titulo"></h3>
+      <p class="precio-producto" id="modal-precio"></p>
+      <p><a class="boton boton-whatsapp" id="modal-whatsapp" href="https://wa.me/5493757587830" target="_blank">
+        <i class="fab fa-whatsapp"></i> Consultar por WhatsApp</a></p>
+    </div>
+  </div>
+
+  <!-- ================= PIE DE PAGINA ================= -->
+  <footer>
+    <p>
+      <i class="fas fa-desktop icono-footer"></i>
+      © 2026 — Servic PC — Servicio técnico informático — Wanda, Misiones — Tel: 3757 587830
+    </p>
+    <p>
+      <a href="https://wa.me/5493757587830" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp 3757 587830</a> |
+      <a href="https://www.instagram.com/c_l_a_u_.2007" target="_blank"><i class="fab fa-instagram"></i> Instagram @c_l_a_u_.2007</a> |
+      <a href="index.html">Inicio</a> |
+      <a href="Servicios.html">Servicios</a>
+    </p>
+  </footer>
+
+  <script>
+    /* ============================================================
+       1) BASE DE DATOS DEL CATALOGO
+       Los productos por defecto estan en assets/js/catalogo.js y
+       los que cambio el administrador en el panel se leen de la
+       capa de datos (assets/js/datos.js). Para agregar un producto
+       alcanza con hacerlo desde el panel: panel.html
+       ============================================================ */
+  </script>
+
+  <script src="assets/js/catalogo.js"></script>
+  <script src="assets/js/datos.js"></script>
+
+  <script>
+    /* ============================================================
+       2) FUNCIONES
+       ============================================================ */
+    var NUMERO_WHATSAPP = "5493757587830";
+    var INSTAGRAM = "https://www.instagram.com/c_l_a_u_.2007";
+
+    /* Nombre prolijo de cada categoria (la clave es sin tilde, por si acaso) */
+    var CATEGORIAS = {
+      "Memoria RAM": "Memoria RAM",
+      "Almacenamiento": "Almacenamiento",
+      "Procesador": "Procesador",
+      "Placa madre": "Placa madre",
+      "Placa de video": "Placa de video",
+      "Gabinete": "Gabinete",
+      "Refrigeracion": "Refrigeración",
+      "Periferico": "Periférico",
+      "Conectividad": "Conectividad",
+      "Herramientas": "Herramientas"
+    };
+
+    /* Arma el link de WhatsApp con el pedido ya escrito */
+    function linkWhatsapp(nombre) {
+      var mensaje = "Hola Servic PC, quiero consultar por " + nombre;
+      return "https://wa.me/" + NUMERO_WHATSAPP + "?text=" + encodeURIComponent(mensaje);
+    }
+
+    /* Dibuja UNA tarjeta de producto */
+    function crearTarjeta(producto) {
+      var etiqueta = producto.tipo === "propia"
+        ? '<span class="etiqueta-foto">Foto del taller</span>'
+        : '<span class="etiqueta-oferta">' + CATEGORIAS[producto.categoria] + '</span>';
+
+      /* Si el producto tiene una foto subida desde el panel, se usa esa;
+         si no, se usa la foto de la carpeta productos. */
+      var foto = producto.imagen
+        ? producto.imagen
+        : "assets/productos/" + producto.archivo;
+
+      return '<div class="tarjeta-producto" data-categoria="' + producto.categoria + '">' +
+        '<div>' +
+          '<div class="contenedor-img" onclick="abrirModal(\'' + producto.archivo + '\')">' +
+            '<img class="img-tarjeta" src="' + foto + '" ' +
+            'alt="' + producto.nombre + '" loading="lazy" width="250" height="170">' +
+          '</div>' +
+          etiqueta +
+          '<p class="titulo-producto">' + producto.nombre + '</p>' +
+        '</div>' +
+        '<div>' +
+          '<p class="precio-producto">' + producto.precio + '</p>' +
+          '<p class="stock-producto">Consultar stock</p>' +
+          '<div class="acciones-producto">' +
+            '<a class="boton-producto btn-whatsapp" href="' + linkWhatsapp(producto.nombre) + '" target="_blank">' +
+              '<i class="fab fa-whatsapp"></i> Consultar por WhatsApp</a>' +
+            '<a class="boton-producto btn-instagram" href="' + INSTAGRAM + '" target="_blank">' +
+              '<i class="fab fa-instagram"></i> Ver en Instagram</a>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    }
+
+    /* Dibuja TODAS las tarjetas y arma los botones de filtro */
+    function pintarCatalogo(filtro) {
+      var contenedor = document.getElementById("catalogo");
+      var html = "";
+      var visibles = 0;
+
+      /* Los productos que el administrador oculto no se muestran */
+      var productos = Tienda.productosPublicos();
+
+      for (var i = 0; i < productos.length; i++) {
+        var producto = productos[i];
+        if (filtro === "todos" || producto.categoria === filtro) {
+          html += crearTarjeta(producto);
+          visibles++;
+        }
+      }
+
+      contenedor.innerHTML = html;
+      document.getElementById("contador").innerHTML =
+        "Mostrando " + visibles + " de " + productos.length + " productos";
+
+      /* Marca el boton de filtro que quedo seleccionado */
+      var botones = document.querySelectorAll(".filtro");
+      for (var j = 0; j < botones.length; j++) {
+        if (botones[j].getAttribute("data-filtro") === filtro) {
+          botones[j].classList.add("activo");
+        } else {
+          botones[j].classList.remove("activo");
+        }
+      }
+    }
+
+    /* Filtra el catalogo por categoria */
+    function filtrar(categoria) {
+      pintarCatalogo(categoria);
+    }
+
+    /* Arma la fila de botones de filtro */
+    function crearFiltros() {
+      var categorias = [];
+      var productos = Tienda.productosPublicos();
+      for (var i = 0; i < productos.length; i++) {
+        if (categorias.indexOf(productos[i].categoria) === -1) {
+          categorias.push(productos[i].categoria);
+        }
+      }
+
+      var html = '<button class="filtro" data-filtro="todos" onclick="filtrar(\'todos\')">Todos</button>';
+      for (var j = 0; j < categorias.length; j++) {
+        html += '<button class="filtro" data-filtro="' + categorias[j] + '" onclick="filtrar(\'' + categorias[j] + '\')">' +
+                CATEGORIAS[categorias[j]] + '</button>';
+      }
+      document.getElementById("filtros").innerHTML = html;
+    }
+
+    /* ---------- VENTANA MODAL ---------- */
+    function abrirModal(archivo) {
+      var nombre = "";
+      var precio = "";
+      var foto = "";
+      var productos = Tienda.productosPublicos();
+      for (var i = 0; i < productos.length; i++) {
+        if (productos[i].archivo === archivo || productos[i].id === archivo) {
+          nombre = productos[i].nombre;
+          precio = productos[i].precio;
+          foto = productos[i].imagen ? productos[i].imagen : "assets/productos/" + productos[i].archivo;
+        }
+      }
+      document.getElementById("modal-imagen").src = foto;
+      document.getElementById("modal-imagen").alt = nombre;
+      document.getElementById("modal-titulo").innerHTML = nombre;
+      document.getElementById("modal-precio").innerHTML = precio;
+      document.getElementById("modal-whatsapp").href = linkWhatsapp(nombre);
+      document.getElementById("modal").classList.add("visible");
+    }
+
+    function cerrarModal() {
+      document.getElementById("modal").classList.remove("visible");
+    }
+
+    /* Cierra la ventana modal si se hace clic fuera de la foto */
+    document.addEventListener("click", function (evento) {
+      var modal = document.getElementById("modal");
+      if (evento.target === modal) {
+        cerrarModal();
+      }
+    });
+
+    /* Cierra la ventana modal con la tecla Escape */
+    document.addEventListener("keydown", function (evento) {
+      if (evento.key === "Escape") {
+        cerrarModal();
+      }
+    });
+
+    /* Al cargar la pagina: se leen los datos (locales o publicados)
+       y despues se arman los filtros y se pintan las tarjetas. */
+    Tienda.iniciar().then(function () {
+      crearFiltros();
+      pintarCatalogo("todos");
+    });
+  </script>
+
+</body>
+</html>

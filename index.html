@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!-- META VIEWPORT: le dice al celular que use el ancho real de la pantalla.
+       Sin esta linea la pagina se ve diminuta en el telefono. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Servic PC: reparación, mantenimiento y soporte técnico informático en Wanda, Misiones. Venta de repuestos, memoria RAM, discos SSD, fuentes y sistemas de cobro para pymes.">
+  <meta name="author" content="Servic PC - Claudio Sosa">
+  <title>Servic PC - Reparación y Mantenimiento en Wanda, Misiones</title>
+
+  <!-- Favicon: el logo chiquito que se ve en la pestaña del navegador -->
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+
+  <!-- Datos para compartir el link en WhatsApp / Instagram -->
+  <meta property="og:title" content="Servic PC - Servicio técnico informático">
+  <meta property="og:description" content="Reparación, mantenimiento, repuestos y sistemas de cobro para pymes. Wanda, Misiones.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/logo-servic-circular.webp">
+
+  <!-- LIBRERIA DE ICONOS: Font Awesome (mismo kit que pide el material de la materia) -->
+  <script src="https://kit.fontawesome.com/6c857664ba.js" crossorigin="anonymous"></script>
+
+  <style>
+    /* ============================================================
+       PALETA DE COLORES TOMADA DEL LOGO (medidos con un programa):
+       - #141414  negro del circulo del logo  -> header, nav y pie
+       - #C1272D  rojo del logo                -> botones y acentos
+       - #CD9F2C  dorado del logo             -> ofertas y subrayados
+       - #3A9639  verde del check del logo    -> stock y WhatsApp
+       Asi el sitio se ve con los MISMOS colores que el logo.
+       ============================================================ */
+    :root{
+      --negro:#141414;
+      --rojo:#C1272D;
+      --dorado:#CD9F2C;
+      --verde:#3A9639;
+      --fondo:#F4F5F7;
+      --blanco:#FFFFFF;
+      --borde:#E2E5EA;
+      --texto:#1A1A1A;
+      --texto-2:#5A5F6A;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: var(--fondo);
+      margin: 0;
+      padding: 0;
+      color: var(--texto);
+      line-height: 1.5;
+    }
+
+    /* ---------- ENCABEZADO ---------- */
+    header {
+      background-color: var(--negro);
+      color: #FFFFFF;
+      text-align: center;
+      padding: 26px 20px 30px;
+      border-bottom: 4px solid var(--rojo);
+    }
+
+    header h1 {
+      margin: 0;
+      color: #FFFFFF;
+      font-size: clamp(34px, 7vw, 60px);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    header p {
+      margin: 6px 0 0;
+      font-size: 1.25em;
+      color: var(--dorado);
+      font-weight: bold;
+    }
+
+    header .datos-contacto {
+      margin-top: 12px;
+      font-size: 1em;
+      color: #D4D4D4;
+    }
+
+    header .datos-contacto a {
+      color: var(--dorado);
+      text-decoration: none;
+    }
+
+    header .datos-contacto a:hover {
+      text-decoration: underline;
+    }
+
+    /* El logo va sobre el fondo negro: el circulo negro del logo se funde con
+       el fondo y quedan destacada la llave, los engranajes, el rojo y el dorado. */    header img {
+      margin-top: 16px;
+      width: 190px;
+      height: 190px;
+      object-fit: contain;
+    }
+
+    /* ---------- TEXTO EN MOVIMIENTO (marquee) ---------- */
+    .marquee-wrapper {
+      background-color: var(--dorado);
+      padding: 6px 0;
+      font-weight: bold;
+      font-size: 1.15em;
+      color: var(--negro);
+    }
+
+    /* ---------- BARRA DE NAVEGACION ---------- */
+    nav {
+      background-color: #1E1E1E;
+      padding: 12px;
+      text-align: center;
+    }
+
+    nav a {
+      color: #E6E6E6;
+      text-decoration: none;
+      margin: 0 12px;
+      padding: 6px 2px;
+      font-size: 1.1em;
+      border-bottom: 2px solid transparent;
+    }
+
+    nav a:hover {
+      color: var(--dorado);
+      border-bottom-color: var(--dorado);
+    }
+
+    /* La clase .activo marca en que pagina estas (es la que se cambia en el informe) */
+    nav a.activo {
+      color: #FFFFFF;
+      border-bottom-color: var(--rojo);
+      font-weight: bold;
+    }
+
+    /* ---------- SECCIONES ---------- */
+    section {
+      background-color: var(--blanco);
+      margin: 24px auto;
+      padding: 24px 28px;
+      max-width: 1100px;
+      border: 1px solid var(--borde);
+      border-radius: 14px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+    }
+
+    section h2 {
+      color: var(--rojo);
+      border-bottom: 2px solid var(--dorado);
+      padding-bottom: 6px;
+      margin-top: 0;
+    }
+
+    section h3 {
+      color: var(--negro);
+      margin-bottom: 6px;
+    }
+
+    .icono-titulo {
+      margin-right: 8px;
+      color: var(--dorado);
+    }
+
+    /* ---------- LISTAS ---------- */
+    li {
+      margin-bottom: 8px;
+    }
+
+    dl dt {
+      font-weight: bold;
+      color: var(--negro);
+    }
+
+    dl dd {
+      margin: 0 0 10px 18px;
+      color: var(--texto-2);
+    }
+
+    /* ---------- BOTONES ---------- */
+    .boton {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      border: 2px solid var(--rojo);
+      cursor: pointer;
+      font-size: 1em;
+    }
+
+    .boton-principal {
+      background-color: var(--rojo);
+      color: #FFFFFF;
+    }
+
+    .boton-principal:hover {
+      background-color: #A01F24;
+    }
+
+    .boton-secundario {
+      background-color: transparent;
+      color: var(--rojo);
+    }
+
+    .boton-secundario:hover {
+      background-color: var(--rojo);
+      color: #FFFFFF;
+    }
+
+    .boton-whatsapp {
+      background-color: var(--verde);
+      border-color: var(--verde);
+      color: #FFFFFF;
+    }
+
+    .boton-whatsapp:hover {
+      background-color: #2E7A33;
+      border-color: #2E7A33;
+    }
+
+    .boton-tema {
+      background-color: var(--negro);
+      border-color: var(--negro);
+      color: var(--dorado);
+    }
+
+    .boton-tema:hover {
+      background-color: #2A2A2A;
+    }
+
+    /* ---------- FORMULARIO DE OPINIÓN ---------- */
+    .formulario-resena {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .campo {
+      display: block;
+      margin-bottom: 14px;
+    }
+
+    .campo span {
+      display: block;
+      font-size: 0.85em;
+      font-weight: bold;
+      color: var(--texto-2);
+      margin-bottom: 5px;
+    }
+
+    .campo input, .campo select, .campo textarea {
+      width: 100%;
+      padding: 11px 12px;
+      border: 1px solid var(--borde);
+      border-radius: 8px;
+      font-size: 1em;
+      font-family: inherit;
+      background-color: #FAFAFB;
+    }
+
+    .campo input:focus, .campo select:focus, .campo textarea:focus {
+      outline: none;
+      border-color: var(--dorado);
+      background-color: var(--blanco);
+    }
+
+    .aviso-envio {
+      background-color: #E3F3E4;
+      border: 1px solid var(--verde);
+      color: #27692C;
+      padding: 10px 13px;
+      border-radius: 8px;
+      font-size: 0.9em;
+      margin-top: 12px;
+    }
+
+    .oculto {
+      display: none !important;
+    }
+
+    .centro {
+      text-align: center;
+    }
+
+    /* ---------- SECCIONES CENTRADAS (Sobre nosotros, Horarios) ----------
+       El titulo lleva display:inline-block para que el subrayado dorado
+       quede SOLO debajo del texto del titulo y no de punta a punta
+       del recuadro. */
+    section.centrada {
+      text-align: center;
+    }
+
+    section.centrada h2 {
+      display: inline-block;
+      border-bottom: 2px solid var(--dorado);
+      padding-bottom: 6px;
+    }
+
+    section.centrada > p {
+      max-width: 780px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    section.centrada dl {
+      display: inline-block;
+      text-align: left;
+      margin: 0 auto;
+    }
+
+    section.centrada dt,
+    section.centrada dd {
+      text-align: center;
+    }
+
+    /* ---------- CARRUSEL DE TRABAJOS REALIZADOS ---------- */
+    .carrusel-caja {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .flecha {
+      background-color: var(--negro);
+      color: var(--dorado);
+      border: none;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      font-size: 1.1em;
+      cursor: pointer;
+      flex: 0 0 auto;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .flecha:hover {
+      background-color: var(--rojo);
+      color: #FFFFFF;
+      transform: scale(1.08);
+    }
+
+    .carrusel-tarjeta {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      background-color: #FAFAFB;
+      border: 1px solid var(--borde);
+      border-radius: 14px;
+      padding: 18px;
+      flex: 1 1 auto;
+      max-width: 780px;
+      min-height: 230px;
+    }
+
+    .carrusel-foto {
+      width: 200px;
+      height: 200px;
+      flex: 0 0 auto;
+      object-fit: cover;
+      border-radius: 12px;
+      background-color: var(--blanco);
+    }
+
+    .carrusel-texto {
+      text-align: left;
+    }
+
+    .carrusel-texto h3 {
+      margin: 0 0 10px;
+      font-size: 1.25em;
+      color: var(--negro);
+      text-decoration: underline;
+      text-decoration-color: var(--dorado);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 6px;
+    }
+
+    .carrusel-texto p {
+      margin: 0;
+      color: var(--texto-2);
+    }
+
+    .carrusel-contador {
+      margin-top: 12px !important;
+      font-size: 0.85em;
+      color: #9AA0A6 !important;
+    }
+
+    .carrusel-puntos {
+      display: flex;
+      gap: 9px;
+      justify-content: center;
+      margin-top: 18px;
+    }
+
+    .punto {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: none;
+      background-color: #C9CCD1;
+      cursor: pointer;
+      padding: 0;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .punto.activo {
+      background-color: var(--rojo);
+      transform: scale(1.3);
+    }
+
+    /* ---------- TARJETAS DE SISTEMAS PARA NEGOCIOS ---------- */
+    .rejilla-tarjetas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .tarjeta-sistema {
+      background-color: #FAFAFB;
+      border: 1px solid var(--borde);
+      border-left: 5px solid var(--rojo);
+      border-radius: 10px;
+      width: 280px;
+      padding: 18px;
+      box-sizing: border-box;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .tarjeta-sistema:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.10);
+      border-left-color: var(--dorado);
+    }
+
+    .tarjeta-sistema i {
+      font-size: 1.8em;
+      color: var(--rojo);
+      margin-bottom: 8px;
+    }
+
+    .tarjeta-sistema p {
+      color: var(--texto-2);
+      font-size: 0.92em;
+      margin: 0 0 12px;
+    }
+
+    /* ---------- TARJETAS DE MANTENIMIENTO CON VISTA PREVIA ---------- */
+    .rejilla-mantenimiento {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .tarjeta-mantenimiento {
+      background-color: #FAFAFB;
+      border: 1px solid var(--borde);
+      border-radius: 12px;
+      width: 280px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .tarjeta-mantenimiento:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 22px rgba(0,0,0,0.13);
+      border-color: var(--dorado);
+    }
+
+    .foto-mantenimiento {
+      position: relative;
+      height: 175px;
+      background-color: #ECEDEF;
+      cursor: pointer;
+    }
+
+    .foto-mantenimiento img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Boton de play sobre la foto: es la vista previa del trabajo */
+    .boton-play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      border: none;
+      background-color: rgba(20,20,20,0.78);
+      color: var(--dorado);
+      font-size: 1.3em;
+      cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .boton-play:hover {
+      transform: translate(-50%, -50%) scale(1.12);
+      background-color: var(--rojo);
+      color: #FFFFFF;
+    }
+
+    .cuerpo-mantenimiento {
+      padding: 14px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .cuerpo-mantenimiento h3 {
+      margin: 0 0 6px;
+      font-size: 1.02em;
+      color: var(--negro);
+    }
+
+    .cuerpo-mantenimiento p {
+      margin: 0 0 12px;
+      font-size: 0.88em;
+      color: var(--texto-2);
+      flex: 1;
+    }
+
+    .precio-mantenimiento {
+      font-size: 1.3em;
+      font-weight: bold;
+      color: var(--rojo);
+      margin: 0 0 10px;
+    }
+
+    /* ---------- VENTANA DE VISTA PREVIA ---------- */
+    .modal-mantenimiento {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0,0,0,0.85);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-mantenimiento.visible {
+      display: flex;
+    }
+
+    .contenido-mantenimiento {
+      background-color: var(--blanco);
+      border-radius: 12px;
+      padding: 20px;
+      max-width: 760px;
+      width: 100%;
+      position: relative;
+    }
+
+    .contenido-mantenimiento img,
+    .contenido-mantenimiento video {
+      width: 100%;
+      max-height: 62vh;
+      object-fit: contain;
+      border-radius: 8px;
+      background-color: #000000;
+      display: block;
+    }
+
+    .contenido-mantenimiento h3 {
+      margin: 14px 0 4px;
+      color: var(--negro);
+    }
+
+    .contenido-mantenimiento p {
+      color: var(--texto-2);
+      margin: 0 0 14px;
+    }
+
+    .cerrar-mantenimiento {
+      position: absolute;
+      top: 6px;
+      right: 12px;
+      font-size: 1.8em;
+      color: var(--texto-2);
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    .cerrar-mantenimiento:hover {
+      color: var(--rojo);
+    }
+
+    /* ---------- NOTA DESTACADA ---------- */
+    .nota-enlace {
+      background-color: var(--negro);
+      color: #FFFFFF;
+      padding: 14px 16px;
+      border-radius: 8px;
+      margin: 18px 0;
+      font-size: 1em;
+    }
+
+    .nota-enlace a {
+      color: var(--dorado);
+      font-weight: bold;
+    }
+
+    /* ---------- MODO OSCURO (lo cambia JavaScript) ---------- */
+    body.tema-oscuro {
+      background-color: #0E1116;
+      color: #E7E9EC;
+    }
+
+    body.tema-oscuro section,
+    body.tema-oscuro .tarjeta-sistema {
+      background-color: #16191F;
+      border-color: #2A2F37;
+      color: #E7E9EC;
+    }
+
+    body.tema-oscuro section h2 {
+      color: var(--dorado);
+    }
+
+    body.tema-oscuro .tarjeta-sistema p {
+      color: #AEB4BD;
+    }
+
+    /* ---------- PIE DE PAGINA ---------- */
+    footer {
+      background-color: var(--negro);
+      color: #C4C4C4;
+      text-align: center;
+      padding: 26px 16px;
+      margin-top: 34px;
+      border-top: 4px solid var(--dorado);
+    }
+
+    footer a {
+      color: var(--dorado);
+      text-decoration: none;
+      margin: 0 6px;
+    }
+
+    footer a:hover {
+      color: #FFFFFF;
+      text-decoration: underline;
+    }
+
+    footer .icono-footer {
+      color: var(--dorado);
+    }
+
+    /* ---------- ADAPTACION A CELULAR ---------- */
+    @media (max-width: 700px) {
+      nav a {
+        margin: 0 5px;
+        font-size: 0.95em;
+      }
+      section {
+        margin: 14px 10px;
+        padding: 18px;
+      }
+      header img {
+        width: 140px;
+        height: 140px;
+      }
+      .tarjeta-sistema {
+        width: 100%;
+      }
+      .carrusel-caja {
+        flex-direction: column;
+      }
+      .carrusel-tarjeta {
+        flex-direction: column;
+        text-align: center;
+      }
+      .carrusel-foto {
+        width: 100%;
+        height: 180px;
+      }
+      .carrusel-texto {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= ENCABEZADO ================= -->
+  <header>
+    <!-- El logo es un enlace: sirve para volver al inicio desde cualquier pagina -->
+    <a href="index.html" title="Ir al inicio">
+      <img src="assets/logo-servic-circular.webp" alt="Logo de Servic PC" width="190" height="190">
+    </a>
+
+    <h1>Servic PC</h1>
+    <p>Reparación, mantenimiento y soporte técnico informático</p>
+
+    <p class="datos-contacto">
+      Wanda, Misiones &nbsp;|&nbsp;
+      <a href="tel:+543757587830">Tel: 3757 587830</a> &nbsp;|&nbsp;
+      <a href="https://wa.me/5493757587830" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    </p>
+  </header>
+
+  <!-- ================= TEXTO EN MOVIMIENTO =================
+       La etiqueta <marquee> hace que el texto se desplace.
+       Atributos: direction (hacia donde), scrollamount (pixeles por paso),
+       scrolldelay (milisegundos entre pasos), bgcolor (color de fondo),
+       loop (cantidad de repeticiones) y behavior (scroll / alternate / slide). -->
+  <div class="marquee-wrapper">
+    <marquee direction="left" scrollamount="5" scrolldelay="10" bgcolor="#CD9F2C" loop="infinite">
+      ¡Bienvenido a Servic PC! — Reparación de computadoras — Formateos — Mantenimiento preventivo — Venta de repuestos — ¡Consultanos sin cargo!
+    </marquee>
+  </div>
+
+  <!-- ================= NAVEGACION =================
+       target="_blank" abre el enlace en otra pestaña (lo pide el material de la materia). -->
+  <nav>
+    <a href="index.html" class="activo"><i class="fa-solid fa-house"></i> Inicio</a> |
+    <a href="Servicios.html"><i class="fas fa-tools"></i> Servicios</a> |
+    <a href="Productos.html"><i class="fas fa-box-open"></i> Productos</a> |
+    <a href="Reseñas.html"><i class="fas fa-star"></i> Reseñas</a> |
+    <a href="#dejar-resena"><i class="fas fa-pen-to-square"></i> Dejar reseña</a> |
+    <a href="https://wa.me/5493757587830" target="_blank"><i class="fab fa-whatsapp"></i> Contacto</a>
+  </nav>
+
+  <!-- ================= TRABAJOS REALIZADOS (CARRUSEL) =================
+       Las tarjetas del carrusel salen de la capa de datos (assets/js/datos.js):
+       los trabajos que subis desde el panel de administracion. -->
+  <section id="trabajos">
+    <h2><i class="fas fa-images icono-titulo"></i>Trabajos realizados</h2>
+    <p>
+      Algunas de las reparaciones que terminamos en el taller. Las imágenes pasan solas;
+      también podés moverlas con las flechitas o con los puntitos de abajo.
+    </p>
+
+    <div class="carrusel-caja" id="carruselCaja">
+      <button class="flecha" onclick="Carrusel.mover(-1)" aria-label="Trabajo anterior">&#10094;</button>
+
+      <div class="carrusel-tarjeta">
+        <img class="carrusel-foto" id="carruselImagen" src="assets/logo-servic-circular.webp" alt="">
+        <div class="carrusel-texto">
+          <h3 id="carruselTitulo">Cargando trabajos...</h3>
+          <p id="carruselTexto"></p>
+          <p class="carrusel-contador" id="carruselContador"></p>
+        </div>
+      </div>
+
+      <button class="flecha" onclick="Carrusel.mover(1)" aria-label="Trabajo siguiente">&#10095;</button>
+    </div>
+
+    <div class="carrusel-puntos" id="carruselPuntos"></div>
+  </section>
+
+  <!-- ================= SOBRE NOSOTROS ================= -->
+  <section id="sobre" class="centrada">
+    <h2><i class="fas fa-circle-info icono-titulo"></i>Sobre nosotros</h2>
+    <p>
+      Somos técnicos especializados en reparación y mantenimiento de computadoras de escritorio y notebooks.
+      Brindamos servicio a domicilio y en local, con atención personalizada y garantía de 30 días en todos los trabajos realizados.
+      Además vendemos repuestos originales y armamos sistemas de información para negocios.
+    </p>
+  </section>
+
+  <!-- ================= HORARIOS (lista de descripcion: dl / dt / dd) ================= -->
+  <section id="horarios" class="centrada">
+    <h2><i class="fas fa-clock icono-titulo"></i>Horarios de atención</h2>
+    <p>Podés encontrarnos en los siguientes horarios:</p>
+
+    <dl>
+      <dt><strong>Lunes a Viernes</strong></dt>
+      <dd>— 9:00 a 18:00 hs</dd>
+      <dt><strong>Sábados</strong></dt>
+      <dd>— 9:00 a 13:00 hs</dd>
+      <dt><strong>Domingos y feriados</strong></dt>
+      <dd>— Cerrado</dd>
+    </dl>
+  </section>
+
+  <!-- ================= COMO FUNCIONA (lista ordenada: ol / li) ================= -->
+  <section id="proceso">
+    <h2><i class="fas fa-list-ol icono-titulo"></i>¿Cómo funciona el servicio?</h2>
+    <p>El proceso de atención es simple:</p>
+
+    <ol>
+      <li>Traé tu equipo o solicitá visita a domicilio</li>
+      <li>Realizamos el diagnóstico sin cargo</li>
+      <li>Te informamos el problema y el presupuesto</li>
+      <li>Con tu aprobación, comenzamos la reparación</li>
+      <li>Entregamos el equipo con garantía de 30 días</li>
+    </ol>
+  </section>
+
+  <!-- ================= SERVICIOS DE MANTENIMIENTO CON VISTA PREVIA =================
+       Las tarjetas se dibujan con JavaScript a partir de la capa de datos:
+       los servicios se editan desde el panel de administracion. -->
+  <section id="mantenimiento">
+    <h2><i class="fas fa-screwdriver-wrench icono-titulo"></i>Mantenimiento: mirá cómo queda</h2>
+    <p>
+      Estos son los servicios de mantenimiento más pedidos. Tocá el botón de play de cada tarjeta
+      para ver la <strong>vista previa</strong> del trabajo: el video del proceso o, si todavía no
+      hay video, la foto del equipo ya reparado.
+    </p>
+
+    <div class="rejilla-mantenimiento" id="rejillaMantenimiento"></div>
+
+    <p class="centro" style="margin-top:22px;">
+      <a class="boton boton-whatsapp" href="https://wa.me/5493757587830" target="_blank">
+        <i class="fab fa-whatsapp"></i> Consultar por un mantenimiento
+      </a>
+      <a class="boton boton-secundario" href="Servicios.html">Ver todos los servicios</a>
+    </p>
+  </section>
+
+  <!-- ================= SISTEMAS PARA NEGOCIOS =================
+       Nuevo: la web no solo vende repuestos, tambien ofrece desarrollo de software. -->
+  <section id="sistemas">
+    <h2><i class="fas fa-building icono-titulo"></i>Sistemas de información para negocios</h2>
+    <p>
+      Además de la reparación, armamos <strong>sistemas a medida para pymes y profesionales</strong>:
+      programas sencillos que se usan en el mostrador, en el consultorio o en el local, y que
+      hacen que el negocio funcione solo: cobrar, anotar turnos, controlar el stock o vender por internet.
+      Los prescribe el negocio y se instalan en la computadora del cliente.
+    </p>
+
+    <div class="rejilla-tarjetas">
+
+      <div class="tarjeta-sistema">
+        <i class="fas fa-cash-register"></i>
+        <h3>Sistema de cobro (punto de venta)</h3>
+        <p>
+          Para kioscos, almacenes y comercios: registra cada venta, descuenta el stock,
+          guarda el total del día y entrega ticket o comprobante. Se usa con teclado numérico
+          y funciona sin internet.
+        </p>
+        <a class="boton boton-principal" href="https://wa.me/5493757587830?text=Hola%20Servic%20PC%2C%20quiero%20un%20sistema%20de%20cobro%20para%20mi%20negocio" target="_blank">Consultar</a>
+      </div>
+
+      <div class="tarjeta-sistema">
+        <i class="fas fa-user-doctor"></i>
+        <h3>Turnos y fichas para consultorios</h3>
+        <p>
+          Para médicos, dentistas y profesionales de la salud: agenda de turnos por día,
+          ficha de cada paciente, historial de visitas y lista de espera que se actualiza sola.
+        </p>
+        <a class="boton boton-principal" href="https://wa.me/5493757587830?text=Hola%20Servic%20PC%2C%20quiero%20un%20sistema%20de%20turnos%20para%20un%20consultorio" target="_blank">Consultar</a>
+      </div>
+
+      <div class="tarjeta-sistema">
+        <i class="fas fa-boxes-stacked"></i>
+        <h3>Control de stock e inventario</h3>
+        <p>
+          Para businesses con mercadería: entrada y salida de productos, stock mínimo con aviso,
+          valorización del inventario y reportes de qué se vende más.
+        </p>
+        <a class="boton boton-principal" href="https://wa.me/5493757587830?text=Hola%20Servic%20PC%2C%20quiero%20un%20sistema%20de%20stock%20para%20mi%20negocio" target="_blank">Consultar</a>
+      </div>
+
+      <div class="tarjeta-sistema">
+        <i class="fas fa-globe"></i>
+        <h3>Página web para tu negocio</h3>
+        <p>
+          Presencia en internet: catálogo de productos, formulario de pedidos, link de contacto
+          directo a WhatsApp y publicación en Google para que te encuentren los clientes de la zona.
+        </p>
+        <a class="boton boton-principal" href="https://wa.me/5493757587830?text=Hola%20Servic%20PC%2C%20quiero%20una%20p%C3%A1gina%20web%20para%20mi%20negocio" target="_blank">Consultar</a>
+      </div>
+
+    </div>
+
+    <div class="nota-enlace">
+      <i class="fas fa-circle-info"></i> Cada sistema se cotiza según la cantidad de clientes y la
+      cantidad de datos que necesita guardar. <strong>La primera charla y la instalación de prueba
+      no tienen cargo.</strong> Escribinos y te contamos qué se puede hacer en tu caso.
+    </div>
+  </section>
+
+  <!-- ================= PRODUCTOS DESTACADOS ================= -->
+  <section id="destacados">
+    <h2><i class="fas fa-fire icono-titulo"></i>Repuestos más pedidos</h2>
+    <p>Estos son los repuestos que más se venden en el taller. Stock subjecto a consulta:</p>
+
+    <div class="rejilla-tarjetas">
+
+      <div class="tarjeta-sistema">
+        <i class="fas fa-memory"></i>
+        <h3>Memoria RAM Notebook DDR4 16GB</h3>
+        <p>Para notebooks que quedan lentas o se reinician. Instalación y prueba en el momento.</p>
+        <a class="boton boton-principal" href="https://wa.me/5493757587830?text=Hola%20Servic%20PC%2C%20quiero%20consultar%20por%20memoria%20RAM%20Notebook%20DDR4%2016GB" target="_blank">Consultar</a>
+      </div>
+
+      <div class="tarjeta-sistema">
+        <i class="fas fa-hard-drive"></i>
+        <h3>Disco SSD M.2 1TB</h3>
+        <p>El upgrade que más se nota: la computadora pasa a arrancar en segundos.</p>
+        <a class="boton boton-principal" href="https://wa.me/5493757587830?text=Hola%20Servic%20PC%2C%20quiero%20consultar%20por%20disco%20SSD%20M.2%201TB" target="_blank">Consultar</a>
+      </div>
+
+      <div class="tarjeta-sistema">
+        <i class="fas fa-fan"></i>
+        <h3>Cooler 120mm RGB</h3>
+        <p>Reemplazo de ventiladores quemados y mejor enfriamiento para que la máquina no se apague sola.</p>
+        <a class="boton boton-principal" href="https://wa.me/5493757587830?text=Hola%20Servic%20PC%2C%20quiero%20consultar%20por%20cooler%20120mm%20RGB" target="_blank">Consultar</a>
+      </div>
+
+      <div class="tarjeta-sistema">
+        <i class="fas fa-bolt"></i>
+        <h3>Pasta térmica</h3>
+        <p>Cambio de pasta y limpieza interna: la forma más barata de alargar la vida de la PC.</p>
+        <a class="boton boton-principal" href="https://wa.me/5493757587830?text=Hola%20Servic%20PC%2C%20quiero%20consultar%20por%20pasta%20t%C3%A9rmica%20y%20limpieza%20interna" target="_blank">Consultar</a>
+      </div>
+
+    </div>
+
+    <p class="centro" style="margin-top:20px;">
+      <a class="boton boton-secundario" href="Productos.html">Ver todos los productos del catálogo</a>
+    </p>
+  </section>
+
+  <!-- ================= VENTANA DE VISTA PREVIA DEL TRABAJO ================= -->
+  <div class="modal-mantenimiento" id="modalMantenimiento">
+    <div class="contenido-mantenimiento">
+      <button class="cerrar-mantenimiento" onclick="cerrarVistaPrevia()" aria-label="Cerrar">&times;</button>
+      <div id="vistaPreviaMedia"></div>
+      <h3 id="vistaPreviaTitulo"></h3>
+      <p id="vistaPreviaTexto"></p>
+      <p style="color:#C1272D; font-weight:bold; margin-bottom:14px;" id="vistaPreviaPrecio"></p>
+      <a class="boton boton-whatsapp" id="vistaPreviaLink" href="https://wa.me/5493757587830" target="_blank">
+        <i class="fab fa-whatsapp"></i> Quiero este servicio
+      </a>
+    </div>
+  </div>
+
+  <!-- ================= DEJAR UNA OPINIÓN =================
+       El visitante escribe su opinión desde la misma portada.
+       Queda pendiente y el administrador la aprueba en el panel. -->
+  <section id="dejar-resena" class="centro">
+    <h2><i class="fas fa-pen-to-square icono-titulo"></i>Dejá tu opinión</h2>
+    <p>
+      ¿Fuiste cliente? Contanos cómo te fue. Cada opinión se revisa antes de publicarse,
+      para que en la página figuren solamente reseñas reales.
+      <span id="contadorOpiniones"></span>
+    </p>
+
+    <div class="formulario-resena">
+      <label class="campo">
+        <span>Tu nombre</span>
+        <input type="text" id="nombreCliente" placeholder="Nombre y apellido">
+      </label>
+
+      <label class="campo">
+        <span>Puntaje</span>
+        <select id="puntajeCliente">
+          <option value="5">5 estrellas - Excelente</option>
+          <option value="4">4 estrellas - Muy bueno</option>
+          <option value="3">3 estrellas - Bueno</option>
+          <option value="2">2 estrellas - Regular</option>
+          <option value="1">1 estrella - Malo</option>
+        </select>
+      </label>
+
+      <label class="campo">
+        <span>Tu opinión</span>
+        <textarea id="textoCliente" rows="3" placeholder="Contá cómo te fue con el servicio"></textarea>
+      </label>
+
+      <button class="boton boton-principal" onclick="enviarResena()">
+        <i class="fas fa-paper-plane"></i> Enviar mi opinión
+      </button>
+      <button class="boton boton-whatsapp" onclick="enviarResenaPorWhatsApp()">
+        <i class="fab fa-whatsapp"></i> Mandarla por WhatsApp
+      </button>
+      <p id="avisoResena" class="aviso-envio oculto"></p>
+
+      <p style="font-size:0.86em; color:var(--texto-2); margin-top:14px;">
+        <i class="fas fa-circle-info"></i>
+        ¿Prefieres hablar directo? Escribinos por WhatsApp y la leemos a diario:
+        <a href="https://wa.me/5493757587830" target="_blank" style="color:var(--rojo); font-weight:bold;">3757 587830</a>.
+        &nbsp;|&nbsp;
+        <a href="Reseñas.html">Ver todas las opiniones</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= MODO CLARO / OSCURO ================= -->
+  <section id="tema" class="centro">
+    <h2><i class="fas fa-circle-half-stroke icono-titulo"></i>Elegí cómo ver la página</h2>
+    <p>Preferís el fondo claro para leer o el oscuro para trabajar de noche? Los botones cambian el color al instante.</p>
+
+    <button class="boton boton-tema" onclick="cambiarColor()">
+      <i class="fas fa-moon"></i> Cambiar a modo oscuro
+    </button>
+    <button class="boton boton-secundario" onclick="volverColor()">
+      <i class="fas fa-sun"></i> Volver al modo claro
+    </button>
+
+    <p style="margin-top:18px;">
+      <a class="boton boton-whatsapp" href="https://wa.me/5493757587830" target="_blank">
+        <i class="fab fa-whatsapp"></i> Consultar por WhatsApp
+      </a>
+      <a class="boton boton-secundario" href="https://www.instagram.com/c_l_a_u_.2007" target="_blank">
+        <i class="fab fa-instagram"></i> Escribinos por Instagram
+      </a>
+    </p>
+  </section>
+
+  <!-- ================= SEGUNDO TEXTO EN MOVIMIENTO ================= -->
+  <div style="margin: 10px auto; max-width:1100px;">
+    <marquee direction="right" behavior="alternate" scrollamount="4"
+             width="100%" height="40"
+             style="background-color:#141414; color:#CD9F2C; font-weight:bold; padding:8px; border-radius:4px; box-sizing:border-box;">
+      ★ Garantía de 30 días ★ Diagnóstico sin cargo ★ Atención personalizada ★
+    </marquee>
+  </div>
+
+  <!-- ================= PIE DE PAGINA ================= -->
+  <footer>
+    <p>
+      <i class="fas fa-desktop icono-footer"></i>
+      © 2026 — Servic PC — Servicio técnico informático — Wanda, Misiones — Tel: 3757 587830
+    </p>
+    <p>
+      <a href="https://wa.me/5493757587830" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp 3757 587830</a> |
+      <a href="https://www.instagram.com/c_l_a_u_.2007" target="_blank"><i class="fab fa-instagram"></i> Instagram @c_l_a_u_.2007</a> |
+      <a href="Servicios.html">Servicios</a> |
+      <a href="Productos.html">Productos</a>
+    </p>
+  </footer>
+
+  <script src="assets/js/datos.js"></script>
+  <script src="assets/js/carrusel.js"></script>
+  <script src="assets/js/resenas.js"></script>
+
+  <script>
+    /* ------------------------------------------------------------
+       ARRANQUE DE LA PAGINA
+       Primero se intenta bajar el archivo datos.json del servidor
+       (por si el administrador publico trabajos o productos nuevos)
+       y despues se dibujan el carrusel, los servicios de
+       mantenimiento y las opiniones.
+       ------------------------------------------------------------ */
+    Tienda.iniciar().then(function () {
+      Carrusel.iniciar();
+      pintarMantenimiento();
+      pintarOpiniones("listaOpiniones");
+      contarOpiniones("contadorOpiniones");
+    });
+
+    /* Cuando el mouse pasa por encima del carrusel, el passage
+       automatico se frena; cuando sale, vuelve a arrancar. */
+    var cajaCarrusel = document.getElementById("carruselCaja");
+    cajaCarrusel.addEventListener("mouseenter", function () { Carrusel.detener(); });
+    cajaCarrusel.addEventListener("mouseleave", function () { Carrusel.arrancar(); });
+  </script>
+
+  <script>
+    /* ------------------------------------------------------------
+       SERVICIOS DE MANTENIMIENTO CON VISTA PREVIA
+       Las tarjetas se arman con los datos que carga el administrador
+       en el panel. Cada una tiene su boton de play, que abre la
+       ventana con el video del trabajo (o con la foto).
+       ------------------------------------------------------------ */
+    function pintarMantenimiento() {
+      var contenedor = document.getElementById("rejillaMantenimiento");
+      var servicios = Tienda.mantenimientosPublicos();
+      contenedor.innerHTML = "";
+
+      servicios.forEach(function (m) {
+        var tarjeta = document.createElement("div");
+        tarjeta.className = "tarjeta-mantenimiento";
+        tarjeta.innerHTML =
+          '<div class="foto-mantenimiento" onclick="abrirVistaPrevia(\'' + m.id + '\')">' +
+            '<img src="' + escapar(m.imagen) + '" alt="' + escapar(m.titulo) + '" loading="lazy">' +
+            '<button class="boton-play" aria-label="Ver el trabajo"><i class="fas fa-play"></i></button>' +
+          '</div>' +
+          '<div class="cuerpo-mantenimiento">' +
+            '<h3>' + escapar(m.titulo) + '</h3>' +
+            '<p>' + escapar(m.texto) + '</p>' +
+            '<p class="precio-mantenimiento">' + escapar(m.precio) + '</p>' +
+            '<button class="boton boton-secundario" onclick="abrirVistaPrevia(\'' + m.id + '\')">' +
+              '<i class="fas fa-eye"></i> Ver el trabajo</button>' +
+          '</div>';
+        contenedor.appendChild(tarjeta);
+      });
+    }
+
+    /* Abre la ventana con el video o la foto del trabajo */
+    function abrirVistaPrevia(id) {
+      var servicio = null;
+      Tienda.mantenimientosPublicos().forEach(function (m) { if (m.id === id) { servicio = m; } });
+      if (!servicio) { return; }
+
+      var media = document.getElementById("vistaPreviaMedia");
+
+      /* Si el servicio tiene video, se muestra el video; si el archivo
+         no esta en el servidor, se cae a la foto. */
+      if (servicio.video) {
+        media.innerHTML = '<video controls src="' + escapar(servicio.video) + '" ' +
+          'onerror="this.style.display=\'none\';document.getElementById(\'imagenRespaldo\').style.display=\'block\';">' +
+          '</video>' +
+          '<img id="imagenRespaldo" src="' + escapar(servicio.imagen) + '" alt="' + escapar(servicio.titulo) + '" style="display:none;">';
+      } else {
+        media.innerHTML = '<img src="' + escapar(servicio.imagen) + '" alt="' + escapar(servicio.titulo) + '">';
+      }
+
+      document.getElementById("vistaPreviaTitulo").textContent = servicio.titulo;
+      document.getElementById("vistaPreviaTexto").textContent = servicio.texto;
+      document.getElementById("vistaPreviaPrecio").textContent = servicio.precio;
+      document.getElementById("vistaPreviaLink").href =
+        "https://wa.me/5493757587830?text=" + encodeURIComponent(
+          "Hola Servic PC, quiero consultar por " + servicio.titulo);
+
+      document.getElementById("modalMantenimiento").classList.add("visible");
+    }
+
+    function cerrarVistaPrevia() {
+      document.getElementById("modalMantenimiento").classList.remove("visible");
+    }
+
+    /* Cierra la ventana si se hace clic fuera de la foto o con la tecla Escape */
+    document.addEventListener("click", function (evento) {
+      var modal = document.getElementById("modalMantenimiento");
+      if (evento.target === modal) { cerrarVistaPrevia(); }
+    });
+
+    document.addEventListener("keydown", function (evento) {
+      if (evento.key === "Escape") { cerrarVistaPrevia(); }
+    });
+  </script>
+
+  <script>
+    /* ------------------------------------------------------------
+       EJEMPLO DE JAVASCRIPT DE LA MATERIA (clase "Lógica JavaScript"):
+       el atributo onclick del boton llama a esta funcion, que cambia
+       el color de fondo del documento con document.body.style.backgroundColor
+       y agrega una clase para adaptar los bloques de texto.
+       ------------------------------------------------------------ */
+    function cambiarColor() {
+      document.body.style.backgroundColor = "#0E1116";   /* modo oscuro */
+      document.body.classList.add("tema-oscuro");
+    }
+
+    function volverColor() {
+      document.body.style.backgroundColor = "#F4F5F7";   /* vuelve al color claro */
+      document.body.classList.remove("tema-oscuro");
+    }
+  </script>
+
+</body>
+</html>
