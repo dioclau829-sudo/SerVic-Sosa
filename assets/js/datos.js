@@ -273,53 +273,56 @@ var Tienda = {
       .catch(function () { misma.resenasServidor = null; });
   },
 
-  /* Manda una reseña nueva al servidor (la que escribe un cliente) */
-  enviarResenaAlServidor: function (resena) {
+  /* Manda datos al servidor. Primero intenta con POST y, si el navegador
+     no lo permite (algunos bloquean el POST a los servicios de Google),
+     reintenta con GET pasando los datos en la direccion. */
+  enviarAlServidor: function (campos) {
     var url = this.servidor();
     if (!url) { return Promise.resolve({ ok: false, error: "No hay servidor configurado." }); }
 
     var cuerpo = new URLSearchParams();
-    cuerpo.append("accion", "nueva");
-    cuerpo.append("id", resena.id);
-    cuerpo.append("fecha", resena.fecha);
-    cuerpo.append("nombre", resena.nombre);
-    cuerpo.append("estrellas", resena.estrellas);
-    cuerpo.append("texto", resena.texto);
+    Object.keys(campos).forEach(function (clave) {
+      cuerpo.append(clave, campos[clave]);
+    });
 
     return fetch(url, { method: "POST", body: cuerpo })
       .then(function (r) { return r.json(); })
-      .catch(function (error) { return { ok: false, error: String(error) }; });
+      .catch(function () {
+        var completa = url + (url.indexOf("?") >= 0 ? "&" : "?") + cuerpo.toString();
+        return fetch(completa, { cache: "no-store" })
+          .then(function (r) { return r.json(); });
+      });
+  },
+
+  /* Manda una reseña nueva al servidor (la que escribe un cliente) */
+  enviarResenaAlServidor: function (resena) {
+    return this.enviarAlServidor({
+      accion: "nueva",
+      id: resena.id,
+      fecha: resena.fecha,
+      nombre: resena.nombre,
+      estrellas: resena.estrellas,
+      texto: resena.texto
+    });
   },
 
   /* Cambia el estado de una reseña en el servidor (publicar o rechazar) */
   cambiarEstadoEnServidor: function (id, estado) {
-    var url = this.servidor();
-    if (!url) { return Promise.resolve({ ok: false, error: "No hay servidor configurado." }); }
-
-    var cuerpo = new URLSearchParams();
-    cuerpo.append("accion", "estado");
-    cuerpo.append("clave", this.claveAdmin());
-    cuerpo.append("id", id);
-    cuerpo.append("estado", estado);
-
-    return fetch(url, { method: "POST", body: cuerpo })
-      .then(function (r) { return r.json(); })
-      .catch(function (error) { return { ok: false, error: String(error) }; });
+    return this.enviarAlServidor({
+      accion: "estado",
+      clave: this.claveAdmin(),
+      id: id,
+      estado: estado
+    });
   },
 
   /* Borra una reseña del servidor */
   borrarEnServidor: function (id) {
-    var url = this.servidor();
-    if (!url) { return Promise.resolve({ ok: false, error: "No hay servidor configurado." }); }
-
-    var cuerpo = new URLSearchParams();
-    cuerpo.append("accion", "borrar");
-    cuerpo.append("clave", this.claveAdmin());
-    cuerpo.append("id", id);
-
-    return fetch(url, { method: "POST", body: cuerpo })
-      .then(function (r) { return r.json(); })
-      .catch(function (error) { return { ok: false, error: String(error) }; });
+    return this.enviarAlServidor({
+      accion: "borrar",
+      clave: this.claveAdmin(),
+      id: id
+    });
   },
 
   /* --- Trabajos realizados (galeria del carrusel) --- */

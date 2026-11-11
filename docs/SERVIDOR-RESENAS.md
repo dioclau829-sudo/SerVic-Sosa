@@ -40,24 +40,47 @@ reseñas aprobadas
 
 ## Paso 2 — Crear el Apps Script
 
-1. Entrá a **https://script.google.com** → **Nuevo proyecto**.
-2. Borrá lo que está en el editor y **pegá el código** del archivo
-   `assets/js/SERVIC-PC-RESENAS.gs` (de la carpeta del proyecto).
-3. Guardá con el ícono de disket (o Ctrl+S). Le podés poner de nombre `ServicPC`.
-4. Clic en **Implementar** → **Nueva implementación**:
+### 2.1 Abrilo desde la planilla (lo más fácil)
+
+1. Con la planilla abierta, menú **Extensiones → Apps Script**. Se crea un proyecto **conectado**
+   a esa planilla (por eso el código la encuentra solo).
+2. En el editor, **borrá todo** (`Ctrl+A` y `Suprimir`) y **pegá el código** del archivo
+   `assets/js/SERVIC-PC-RESENAS.gs` (en tu carpeta:
+   `Visual Code HTML\Mi pagina web\assets\js\SERVIC-PC-RESENAS.gs`).
+   > ⚠️ **Ojo:** cuando se abre Apps Script aparece un `function myFunction() { ... }` de ejemplo.
+   > **Borrá esa función y su llave final**: el código tiene que quedar en el nivel principal del
+   > archivo, porque Apps Script busca las funciones `doGet` y `doPost` ahí. Si quedan adentro de
+   > otra función, la despliegue falla con *"Script function not found: doGet"*.
+3. Guardá (Ctrl+S) y ponéle de nombre `ServicPC`.
+
+### 2.2 Si lo creás como proyecto aparte (script.google.com → Nuevo proyecto)
+
+En ese caso el script **no** está conectado a ninguna planilla, así que:
+
+1. Abrí tu planilla y copiá el **ID** de la dirección:
+   `https://docs.google.com/spreadsheets/d/ESTE_ID/edit` → el ID es lo que está entre `/d/` y `/edit`.
+2. En el código, completá la línea `var ID_PLANILLA = "";` con ese ID (entre comillas).
+3. Pegá el resto del código igual (también borrando el `myFunction`).
+
+### 2.3 Desplegar
+
+1. Clic en **Implementar → Nueva implementación**:
    - Tipo: **Aplicación web**
    - Ejecutar como: **Yo (tu cuenta de Google)**
    - Quién tiene acceso: **Cualquier persona**
-5. Clic en **Implementar**. Te va a pedir permiso: elegí tu cuenta, permití los permisos
+2. Clic en **Implementar**. Te va a pedir permiso: elegí tu cuenta, permití los permisos
    (es el aviso de "Google no ha verificado esta aplicación" → **Advanced → Go to
    ServicPC (unsafe)** → **Allow**).
-6. Te muestra **la dirección de la web app**. Copiala: termina en `/exec`, y es algo así:
+3. Te muestra **la dirección de la web app**. Copiala: termina en `/exec`, y es algo así:
 
    ```
    https://script.google.com/macros/s/AKfycbXXXXXXXXXXXXXXXX/exec
    ```
 
    ⚠️ **Copiá la que termina en `/exec`**, no la que termina en `/dev`.
+
+> 💡 Si después cambiás el código del script, tenés que hacer una **nueva implementación**
+> (o editar la existente y guardar otra versión) para que los cambios se apliquen.
 
 ---
 
@@ -98,6 +121,21 @@ GitHub Pages recompila solo en 1-2 minutos.
 
 Si en el paso 1 la fila **no** aparece en la planilla, revisá que la dirección termine en `/exec`
 y que la hoja se llame exactamente `Reseñas`.
+
+### Si el script dice "Script function not found: doGet"
+
+Es que quedó envuelto en el `function myFunction() { ... }` de ejemplo. Sacá esa función
+y la llave `}` del final: el código tiene que estar en el **nivel principal**.
+
+### Si dice "No se encontro la planilla"
+
+El script no está conectado a la planilla: completá la variable `ID_PLANILLA` con el ID
+de tu planilla, o creá el script desde la planilla (Extensiones → Apps Script).
+
+### Si la opinión no se publica pero sí llega a la planilla
+
+Falta el paso 3 (copiar el `datos.json` con la línea `"servidor"` a `assets/js/` del repo
+y hacer `git push`). Sin eso, la web no sabe cuál es la dirección del servidor.
 
 ---
 

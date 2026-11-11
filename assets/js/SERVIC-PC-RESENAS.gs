@@ -6,6 +6,12 @@
    servidor propio: las reseñas que mandan los clientes de la web llegan
    a TU planilla y las podes ver, aprobar o rechazar desde el panel.
 
+   IMPORTANTE:
+   - Este código tiene que ir en el NIVEL PRINCIPAL del archivo.
+     No lo pegues dentro de otra función (no debe quedar un
+     "function myFunction() { ... }" envolviendo todo).
+   - Las dos funciones que Apps Script llama son doGet y doPost.
+
    COMO SE USA (resumen, la guia completa esta en docs/SERVIDOR-RESENAS.md):
    1) Crear una planilla de Google con dos hojas: "Reseñas" y "Config".
    2) En la hoja "Reseñas", la fila 1 tiene estos títulos:
@@ -24,11 +30,38 @@ var HOJA_CONFIG = "Config";
 /* Columnas de la hoja de reseñas, en orden */
 var COLUMNAS = ["id", "fecha", "nombre", "estrellas", "texto", "estado"];
 
+/* ---------------------------------------------------------------------------
+   ID DE LA PLANILLA (solo si el script NO lo creaste desde la planilla)
+   Si creaste el script desde la planilla (Extensiones > Apps Script) no
+   hace falta tocar esto: el código la encuentra solo.
+   Si lo creaste aparte (script.google.com > Nuevo proyecto), copiá acá el
+   ID que aparece en la dirección de tu planilla:
+        https://docs.google.com/spreadsheets/d/ESTE_ID/edit
+   ------------------------------------------------------------------------- */
+var ID_PLANILLA = "";
+
+/* Devuelve la planilla con las reseñas, este connected o no el script */
+function obtenerPlanilla() {
+  try {
+    var activa = SpreadsheetApp.getActiveSpreadsheet();
+    if (activa) { return activa; }
+  } catch (error) {
+    /* el script no esta conectado a ninguna planilla */
+  }
+  if (ID_PLANILLA) {
+    return SpreadsheetApp.openById(ID_PLANILLA);
+  }
+  throw new Error("No se encontro la planilla. Conecta el script a la planilla "
+    + "(Extensiones > Apps Script) o completa la variable ID_PLANILLA.");
+}
+
 /* ==========================================================================
    1) LO QUE PIDE EL NAVEGADOR
    ========================================================================== */
 
-/* Se llama con GET: action=listar (trae las reseñas), estado o borrar */
+/* Se llama con GET: action=listar (trae las reseñas), estado o borrar.
+   Tambien acepta "nueva" por GET, por si el navegador no puede enviar
+   un POST (some navegadores bloquean el POST a servicios de Google). */
 function doGet(e) {
   try {
     var p = (e && e.parameter) ? e.parameter : {};
@@ -36,6 +69,14 @@ function doGet(e) {
 
     if (accion === "listar") {
       return json({ ok: true, resenas: leerResenas() });
+    }
+
+    if (accion === "nueva") {
+      agregarReseña(p);
+      return json({
+        ok: true,
+        mensaje: "¡Gracias! Tu opinión fue enviada y ya la estamos revisando."
+      });
     }
 
     if (accion === "estado" || accion === "borrar") {
@@ -94,7 +135,7 @@ function doPost(e) {
 
 /* Devuelve todas las reseñas como una lista de objetos */
 function leerResenas() {
-  var hoja = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(HOJA_RESENAS);
+  var hoja = obtenerPlanilla().getSheetByName(HOJA_RESENAS);
   if (!hoja) { return []; }
 
   var datos = hoja.getDataRange().getValues();
@@ -118,7 +159,7 @@ function leerResenas() {
 
 /* Agrega una reseña nueva al final de la planilla */
 function agregarReseña(p) {
-  var hoja = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(HOJA_RESENAS);
+  var hoja = obtenerPlanilla().getSheetByName(HOJA_RESENAS);
   if (!hoja) { throw new Error("No existe la hoja " + HOJA_RESENAS); }
 
   /* Si la hoja esta vacia, se escriben los titulos */
@@ -138,7 +179,7 @@ function agregarReseña(p) {
 
 /* Cambia el estado de una reseña (aprobada / rechazada / pendiente) */
 function cambiarEstado(id, estado) {
-  var hoja = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(HOJA_RESENAS);
+  var hoja = obtenerPlanilla().getSheetByName(HOJA_RESENAS);
   if (!hoja) { return; }
 
   var datos = hoja.getDataRange().getValues();
@@ -152,7 +193,7 @@ function cambiarEstado(id, estado) {
 
 /* Borra la fila de una reseña */
 function borrarFila(id) {
-  var hoja = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(HOJA_RESENAS);
+  var hoja = obtenerPlanilla().getSheetByName(HOJA_RESENAS);
   if (!hoja) { return; }
 
   var datos = hoja.getDataRange().getValues();
@@ -167,7 +208,7 @@ function borrarFila(id) {
 /* Compara la clave que manda el panel con la de la hoja Config */
 function claveCorrecta(claveRecibida) {
   if (!claveRecibida) { return false; }
-  var hoja = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(HOJA_CONFIG);
+  var hoja = obtenerPlanilla().getSheetByName(HOJA_CONFIG);
   if (!hoja) { return false; }
   var claveReal = hoja.getRange("A1").getValue();
   return claveReal && String(claveReal) === String(claveRecibida);
