@@ -31,16 +31,29 @@ var HOJA_CONFIG = "Config";
 var COLUMNAS = ["id", "fecha", "nombre", "estrellas", "texto", "estado"];
 
 /* ---------------------------------------------------------------------------
-   ID DE LA PLANILLA (solo si el script NO lo creaste desde la planilla)
+   PLANILLA (solo si el script NO lo creaste desde la planilla)
    Si creaste el script desde la planilla (Extensiones > Apps Script) no
-   hace falta tocar esto: el código la encuentra solo.
-   Si lo creaste aparte (script.google.com > Nuevo proyecto), copiá acá el
-   ID que aparece en la dirección de tu planilla:
-        https://docs.google.com/spreadsheets/d/ESTE_ID/edit
+   hace falta tocar esto: el codigo la encuentra solo.
+   Si lo creaste aparte (script.google.com > Nuevo proyecto), copiá ACÁ la
+   direccion COMPLETA de tu planilla, tal cual aparece en el navegador:
+        https://docs.google.com/spreadsheets/d/ESTE_ID/edit?gid=0#gid=0
+   El codigo saca el ID solo, asi que no importa si copiaste toda la
+   direccion o solo el ID.
    ------------------------------------------------------------------------- */
 var ID_PLANILLA = "";
 
-/* Devuelve la planilla con las reseñas, este connected o no el script */
+/* Saca el ID de la planilla (sirve con el ID solo o con la direccion entera) */
+function obtenerIdPlanilla() {
+  var texto = String(ID_PLANILLA).trim();
+  if (!texto) { return ""; }
+  if (texto.indexOf("/spreadsheets/d/") >= 0) {
+    var partes = texto.split("/spreadsheets/d/")[1].split(/[/?#]/);
+    return partes[0];
+  }
+  return texto;
+}
+
+/* Devuelve la planilla con las reseñas, este conectado o no el script */
 function obtenerPlanilla() {
   try {
     var activa = SpreadsheetApp.getActiveSpreadsheet();
@@ -48,8 +61,9 @@ function obtenerPlanilla() {
   } catch (error) {
     /* el script no esta conectado a ninguna planilla */
   }
-  if (ID_PLANILLA) {
-    return SpreadsheetApp.openById(ID_PLANILLA);
+  var id = obtenerIdPlanilla();
+  if (id) {
+    return SpreadsheetApp.openById(id);
   }
   throw new Error("No se encontro la planilla. Conecta el script a la planilla "
     + "(Extensiones > Apps Script) o completa la variable ID_PLANILLA.");
@@ -61,7 +75,7 @@ function obtenerPlanilla() {
 
 /* Se llama con GET: action=listar (trae las reseñas), estado o borrar.
    Tambien acepta "nueva" por GET, por si el navegador no puede enviar
-   un POST (some navegadores bloquean el POST a servicios de Google). */
+   un POST (algunos navegadores bloquean el POST a servicios de Google). */
 function doGet(e) {
   try {
     var p = (e && e.parameter) ? e.parameter : {};
