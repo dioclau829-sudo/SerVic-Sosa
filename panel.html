@@ -800,6 +800,34 @@
         </div>
 
         <div class="tarjeta-panel">
+          <h2>Servidor de reseñas (gratis)</h2>
+          <p>
+            Con una planilla de Google y un <strong>Google Apps Script</strong> (los dos gratis),
+            las reseñas que mandan los clientes se guardan en <strong>tu</strong> planilla y te
+            llegan de verdad, aunque el visitante use otra computadora.
+            La guía completa está en <code>docs/SERVIDOR-RESENAS.md</code>.
+          </p>
+
+          <div class="rejilla-form">
+            <label class="campo">
+              <span>Dirección del servidor (Web App de Apps Script)</span>
+              <input type="text" id="urlServidor" placeholder="https://script.google.com/macros/s/XXXXXXX/exec">
+            </label>
+            <label class="campo">
+              <span>Clave de administrador</span>
+              <input type="password" id="claveServidor" placeholder="La misma que pusiste en la planilla">
+            </label>
+          </div>
+
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button class="boton boton-principal" onclick="guardarServidor()"><i class="fas fa-plug"></i> Guardar y conectar</button>
+            <button class="boton boton-neutro" onclick="sincronizarServidor()"><i class="fas fa-rotate"></i> Sincronizar ahora</button>
+          </div>
+
+          <p id="estadoServidor" style="margin-top:12px; font-size:0.9em; color:#5A5F6A;"></p>
+        </div>
+
+        <div class="tarjeta-panel">
           <h2>Cambiar la contraseña</h2>
           <p>La clave no se guarda escrita: se guarda su "huella" (un hash), así que nadie puede leerla desde el código.</p>
           <div class="rejilla-form">
@@ -1191,6 +1219,24 @@
     }
 
     function cambiarEstadoResena(id, estado) {
+      /* Si hay servidor de resenas, el cambio se hace alla (planilla de Google) */
+      if (Tienda.hayServidor()) {
+        Tienda.cambiarEstadoEnServidor(id, estado).then(function (respuesta) {
+          if (respuesta && respuesta.ok) {
+            avisarGuardado(estado === "aprobada"
+              ? "Reseña publicada: ya se ve en la web."
+              : "Reseña rechazada: no se publica.");
+            Tienda.cargarResenasDelServidor().then(function () {
+              pintarResenas();
+              pintarNotificaciones();
+            });
+          } else {
+            avisarError("No se pudo cambiar el estado: " + (respuesta ? respuesta.error : "error"));
+          }
+        });
+        return;
+      }
+
       var resenas = Tienda.resenas();
       resenas.forEach(function (r) { if (r.id === id) { r.estado = estado; } });
       if (Tienda.guardarResenas(resenas)) {
@@ -1204,6 +1250,22 @@
 
     function borrarResena(id) {
       if (!confirm("¿Borrar esta reseña?")) { return; }
+
+      if (Tienda.hayServidor()) {
+        Tienda.borrarEnServidor(id).then(function (respuesta) {
+          if (respuesta && respuesta.ok) {
+            avisarGuardado("Reseña borrada.");
+            Tienda.cargarResenasDelServidor().then(function () {
+              pintarResenas();
+              pintarNotificaciones();
+            });
+          } else {
+            avisarError("No se pudo borrar: " + (respuesta ? respuesta.error : "error"));
+          }
+        });
+        return;
+      }
+
       var resenas = marcarBorrado(Tienda.resenas(), id);
       if (Tienda.guardarResenas(resenas)) {
         avisarGuardado("Reseña borrada.");
@@ -1535,7 +1597,57 @@
     });
 
     /* ============================================================
-       8) DATOS Y ACCESO
+       8) SERVIDOR DE RESENAS (planilla de Google)
+       ============================================================ */
+    function guardarServidor() {
+      var url = document.getElementById("urlServidor").value.trim();
+      var clave = document.getElementById("claveServidor").value;
+
+      /* La direccion se guarda en los datos publicados (datos.json),
+         asi la ven todos los que entran a la pagina. */
+      var datos = Tienda.publicados || {};
+      datos.servidor = url;
+
+      Tienda.guardarClaveAdmin(clave);
+      Tienda.publicados = datos;
+
+      /* Se escribe el datos.json para subirlo al hosting */
+      var texto = JSON.stringify(datos, null, 2);
+      var blob = new Blob([texto], { type: "application/json" });
+      var enlace = document.createElement("a");
+      enlace.href = URL.createObjectURL(blob);
+      enlace.download = "datos.json";
+      enlace.click();
+      URL.revokeObjectURL(enlace.href);
+
+      document.getElementById("estadoServidor").innerHTML =
+        "Servidor guardado en este navegador y <strong>datos.json descargado</strong>: " +
+        "subilo a la carpeta <code>assets/js/</code> del sitio para que la página lo use. " +
+        "La clave queda solo acá (nunca va en el código público).";
+
+      Tienda.cargarResenasDelServidor().then(function () {
+        pintarResenas();
+        pintarNotificaciones();
+      });
+    }
+
+    function sincronizarServidor() {
+      if (!Tienda.hayServidor()) {
+        document.getElementById("estadoServidor").innerHTML =
+          "Todavía no hay ningun servidor configurado.";
+        return;
+      }
+      Tienda.cargarResenasDelServidor().then(function () {
+        var total = Tienda.resenas().length;
+        document.getElementById("estadoServidor").innerHTML =
+          "Sincronizado: " + total + " reseñas descargadas del servidor.";
+        pintarResenas();
+        pintarNotificaciones();
+      });
+    }
+
+    /* ============================================================
+       9) DATOS Y ACCESO
        ============================================================ */
     function importarDatos(input) {
       if (input.files[0]) { Tienda.importar(input.files[0]); }

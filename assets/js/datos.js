@@ -138,10 +138,47 @@ function puedeGuardar() {
 /* ============================================================
    3) OBJETO PRINCIPAL: TIENDA
    ============================================================ */
+
+/* ------------------------------------------------------------
+   SERVIDOR DE RESEÑAS (opcional)
+   ------------------------------------------------------------
+   Si pegás acá la dirección de tu "Web App" de Google Apps Script,
+   las reseñas que mandan los clientes se guardan en tu planilla de
+   Google (gratis, sin servidor propio) y a vos te llegan de verdad.
+   Si lo dejo vacio, todo funciona como antes, guardando en el
+   navegador del visitante.
+
+   La direccion tiene esta forma:
+   https://script.google.com/macros/s/XXXXXXX/exec
+   ------------------------------------------------------------ */
+var SERVIDOR_RESENAS = "";
+
 var Tienda = {
 
   /* Datos publicados en assets/js/datos.json (si existe) */
   publicados: null,
+
+  /* La direccion del servidor de resenas:
+     primero se busca en datos.json (para poder cambiarla sin tocar
+     el codigo) y si no esta, se usa la de arriba. */
+  servidor: function () {
+    if (this.publicados && this.publicados.servidor) {
+      return this.publicados.servidor;
+    }
+    return SERVIDOR_RESENAS;
+  },
+
+  /* La clave del administrador: solo la tiene el panel (nunca va
+     en el codigo publico), asi que se guarda en este navegador. */
+  claveAdmin: function () {
+    var config = leerClave(CLAVES.config, {});
+    return config.claveServidor || "";
+  },
+  guardarClaveAdmin: function (clave) {
+    var config = this.config();
+    config.claveServidor = clave;
+    return guardarClave(CLAVES.config, config);
+  },
 
   /* Al cargar la pagina, intento bajar el datos.json publicado.
      Si no existe o la pagina se abre desde el disco (file://),
@@ -159,6 +196,9 @@ var Tienda = {
         misma.publicados = null;
         resolver();
       }
+    }).then(function () {
+      /* Si hay servidor de resenas, se leen de ahi */
+      return misma.cargarResenasDelServidor();
     });
   },
 
@@ -187,6 +227,10 @@ var Tienda = {
 
   /* --- Resenas --- */
   resenas: function () {
+    /* Si hay servidor de resenas, el mandato es el que vale */
+    if (this.resenasServidor) {
+      return quitarBorrados(this.resenasServidor);
+    }
     var base = RESENAS_INICIALES;
     var remoto = (this.publicados && this.publicados.resenas) || [];
     var local = leerClave(CLAVES.resenas, null);
@@ -202,6 +246,80 @@ var Tienda = {
   /* Las que todavia no se revisaron */
   resenasPendientes: function () {
     return quitarBorrados(this.resenas()).filter(function (r) { return r.estado === "pendiente"; });
+  },
+
+  /* ------------------------------------------------------------
+     COMUNICACION CON EL SERVIDOR DE RESENAS (Google Apps Script)
+     ------------------------------------------------------------ */
+
+  /* Resenas que hay en el servidor (planilla de Google) */
+  resenasServidor: null,
+
+  hayServidor: function () {
+    return this.servidor() ? true : false;
+  },
+
+  /* Baja la lista de resenas del servidor */
+  cargarResenasDelServidor: function () {
+    var url = this.servidor();
+    var misma = this;
+    if (!url) {
+      this.resenasServidor = null;
+      return Promise.resolve(null);
+    }
+    return fetch(url + "?accion=listar", { cache: "no-store" })
+      .then(function (r) { return r.json(); })
+      .then(function (d) { misma.resenasServidor = (d && d.resenas) ? d.resenas : null; })
+      .catch(function () { misma.resenasServidor = null; });
+  },
+
+  /* Manda una reseña nueva al servidor (la que escribe un cliente) */
+  enviarResenaAlServidor: function (resena) {
+    var url = this.servidor();
+    if (!url) { return Promise.resolve({ ok: false, error: "No hay servidor configurado." }); }
+
+    var cuerpo = new URLSearchParams();
+    cuerpo.append("accion", "nueva");
+    cuerpo.append("id", resena.id);
+    cuerpo.append("fecha", resena.fecha);
+    cuerpo.append("nombre", resena.nombre);
+    cuerpo.append("estrellas", resena.estrellas);
+    cuerpo.append("texto", resena.texto);
+
+    return fetch(url, { method: "POST", body: cuerpo })
+      .then(function (r) { return r.json(); })
+      .catch(function (error) { return { ok: false, error: String(error) }; });
+  },
+
+  /* Cambia el estado de una reseña en el servidor (publicar o rechazar) */
+  cambiarEstadoEnServidor: function (id, estado) {
+    var url = this.servidor();
+    if (!url) { return Promise.resolve({ ok: false, error: "No hay servidor configurado." }); }
+
+    var cuerpo = new URLSearchParams();
+    cuerpo.append("accion", "estado");
+    cuerpo.append("clave", this.claveAdmin());
+    cuerpo.append("id", id);
+    cuerpo.append("estado", estado);
+
+    return fetch(url, { method: "POST", body: cuerpo })
+      .then(function (r) { return r.json(); })
+      .catch(function (error) { return { ok: false, error: String(error) }; });
+  },
+
+  /* Borra una reseña del servidor */
+  borrarEnServidor: function (id) {
+    var url = this.servidor();
+    if (!url) { return Promise.resolve({ ok: false, error: "No hay servidor configurado." }); }
+
+    var cuerpo = new URLSearchParams();
+    cuerpo.append("accion", "borrar");
+    cuerpo.append("clave", this.claveAdmin());
+    cuerpo.append("id", id);
+
+    return fetch(url, { method: "POST", body: cuerpo })
+      .then(function (r) { return r.json(); })
+      .catch(function (error) { return { ok: false, error: String(error) }; });
   },
 
   /* --- Trabajos realizados (galeria del carrusel) --- */

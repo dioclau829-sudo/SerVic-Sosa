@@ -62,15 +62,37 @@ function enviarResena() {
     return;
   }
 
-  var resenas = Tienda.resenas();
-  resenas.push({
+  var resena = {
     id: "r" + Date.now(),
     nombre: nombre,
     estrellas: parseInt(document.getElementById("puntajeCliente").value, 10),
     texto: texto,
     fecha: fechaHoy(),
     estado: "pendiente"
-  });
+  };
+
+  var aviso = document.getElementById("avisoResena");
+
+  /* Si hay servidor (planilla de Google), la opinion va para alla:
+     asi le llega al dueño aunque el visitante use otra computadora. */
+  if (Tienda.hayServidor()) {
+    Tienda.enviarResenaAlServidor(resena).then(function (respuesta) {
+      if (respuesta && respuesta.ok) {
+        document.getElementById("nombreCliente").value = "";
+        document.getElementById("textoCliente").value = "";
+        aviso.textContent = "¡Gracias " + nombre + "! Tu opinión fue enviada y ya la estamos revisando.";
+        aviso.classList.remove("oculto");
+        Tienda.cargarResenasDelServidor();
+      } else {
+        alert("No se pudo enviar la opinión. Probá mandarla por WhatsApp.");
+      }
+    });
+    return;
+  }
+
+  /* Sin servidor: se guarda en este navegador (como antes) */
+  var resenas = Tienda.resenas();
+  resenas.push(resena);
 
   if (!Tienda.guardarResenas(resenas)) {
     alert("No se pudo guardar tu opinión. Si estás abriendo la página con doble clic, "
@@ -81,7 +103,6 @@ function enviarResena() {
   document.getElementById("nombreCliente").value = "";
   document.getElementById("textoCliente").value = "";
 
-  var aviso = document.getElementById("avisoResena");
   aviso.textContent = "¡Gracias " + nombre + "! Tu opinión fue enviada y ya la estamos revisando.";
   aviso.classList.remove("oculto");
 }
