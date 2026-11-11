@@ -6,8 +6,7 @@
       "nombre": "Memoria RAM DDR4 16GB 3200MHz",
       "categoria": "Memoria RAM",
       "precio": "$45.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p02",
@@ -15,8 +14,7 @@
       "nombre": "Memoria RAM DDR5 32GB",
       "categoria": "Memoria RAM",
       "precio": "$95.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p03",
@@ -24,8 +22,7 @@
       "nombre": "Memoria RAM Notebook (tu foto)",
       "categoria": "Memoria RAM",
       "precio": "$215.641",
-      "tipo": "propia",
-      "publicado": true
+      "tipo": "propia"
     },
     {
       "id": "p04",
@@ -33,8 +30,7 @@
       "nombre": "Memoria RAM Notebook SO-DIMM",
       "categoria": "Memoria RAM",
       "precio": "$75.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p05",
@@ -42,8 +38,7 @@
       "nombre": "Memoria RAM con disipador de cobre",
       "categoria": "Memoria RAM",
       "precio": "$55.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p06",
@@ -51,8 +46,7 @@
       "nombre": "Memoria RAM de escritorio (tu foto)",
       "categoria": "Memoria RAM",
       "precio": "$95.000",
-      "tipo": "propia",
-      "publicado": true
+      "tipo": "propia"
     },
     {
       "id": "p07",
@@ -60,8 +54,7 @@
       "nombre": "Memoria RAM de escritorio DIMM",
       "categoria": "Memoria RAM",
       "precio": "$60.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p08",
@@ -69,8 +62,7 @@
       "nombre": "Memoria RAM servidor RDIMM",
       "categoria": "Memoria RAM",
       "precio": "$180.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p09",
@@ -78,8 +70,7 @@
       "nombre": "Tipos de memoria RAM comparados",
       "categoria": "Memoria RAM",
       "precio": "$40.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p10",
@@ -87,8 +78,7 @@
       "nombre": "Adaptador USB para disco SSD M.2",
       "categoria": "Almacenamiento",
       "precio": "$18.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p11",
@@ -96,8 +86,7 @@
       "nombre": "Bolsa antiestatica para componentes",
       "categoria": "Almacenamiento",
       "precio": "$1.500",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p12",
@@ -105,8 +94,7 @@
       "nombre": "Disco SSD M.2 (tu foto)",
       "categoria": "Almacenamiento",
       "precio": "$85.000",
-      "tipo": "propia",
-      "publicado": true
+      "tipo": "propia"
     },
     {
       "id": "p13",
@@ -114,8 +102,7 @@
       "nombre": "Disco SSD M.2 NVMe",
       "categoria": "Almacenamiento",
       "precio": "$85.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p14",
@@ -123,8 +110,7 @@
       "nombre": "Disco SSD SATA 2.5 pulgadas",
       "categoria": "Almacenamiento",
       "precio": "$55.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p15",
@@ -132,8 +118,7 @@
       "nombre": "Disco SSD destapado (reparacion)",
       "categoria": "Almacenamiento",
       "precio": "a definir",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p16",
@@ -141,8 +126,7 @@
       "nombre": "Disco duro 3.5 pulgadas",
       "categoria": "Almacenamiento",
       "precio": "$42.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p17",
@@ -150,8 +134,7 @@
       "nombre": "Disco duro HDD (tu foto)",
       "categoria": "Almacenamiento",
       "precio": "$45.000",
-      "tipo": "propia",
-      "publicado": true
+      "tipo": "propia"
     },
     {
       "id": "p18",
@@ -159,8 +142,7 @@
       "nombre": "Disco duro destapado (reparacion)",
       "categoria": "Almacenamiento",
       "precio": "a definir",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p19",
@@ -168,8 +150,7 @@
       "nombre": "Disco duro externo USB",
       "categoria": "Almacenamiento",
       "precio": "$68.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p20",
@@ -177,8 +158,7 @@
       "nombre": "Fuente de alimentacion ATX",
       "categoria": "Almacenamiento",
       "precio": "$38.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p21",
@@ -186,8 +166,7 @@
       "nombre": "Tarjeta de memoria SD",
       "categoria": "Almacenamiento",
       "precio": "$6.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p22",
@@ -195,8 +174,7 @@
       "nombre": "Unidad de CD / DVD",
       "categoria": "Almacenamiento",
       "precio": "$25.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p23",
@@ -204,8 +182,7 @@
       "nombre": "Procesador AMD Ryzen 7",
       "categoria": "Procesador",
       "precio": "$220.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p24",
@@ -213,8 +190,7 @@
       "nombre": "Procesador Intel Core i7",
       "categoria": "Procesador",
       "precio": "$260.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p25",
@@ -222,8 +198,7 @@
       "nombre": "Placa madre ATX",
       "categoria": "Placa madre",
       "precio": "$120.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p26",
@@ -231,8 +206,7 @@
       "nombre": "Placa madre Micro ATX",
       "categoria": "Placa madre",
       "precio": "$85.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p27",
@@ -240,8 +214,7 @@
       "nombre": "Placa madre Mini ITX",
       "categoria": "Placa madre",
       "precio": "$95.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p28",
@@ -249,8 +222,7 @@
       "nombre": "Socket CPU Intel LGA 1150 (repuesto)",
       "categoria": "Placa madre",
       "precio": "a definir",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p29",
@@ -258,8 +230,7 @@
       "nombre": "Tarjeta grafica AMD Radeon Pro",
       "categoria": "Placa de video",
       "precio": "$280.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p30",
@@ -267,8 +238,7 @@
       "nombre": "Tarjeta grafica NVIDIA GeForce",
       "categoria": "Placa de video",
       "precio": "$300.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p31",
@@ -276,8 +246,7 @@
       "nombre": "Ventilador de placa de video",
       "categoria": "Placa de video",
       "precio": "$12.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p32",
@@ -285,8 +254,7 @@
       "nombre": "Gabinete ATX",
       "categoria": "Gabinete",
       "precio": "$110.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p33",
@@ -294,8 +262,7 @@
       "nombre": "Gabinete de escritorio",
       "categoria": "Gabinete",
       "precio": "$95.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p34",
@@ -303,8 +270,7 @@
       "nombre": "Cooler RGB 120mm (tu foto)",
       "categoria": "Refrigeracion",
       "precio": "$9.500",
-      "tipo": "propia",
-      "publicado": true
+      "tipo": "propia"
     },
     {
       "id": "p35",
@@ -312,8 +278,7 @@
       "nombre": "Disipador de CPU con heatpipes",
       "categoria": "Refrigeracion",
       "precio": "$55.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p36",
@@ -321,8 +286,7 @@
       "nombre": "Disipador de CPU tipo torre",
       "categoria": "Refrigeracion",
       "precio": "$28.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p37",
@@ -330,8 +294,7 @@
       "nombre": "Pasta termica",
       "categoria": "Refrigeracion",
       "precio": "a definir",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p38",
@@ -339,8 +302,7 @@
       "nombre": "Pasta termica (tu foto)",
       "categoria": "Refrigeracion",
       "precio": "$12.000",
-      "tipo": "propia",
-      "publicado": true
+      "tipo": "propia"
     },
     {
       "id": "p39",
@@ -348,8 +310,7 @@
       "nombre": "Ventilador de CPU 92mm",
       "categoria": "Refrigeracion",
       "precio": "$7.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p40",
@@ -357,8 +318,7 @@
       "nombre": "Ventilador de gabinete 120mm",
       "categoria": "Refrigeracion",
       "precio": "$9.500",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p41",
@@ -366,8 +326,7 @@
       "nombre": "Mando USB para juegos",
       "categoria": "Periferico",
       "precio": "$25.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p42",
@@ -375,8 +334,7 @@
       "nombre": "Microfono USB",
       "categoria": "Periferico",
       "precio": "$35.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p43",
@@ -384,8 +342,7 @@
       "nombre": "Monitor LCD",
       "categoria": "Periferico",
       "precio": "$180.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p44",
@@ -393,8 +350,7 @@
       "nombre": "Monitor con brazo VESA",
       "categoria": "Periferico",
       "precio": "$22.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p45",
@@ -402,8 +358,7 @@
       "nombre": "Mouse",
       "categoria": "Periferico",
       "precio": "$12.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p46",
@@ -411,8 +366,7 @@
       "nombre": "Parlantes para PC",
       "categoria": "Periferico",
       "precio": "$30.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p47",
@@ -420,8 +374,7 @@
       "nombre": "Teclado inalambrico",
       "categoria": "Periferico",
       "precio": "$25.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p48",
@@ -429,8 +382,7 @@
       "nombre": "Teclado mecanico",
       "categoria": "Periferico",
       "precio": "$45.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p49",
@@ -438,8 +390,7 @@
       "nombre": "Webcam",
       "categoria": "Periferico",
       "precio": "$18.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p50",
@@ -447,8 +398,7 @@
       "nombre": "Adaptador VGA / D-sub",
       "categoria": "Conectividad",
       "precio": "$5.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p51",
@@ -456,8 +406,7 @@
       "nombre": "Adaptador WiFi USB",
       "categoria": "Conectividad",
       "precio": "$15.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p52",
@@ -465,8 +414,7 @@
       "nombre": "Bateria de notebook",
       "categoria": "Conectividad",
       "precio": "$45.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p53",
@@ -474,8 +422,7 @@
       "nombre": "Cable HDMI",
       "categoria": "Conectividad",
       "precio": "$4.500",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p54",
@@ -483,8 +430,7 @@
       "nombre": "Cable USB-A a USB-B",
       "categoria": "Conectividad",
       "precio": "$2.500",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p55",
@@ -492,8 +438,7 @@
       "nombre": "Cable USB-C a USB-A",
       "categoria": "Conectividad",
       "precio": "$4.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p56",
@@ -501,8 +446,7 @@
       "nombre": "Cable de datos SATA",
       "categoria": "Conectividad",
       "precio": "$3.500",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p57",
@@ -510,8 +454,7 @@
       "nombre": "Cable de red RJ45",
       "categoria": "Conectividad",
       "precio": "$3.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p58",
@@ -519,8 +462,7 @@
       "nombre": "Cargador de notebook",
       "categoria": "Conectividad",
       "precio": "$22.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p59",
@@ -528,8 +470,7 @@
       "nombre": "Dock / hub USB-C",
       "categoria": "Conectividad",
       "precio": "$35.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p60",
@@ -537,8 +478,7 @@
       "nombre": "Hub USB de 4 puertos",
       "categoria": "Conectividad",
       "precio": "$12.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p61",
@@ -546,8 +486,7 @@
       "nombre": "Lector de tarjetas USB",
       "categoria": "Conectividad",
       "precio": "$9.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p62",
@@ -555,8 +494,7 @@
       "nombre": "Pendrive / memoria USB",
       "categoria": "Conectividad",
       "precio": "$8.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p63",
@@ -564,8 +502,7 @@
       "nombre": "Alcohol isopropilico / liquido limpiador",
       "categoria": "Herramientas",
       "precio": "$5.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p64",
@@ -573,8 +510,7 @@
       "nombre": "Cepillo y kit de limpieza",
       "categoria": "Herramientas",
       "precio": "$6.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p65",
@@ -582,8 +518,7 @@
       "nombre": "Pinza crimpadora y tester RJ45",
       "categoria": "Herramientas",
       "precio": "$28.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p66",
@@ -591,8 +526,7 @@
       "nombre": "Pulsera antiestatica",
       "categoria": "Herramientas",
       "precio": "$9.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     },
     {
       "id": "p67",
@@ -600,8 +534,7 @@
       "nombre": "Set de destornilladores de precision",
       "categoria": "Herramientas",
       "precio": "$12.000",
-      "tipo": "referencia",
-      "publicado": true
+      "tipo": "referencia"
     }
   ],
   "resenas": [
@@ -614,16 +547,7 @@
       "estado": "aprobada"
     },
     {
-      "id": "r2",
-      "nombre": "Claudio S.",
-      "estrellas": 5,
-      "texto": "Compré un disco sólido SSD de 1TB y me instalaron el sistema operativo de cero. La velocidad de la computadora cambió por completo, arranca en 10 segundos.",
-      "fecha": "2026-10-14",
-      "estado": "aprobada"
-    },
-    {
       "id": "r3",
-      "name": "Mariana K.",
       "nombre": "Mariana K.",
       "estrellas": 4,
       "texto": "Muy buen servicio para el formateo e instalación de programas que necesitaba para el colegio. Demoraron un poquito más de lo estimado pero el trabajo fue impecable.",
@@ -641,7 +565,7 @@
     {
       "id": "t2",
       "titulo": "Limpieza interna y cambio de pasta térmica",
-      "texto": "La máquina se apagaba sola cuando rendía. Limpiamos disipadores, repusimos la pasta térmica y cambiamos la batería de la pila.",
+      "texto": "La máquina se apagaba sola cuando rendía. Limpiamos disipadores, repusimos la pasta térmica y cambiamos la bateria de la pila.",
       "imagen": "assets/productos/real-pasta-termica.webp"
     },
     {
@@ -700,5 +624,7 @@
       "imagen": "assets/productos/fuente-alimentacion.webp",
       "video": ""
     }
-  ]
+  ],
+  "generado": "2026-11-11T12:32:00.693Z",
+  "servidor": "https://script.google.com/macros/s/AKfycby4AawOhgv2q0uVwJVwFckLE_qksezeOc3LbbSGe7_u5i1jxBPpq1cH4jaEQE1BQQblhw/exec"
 }
