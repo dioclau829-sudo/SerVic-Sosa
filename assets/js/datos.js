@@ -468,11 +468,12 @@ function fechaHoy() {
   return d.getFullYear() + "-" + mes + "-" + dia;
 }
 
-/* Convierte 2026-10-14 en 14/10/2026 */
+/* Convierte 2026-10-14 (o 2026-10-14T03:00:00.000Z) en 14/10/2026 */
 function fechaCorta(iso) {
   if (!iso) { return ""; }
-  var p = String(iso).split("-");
-  if (p.length !== 3) { return iso; }
+  var texto = String(iso).split("T")[0];
+  var p = texto.split("-");
+  if (p.length !== 3) { return texto; }
   return p[2] + "/" + p[1] + "/" + p[0];
 }
 
