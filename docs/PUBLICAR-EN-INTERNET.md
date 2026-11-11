@@ -51,6 +51,19 @@ Eso tiene una ventaja enorme: **funciona en cualquier hosting, incluso en los gr
 
 ## 3. Qué SÍ y qué NO subir
 
+El repo `SerVic-Sosa` ya quedó armado con esta estructura:
+
+```
+SerVic-Sosa/
+├── index.html · Servicios.html · Productos.html · Reseñas.html
+├── panel.html
+├── assets/          (logo, favicon, folleto, js/ y las 67 fotos)
+├── docs/            (la guía, el guion de la presentación y el informe)
+└── .gitattributes · .gitignore · .vscode/
+```
+
+**Si armás una carpeta aparte para subir a otro hosting**, subí esto:
+
 ```
 SUBIR                                    NO SUBIR
 ─────────────────────────────────        ────────────────────────────────
@@ -58,8 +71,8 @@ index.html                              _materiales/      (material del docente)
 Servicios.html                          _respaldo-original/ (copias viejas)
 Productos.html                          .vscode/          (config del editor)
 Reseñas.html                            SerVic-Sosa/      (repo git duplicado)
-panel.html                              *.docx            (el informe)
-assets/  (todo)                        *.txt de _materiales
+panel.html                              *.docx            (el informe viejo)
+assets/  (todo)                        la carpeta _materiales/
 ```
 
 **El panel**: `panel.html` pide clave, así que está protegido por contraseña, pero la URL es
@@ -70,27 +83,52 @@ pública. Si preferís que nadie lo vea, **no lo subas** y manejá los cambios d
 
 ## 4. Opción A: GitHub Pages (con tu repo)
 
-Ya tenés el repo `SerVic-Sosa` con remoto en GitHub. Los pasos:
+Ya tenés el repo `SerVic-Sosa` con remoto en GitHub y **el sitio ya está subido** (commit
+`18780f1`, 92 archivos). Para que se vea online faltan dos clics, **pero como tu repo es
+privado, GitHub Pages no funciona en el plan gratis**: hay dos caminos.
 
-1. **Preparar la carpeta**: creá una carpeta `sitio/` (o usá la raíz) con SOLO lo publicable
-   de la lista de arriba.
-2. **Copiar los archivos** de la carpeta del proyecto a `SerVic-Sosa/`.
-3. **Commit y push**:
-   ```bash
-   cd SerVic-Sosa
-   git add .
-   git commit -m "Sitio actualizado con panel, catalogo y sistemas para negocios"
-   git push origin main
-   ```
-4. En **GitHub → tu repo → Settings → Pages**:
-   - Source: **Deploy from a branch**
-   - Branch: **main** · Folder: **/ (root)**  (o `/docs` si usás esa carpeta)
+### Camino 1 — Publicar con Netlify y dejar el repo privado (recomendado)
+
+Es la opción más simple y **no tenés que hacer público nada**:
+
+1. Entrá a **netlify.com** y creá una cuenta con tu mail.
+2. Arrastrás la carpeta del proyecto (la que tiene los 4 HTML, el panel y `assets/`).
+3. Netlify te da una dirección pública tipo `servic-pc-1234.netlify.app` al instante.
+4. Cada vez que cambies algo, volvés a arrastrar la carpeta (o exportás el `datos.json`
+   del panel y lo subís).
+
+**Ventaja:** el repo sigue privado, sirve de backup, y nadie más que vos ve el código.
+
+### Camino 2 — Hacer el repo público y activar GitHub Pages
+
+1. En GitHub, entrá a tu repo → **Settings** → **General** → abajo, en *Danger Zone*:
+   **Change visibility → Change repository visibility → Public** → confirmar con la clave.
+2. Entrá a **Settings → Pages**:
+   - **Source**: *Deploy from a branch*
+   - **Branch**: `main` · **Folder**: `/(root)`
    - Guardar y esperar 1-2 minutos.
-5. Tu página queda en `https://dioclau829-sudo.github.io/SerVic-Sosa/`.
+3. Tu página queda en **`https://dioclau829-sudo.github.io/SerVic-Sosa/`**.
+
+> Con el repo público quedan visibles el código, las fotos y el informe (que están en `docs/`).
+> Si preferís que no se vea nada de eso, usá el Camino 1.
+
+### Actualizar el repo cuando cambias algo
+
+```bash
+cd "Mi pagina web\SerVic-Sosa"
+git add .
+git commit -m "Actualizacion de la pagina"
+git push origin main
+```
 
 > ⚠️ **Ojo con las mayúsculas**: GitHub Pages corre en Linux y distingue mayúsculas de minúsculas.
 > Por eso los archivos se llaman `logo-servic-circular.webp` (todo minúsculas) y no
 > `Logo-Servic - EditadoCirculo.png`. Si subís un archivo con otro nombre, la imagen no aparece.
+
+> 💡 **El panel y el repo**: si el repo queda público, `panel.html` también queda accesible por
+> `tudominio.github.io/SerVic-Sosa/panel.html`. Pide clave, pero la URL es pública.
+> Si preferís que nadie lo vea, no lo subas: sacá `panel.html` de la carpeta que subís
+> y manejá los cambios desde tu computadora exportando el `datos.json`.
 
 ---
 
