@@ -904,6 +904,19 @@
       pintarMantenimientos();
       pintarNotificaciones();
       pintarEstado();
+
+      /* Vuelve a traer las reseñas del servidor: puede haber typename
+         reviews nuevas desde que se abrió la página. */
+      refrescarDelServidor();
+    }
+
+    /* Refresca las reseñas desde el servidor (si hay) */
+    function refrescarDelServidor() {
+      if (!Tienda.hayServidor()) { return Promise.resolve(); }
+      return Tienda.cargarResenasDelServidor().then(function () {
+        pintarResenas();
+        pintarNotificaciones();
+      });
     }
 
     /* Muestra el cartelito verde con lo que se acaba de guardar */
@@ -950,7 +963,9 @@
       }
       Tienda.iniciar().then(function () {
         if (sessionStorage.getItem(CLAVES.sesion)) {
-          pintarProductos(); pintarResenas(); pintarTrabajos(); pintarNotificaciones();
+          pintarProductos(); pintarResenas(); pintarTrabajos();
+          pintarMantenimientos(); pintarNotificaciones(); pintarEstado();
+          refrescarDelServidor();
         }
       });
     })();
