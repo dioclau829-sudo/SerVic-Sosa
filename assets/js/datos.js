@@ -361,8 +361,11 @@ var Tienda = {
     return guardarClave(CLAVES.config, config);
   },
 
-  /* --- Exportar / importar --- */
-  exportar: function () {
+  /* --- Exportar / importar ---
+     datosExtra: campos para agregar al archivo (por ejemplo el servidor
+     de resenas). El archivo sale siempre con TODOS los datos, para que
+     no se pierda el catalogo al descargarlo. */
+  exportar: function (datosExtra) {
     var datos = {
       productos: quitarBorrados(this.productos()),
       resenas: quitarBorrados(this.resenas()),
@@ -370,6 +373,11 @@ var Tienda = {
       mantenimientos: quitarBorrados(this.mantenimientos()),
       generado: new Date().toISOString()
     };
+    if (datosExtra) {
+      Object.keys(datosExtra).forEach(function (clave) {
+        datos[clave] = datosExtra[clave];
+      });
+    }
     var texto = JSON.stringify(datos, null, 2);
     var blob = new Blob([texto], { type: "application/json" });
     var enlace = document.createElement("a");

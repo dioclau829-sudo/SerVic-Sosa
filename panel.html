@@ -1603,27 +1603,23 @@
       var url = document.getElementById("urlServidor").value.trim();
       var clave = document.getElementById("claveServidor").value;
 
-      /* La direccion se guarda en los datos publicados (datos.json),
-         asi la ven todos los que entran a la pagina. */
-      var datos = Tienda.publicados || {};
-      datos.servidor = url;
+      if (!url) {
+        avisarError("Pegá la dirección del servidor (la que termina en /exec).");
+        return;
+      }
 
+      /* La clave queda solo en este navegador (nunca en el codigo publico) */
       Tienda.guardarClaveAdmin(clave);
-      Tienda.publicados = datos;
 
-      /* Se escribe el datos.json para subirlo al hosting */
-      var texto = JSON.stringify(datos, null, 2);
-      var blob = new Blob([texto], { type: "application/json" });
-      var enlace = document.createElement("a");
-      enlace.href = URL.createObjectURL(blob);
-      enlace.download = "datos.json";
-      enlace.click();
-      URL.revokeObjectURL(enlace.href);
+      /* Se descarga el datos.json CON TODO (catalogo, reseñas, trabajos y
+         el servidor) para subirlo al hosting. */
+      Tienda.exportar({ servidor: url });
 
       document.getElementById("estadoServidor").innerHTML =
-        "Servidor guardado en este navegador y <strong>datos.json descargado</strong>: " +
-        "subilo a la carpeta <code>assets/js/</code> del sitio para que la página lo use. " +
-        "La clave queda solo acá (nunca va en el código público).";
+        "✓ Servidor guardado. Se descargó <strong>datos.json</strong> con el catálogo completo " +
+        "y la línea del servidor.<br>" +
+        "Ahora copiá ese archivo en la carpeta <code>assets/js/</code> del proyecto y del repo, " +
+        "y hacé <code>git add . && git commit -m \"Conecto el servidor de resenas\" && git push origin main</code>.";
 
       Tienda.cargarResenasDelServidor().then(function () {
         pintarResenas();
