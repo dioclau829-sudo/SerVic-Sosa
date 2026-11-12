@@ -84,6 +84,21 @@
 
     .panel:last-child { border-right: none; }
 
+    /* Rayas de doblez: se ven en pantalla, no se imprimen */
+    .panel:not(:first-child)::before {
+      content: "";
+      position: absolute;
+      left: -1px;
+      top: 0;
+      bottom: 0;
+      border-left: 1px dashed #B9BDC4;
+      opacity: 0.55;
+    }
+
+    @media print {
+      .panel::before { display: none; }
+    }
+
     /* ---------- PORTADA ---------- */
     .portada {
       background-color: var(--negro);
@@ -405,49 +420,33 @@
 <body>
 
   <div class="barra">
-    <span>Folleto del proyecto · Se imprime en A4 apaisado, a doble cara, y se dobla en tres.</span>
+    <span>Folleto del proyecto · A4 apaisado · <strong>a doble cara, volteando por el BORDE CORTO</strong> · después se dobla: primero el tercio derecho hacia atrás y luego el izquierdo.</span>
     <button onclick="window.print()">🖨️ Imprimir el folleto</button>
   </div>
 
   <!-- ==================== HOJA 1 ==================== -->
-  <div class="hoja">
+    <div class="hoja">
 
-    <!-- ---------- PANEL 1: PORTADA ---------- -->
-    <div class="panel portada">
-      <img class="logo" src="assets/logo-servic-circular.webp" alt="Logo de Servic PC">
-      <h1>Servic<br>PC</h1>
-      <p class="sub">Página web de un taller<br>de reparación de computadoras</p>
-      <div class="linea"></div>
-      <p class="chico"><strong>Proyecto de Programación Web</strong><br>6to Año · Técnico en Informática<br>Claudio Sosa · Wanda, Misiones</p>
-
-      <div class="qr-bloque">
-        <img src="assets/folleto/qr-web.png" alt="Código QR de la página">
-        <div class="txt">Escaneá el código<br>y mirá la página<br>funcionando</div>
-      </div>
-    </div>
-
-    <!-- ---------- PANEL 2: PARA QUE SIRVE ---------- -->
-    <div class="panel">
-      <h2>¿Para qué sirve?
-        <span class="sub">Tres cosas, y ninguna es "informativa"</span>
+<div class="panel">
+      <h2>Un panel solo para el dueño
+        <span class="sub">Sin tocar una línea de código</span>
       </h2>
 
+      <img class="foto-web" src="assets/folleto/captura-panel.webp" alt="Panel de administración con la campana de novedades">
+
       <ul class="items">
-        <li><span class="ico">🛒</span><div><strong>Vende repuestos.</strong> 67 componentes con foto, precio y stock real.</div></li>
-        <li><span class="ico">🛠</span><div><strong>Muestra los servicios.</strong> Planes de mantenimiento y sistemas para negocios.</div></li>
-        <li><span class="ico">💬</span><div><strong>Recibe pedidos.</strong> Un botón y el WhatsApp se abre con el pedido escrito.</div></li>
-        <li><span class="ico">⭐</span><div><strong>Pide reseñas.</strong> Los clientes opinan y el dueño las publica.</div></li>
+        <li><span class="ico">🔔</span><div><strong>Campana de avisos:</strong> verde si la reseña es buena, roja si es mala.</div></li>
+        <li><span class="ico">✅</span><div>Aprobar o rechazar cada opinión</div></li>
+        <li><span class="ico">📦</span><div>Agregar, editar y borrar productos</div></li>
+        <li><span class="ico">📷</span><div>Subir fotos de los trabajos</div></li>
       </ul>
 
-      <img class="foto-web" src="assets/folleto/captura-portada.webp" alt="Vista de la portada de la página">
-
       <div class="pie-panel">
-        No es una página Informativa: es un sistema con catálogo, pedidos y panel de administración.
+        Las reseñas llegan a una planilla de Google: se pueden ver y editar desde el celu.
       </div>
     </div>
 
-    <!-- ---------- PANEL 3: CON QUE LA FABRique ---------- -->
-    <div class="panel">
+<div class="panel">
       <h2>¿Con qué la fabriqué?
         <span class="sub">Tres lenguajes, cada uno con su trabajo</span>
       </h2>
@@ -483,52 +482,24 @@
       </div>
     </div>
 
+<div class="panel portada">
+      <img class="logo" src="assets/logo-servic-circular.webp" alt="Logo de Servic PC">
+      <h1>Servic<br>PC</h1>
+      <p class="sub">Página web de un taller<br>de reparación de computadoras</p>
+      <div class="linea"></div>
+      <p class="chico"><strong>Proyecto de Programación Web</strong><br>6to Año · Técnico en Informática<br>Claudio Sosa · Wanda, Misiones</p>
+
+      <div class="qr-bloque">
+        <img src="assets/folleto/qr-web.png" alt="Código QR de la página">
+        <div class="txt">Escaneá el código<br>y mirá la página<br>funcionando</div>
+      </div>
+    </div>
   </div>
 
   <!-- ==================== HOJA 2 ==================== -->
-  <div class="hoja">
+    <div class="hoja">
 
-    <!-- ---------- PANEL 4: EL CATALOGO ---------- -->
-    <div class="panel">
-      <h2>El catálogo
-        <span class="sub">67 productos, filtros y fotos reales</span>
-      </h2>
-
-      <img class="foto-web" src="assets/folleto/captura-catalogo.webp" alt="Catálogo de productos con filtros">
-
-      <ul class="items">
-        <li><span class="ico">🔎</span><div>11 filtros por categoría</div></li>
-        <li><span class="ico">🔍</span><div>Foto ampliada al hacer clic</div></li>
-        <li><span class="ico">📲</span><div>Pedido por WhatsApp en un toque</div></li>
-      </ul>
-
-      <div class="pie-panel">
-        Las fotos de los repuestos son de referencia; el stock se confirma por WhatsApp.
-      </div>
-    </div>
-
-    <!-- ---------- PANEL 5: EL PANEL ---------- -->
-    <div class="panel">
-      <h2>Un panel solo para el dueño
-        <span class="sub">Sin tocar una línea de código</span>
-      </h2>
-
-      <img class="foto-web" src="assets/folleto/captura-panel.webp" alt="Panel de administración con la campana de novedades">
-
-      <ul class="items">
-        <li><span class="ico">🔔</span><div><strong>Campana de avisos:</strong> verde si la reseña es buena, roja si es mala.</div></li>
-        <li><span class="ico">✅</span><div>Aprobar o rechazar cada opinión</div></li>
-        <li><span class="ico">📦</span><div>Agregar, editar y borrar productos</div></li>
-        <li><span class="ico">📷</span><div>Subir fotos de los trabajos</div></li>
-      </ul>
-
-      <div class="pie-panel">
-        Las reseñas llegan a una planilla de Google: se pueden ver y editar desde el celu.
-      </div>
-    </div>
-
-    <!-- ---------- PANEL 6: IA, PROCESO Y CONTACTO ---------- -->
-    <div class="panel">
+<div class="panel">
       <h2>Cómo lo logré
         <span class="sub">El proceso y las herramientas</span>
       </h2>
@@ -564,6 +535,42 @@
       </p>
     </div>
 
+<div class="panel">
+      <h2>El catálogo
+        <span class="sub">67 productos, filtros y fotos reales</span>
+      </h2>
+
+      <img class="foto-web" src="assets/folleto/captura-catalogo.webp" alt="Catálogo de productos con filtros">
+
+      <ul class="items">
+        <li><span class="ico">🔎</span><div>11 filtros por categoría</div></li>
+        <li><span class="ico">🔍</span><div>Foto ampliada al hacer clic</div></li>
+        <li><span class="ico">📲</span><div>Pedido por WhatsApp en un toque</div></li>
+      </ul>
+
+      <div class="pie-panel">
+        Las fotos de los repuestos son de referencia; el stock se confirma por WhatsApp.
+      </div>
+    </div>
+
+<div class="panel">
+      <h2>¿Para qué sirve?
+        <span class="sub">Tres cosas, y ninguna es "informativa"</span>
+      </h2>
+
+      <ul class="items">
+        <li><span class="ico">🛒</span><div><strong>Vende repuestos.</strong> 67 componentes con foto, precio y stock real.</div></li>
+        <li><span class="ico">🛠</span><div><strong>Muestra los servicios.</strong> Planes de mantenimiento y sistemas para negocios.</div></li>
+        <li><span class="ico">💬</span><div><strong>Recibe pedidos.</strong> Un botón y el WhatsApp se abre con el pedido escrito.</div></li>
+        <li><span class="ico">⭐</span><div><strong>Pide reseñas.</strong> Los clientes opinan y el dueño las publica.</div></li>
+      </ul>
+
+      <img class="foto-web" src="assets/folleto/captura-portada.webp" alt="Vista de la portada de la página">
+
+      <div class="pie-panel">
+        No es una página Informativa: es un sistema con catálogo, pedidos y panel de administración.
+      </div>
+    </div>
   </div>
 
 </body>
