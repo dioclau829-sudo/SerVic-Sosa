@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guía de muestra - Servic PC (qué decir y cómo mostrar el folleto)</title>
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+  <style>
+    /* ============================================================
+       CHULETA PARA LA MUESTRA - 1 HOJA A4 VERTICAL
+       ============================================================ */
+    :root{
+      --negro:#141414;
+      --rojo:#C1272D;
+      --dorado:#CD9F2C;
+      --verde:#3A9639;
+      --fondo:#F4F5F7;
+      --blanco:#FFFFFF;
+      --borde:#E2E5EA;
+      --texto:#1A1A1A;
+      --texto-2:#5A5F6A;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #8A8D93;
+      color: var(--texto);
+      line-height: 1.35;
+      margin: 0;
+      padding: 16px 12px;
+    }
+
+    .hoja {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: var(--blanco);
+      border-top: 6px solid var(--rojo);
+      border-radius: 6px;
+      padding: 20px 26px 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.28);
+    }
+
+    .barra {
+      max-width: 800px;
+      margin: 0 auto 14px;
+      text-align: right;
+    }
+
+    .barra button {
+      background-color: var(--rojo);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-size: 0.95em;
+      font-weight: bold;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      border-bottom: 2px solid var(--dorado);
+      padding-bottom: 12px;
+      margin-bottom: 14px;
+    }
+
+    header img {
+      width: 74px;
+      height: 74px;
+      object-fit: contain;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5em;
+      color: var(--negro);
+      letter-spacing: 1px;
+    }
+
+    header p {
+      margin: 2px 0 0;
+      color: var(--rojo);
+      font-weight: bold;
+      font-size: 0.95em;
+    }
+
+    header small {
+      color: var(--texto-2);
+      font-size: 0.82em;
+      font-weight: normal;
+    }
+
+    h2 {
+      color: var(--rojo);
+      font-size: 1.05em;
+      margin: 16px 0 8px;
+      padding-bottom: 3px;
+      border-bottom: 1px solid var(--borde);
+    }
+
+    h2 span {
+      color: var(--dorado);
+    }
+
+    .dos-columnas {
+      display: flex;
+      gap: 18px;
+    }
+
+    .dos-columnas > div { flex: 1; }
+
+    ol, ul { margin: 0 0 8px; padding-left: 20px; }
+    li { margin-bottom: 5px; font-size: 0.9em; }
+
+    .paso {
+      display: flex;
+      gap: 9px;
+      align-items: flex-start;
+      margin-bottom: 7px;
+      font-size: 0.9em;
+    }
+
+    .paso .n {
+      flex: 0 0 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: var(--negro);
+      color: var(--dorado);
+      font-size: 0.78em;
+      font-weight: bold;
+      text-align: center;
+      line-height: 20px;
+    }
+
+    .paso b { color: var(--negro); }
+
+    .check {
+      background-color: #F2FAF2;
+      border: 1px solid var(--verde);
+      border-radius: 6px;
+      padding: 9px 12px;
+      font-size: 0.88em;
+    }
+
+    .check div { margin-bottom: 3px; }
+
+    .guion {
+      background-color: var(--negro);
+      color: #FFFFFF;
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 0.88em;
+    }
+
+    .guion b { color: var(--dorado); }
+
+    .guion div { margin-bottom: 7px; }
+    .guion div:last-child { margin-bottom: 0; }
+
+    .pregunta {
+      margin-bottom: 8px;
+      font-size: 0.88em;
+    }
+
+    .pregunta b {
+      color: var(--negro);
+      background-color: #FBF2DA;
+      border-radius: 3px;
+      padding: 1px 5px;
+    }
+
+    .pregunta span { color: var(--texto-2); display: block; margin-top: 2px; }
+
+    .url {
+      font-family: Consolas, "Courier New", monospace;
+      background-color: var(--negro);
+      color: var(--dorado);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.92em;
+    }
+
+    .pie {
+      margin-top: 14px;
+      border-top: 1px solid var(--borde);
+      padding-top: 8px;
+      font-size: 0.78em;
+      color: var(--texto-2);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    @page { size: A4 portrait; margin: 0; }
+
+    @media print {
+      body { background-color: #FFFFFF; padding: 0; font-size: 9.8pt; }
+      .barra { display: none; }
+      .hoja {
+        width: 210mm;
+        max-width: none;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 8mm 10mm;
+      }
+      h2 { font-size: 11.5pt; margin: 7px 0 4px; }
+      li, .paso, .guion, .pregunta, .check { font-size: 9pt; }
+      header { margin-bottom: 9px; padding-bottom: 8px; }
+      header h1 { font-size: 16pt; }
+      header img { width: 17mm; height: 17mm; }
+      .guion { padding: 9px 11px; }
+      .guion div { margin-bottom: 5px; }
+      .paso { margin-bottom: 5px; }
+      .pregunta { margin-bottom: 6px; }
+      .check { padding: 7px 10px; }
+      .pie { margin-top: 9px; padding-top: 6px; }
+    }
+
+    @media (max-width: 700px) {
+      body { padding: 8px 6px; }
+      .hoja { padding: 16px 14px; }
+      .dos-columnas { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="barra">
+    <button onclick="window.print()">🖨️ Imprimir esta chuleta</button>
+  </div>
+
+  <div class="hoja">
+    <header>
+      <img src="assets/logo-servic-circular.webp" alt="Logo de Servic PC">
+      <div>
+        <h1>Guía de la muestra</h1>
+        <p>Servic PC · Proyecto de Programación Web</p>
+        <small>Claudio Sosa · 6to Año Técnico en Informática · Wanda, Misiones</small>
+      </div>
+    </header>
+
+    <h2><span>✔</span> Antes de presentar (30 segundos)</h2>
+    <div class="check">
+      <div>▢ La página abierta en el celular con datos (o el wifi del lugar).</div>
+      <div>▢ El folleto impreso y doblado, en la mesa.</div>
+      <div>▢ Esta chuleta en el bolsillo.</div>
+      <div>▢ Panel abierto y listo: <span class="url">…/panel.html</span> → usuario <b>admin</b> · clave <b>servicpc</b>.</div>
+    </div>
+
+    <h2><span>▸</span> Cómo imprimir y doblar el folleto</h2>
+    <div class="paso"><span class="n">1</span><div><b>Imprimir:</b> A4 <b>apaisado</b>, a <b>doble cara</b>, activando <b>"Voltear por el borde corto"</b> (es la clave para que la contraportada quede atrás).</div></div>
+    <div class="paso"><span class="n">2</span><div><b>Doblar 1:</b> el tercio <b>derecho</b> hacia atrás. La portada queda afuera.</div></div>
+    <div class="paso"><span class="n">3</span><div><b>Doblar 2:</b> el tercio <b>izquierdo</b> hacia atrás. Listo: 6 paneles, se lee Portada → Para qué sirve → Con qué la fabriqué → El catálogo → El panel → Cómo lo logré.</div></div>
+
+    <div class="dos-columnas">
+      <div>
+        <h2><span>▸</span> Tu guion (2 minutos)</h2>
+        <div class="guion">
+          <div><b>1.</b> "Buen día, les presento <b>Servic PC</b>, una página web de un taller de reparación de computadoras en Wanda."</div>
+          <div><b>2.</b> "La página tiene tres cosas: muestra mis servicios, vende repuestos con fotos y precios, y recibe pedidos por WhatsApp con un botón."</div>
+          <div><b>3.</b> "La armé con <b>HTML</b> para la estructura, <b>CSS</b> para el diseño y <b>JavaScript</b> para que funcione: el catálogo, los filtros y el panel."</div>
+          <div><b>4.</b> "Lo más difícil fue el <b>panel de administración</b>: que yo pueda agregar productos y aprobar reseñas sin tocar el código."</div>
+          <div><b>5.</b> "Las reseñas de los clientes llegan a una <b>planilla de Google</b> y me avisa una campana: verde si es buena, roja si es mala."</div>
+          <div><b>6.</b> "Usé inteligencia artificial como ayuda para <b>corregir el código</b>; el diseño, los precios y los textos son míos."</div>
+          <div><b>7.</b> "Ahí les dejo el link y el código QR, por si quieren verla."</div>
+        </div>
+      </div>
+
+      <div>
+        <h2><span>▸</span> Demostración en vivo (1 minuto)</h2>
+        <ol>
+          <li><b>Portada:</b> el carrusel de trabajos que pasa solo, con las flechas.</li>
+          <li><b>Productos:</b> tocá un filtro, después una foto (se agranda) y después el botón de WhatsApp.</li>
+          <li><b>Reseñas:</b> dejá una opinión de prueba y mostrá que queda "pendiente".</li>
+          <li><b>Panel:</b> entrá con la clave, mostrá la <b>campana</b> y aprobá esa reseña.</li>
+          <li><b>Planilla:</b> abrila en el celu y mostrá la fila que se acaba de crear.</li>
+        </ol>
+
+        <h2><span>?</span> Preguntas que te pueden hacer</h2>
+
+        <div class="pregunta"><b>¿Qué es HTML, CSS y JavaScript?</b>
+          <span>HTML arma la página, CSS la decora y JavaScript la hace funcionar.</span></div>
+
+        <div class="pregunta"><b>¿Qué usaste para los íconos?</b>
+          <span>Font Awesome, el mismo kit que figura en el material de la materia.</span></div>
+
+        <div class="pregunta"><b>¿Cómo armaste el catálogo?</b>
+          <span>Los productos están en un arreglo de objetos y una función dibuja las tarjetas. Agregar uno es escribir una línea.</span></div>
+
+        <div class="pregunta"><b>¿Cómo llegan las reseñas?</b>
+          <span>A una planilla de Google, usando Google Apps Script como servidor gratuito.</span></div>
+
+        <div class="pregunta"><b>¿La IA hizo la página?</b>
+          <span>Me sirvió para corregir errores y ordenar el estilo. El contenido y el diseño son míos, y lo puedo explicar.</span></div>
+
+        <div class="pregunta"><b>¿Dónde está publicada?</b>
+          <span>En GitHub Pages: <span class="url">dioclau829-sudo.github.io/SerVic-Sosa</span></span></div>
+      </div>
+    </div>
+
+    <div class="pie">
+      <span>Servic PC · Proyecto de Programación Web · 6to Técnico en Informática</span>
+      <span>WhatsApp 3757 587830 · @c_l_a_u_.2007</span>
+    </div>
+  </div>
+
+</body>
+</html>
