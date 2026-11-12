@@ -342,6 +342,14 @@
       text-align: center;
     }
 
+    .grupo-botones {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
     /* ---------- PIE DE PAGINA ---------- */
     footer {
       background-color: var(--negro);
@@ -368,24 +376,97 @@
     }
 
     @media (max-width: 700px) {
+      body {
+        font-size: 15px;
+      }
+
       nav a {
-        margin: 0 5px;
-        font-size: 0.95em;
+        margin: 0 4px;
+        font-size: 0.85rem;
       }
+
       section {
-        margin: 14px 10px;
-        padding: 18px;
+        margin: 12px 8px;
+        padding: 16px 14px;
+        border-radius: 10px;
       }
+
+      section h2 {
+        font-size: 1.2rem;
+        padding-bottom: 5px;
+      }
+
+      section h3 {
+        font-size: 1rem;
+      }
+
+      section p {
+        font-size: 0.94rem;
+      }
+
+      header {
+        padding: 18px 14px 22px;
+      }
+
       header img {
-        width: 140px;
-        height: 140px;
+        width: 130px;
+        height: 130px;
       }
+
+      header p {
+        font-size: 1.02rem;
+      }
+
+      .boton {
+        padding: 10px 14px;
+        font-size: 0.88rem;
+        border-radius: 7px;
+      }
+
+      .grupo-botones {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+      }
+
+      .grupo-botones .boton {
+        width: 100%;
+        padding: 11px 12px;
+        font-size: 0.85rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
       .tarjeta-precio, .tarjeta-sistema {
         width: 100%;
       }
+
+      .tarjeta-sistema p {
+        font-size: 0.88rem;
+      }
+
+      .descripcion-plan {
+        min-height: 0;
+        font-size: 0.88rem;
+      }
+
+      .costo {
+        font-size: 1.5em;
+      }
+
+      /* La tabla se desliza con el dedo y con letra mas chica */
       .tabla-scroll table {
-        min-width: 540px;
+        min-width: 520px;
         font-size: 0.8em;
+      }
+
+      th, td {
+        padding: 8px 8px;
+      }
+
+      ol li, ul li {
+        font-size: 0.92rem;
       }
     }
   </style>
@@ -631,14 +712,14 @@
       <li>Lo mantenemos y actualizamos si el negocio crece o cambia</li>
     </ol>
 
-    <p class="centro" style="margin-top:22px;">
+    <div class="grupo-botones">
       <a class="boton boton-whatsapp" href="https://wa.me/5493757587830" target="_blank">
         <i class="fab fa-whatsapp"></i> Contanos qué necesitás para tu negocio
       </a>
       <a class="boton boton-secundario" href="https://www.instagram.com/c_l_a_u_.2007" target="_blank">
         <i class="fab fa-instagram"></i> Instagram
       </a>
-    </p>
+    </div>
   </section>
 
   <!-- ================= PIE DE PAGINA ================= -->

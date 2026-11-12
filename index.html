@@ -280,6 +280,14 @@
       display: none !important;
     }
 
+    .grupo-botones {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
     .centro {
       text-align: center;
     }
@@ -663,35 +671,149 @@
     }
 
     /* ---------- ADAPTACION A CELULAR ---------- */
+    /* ---------- AJUSTES PARA CELULAR ----------
+       En el telefono todo se achica: letras mas chicas, botones mas
+       chicos y las flechas del carrusel quedan al lado de la tarjeta
+       en vez de cair una arriba y otra abajo. */
     @media (max-width: 700px) {
-      nav a {
-        margin: 0 5px;
-        font-size: 0.95em;
+      body {
+        font-size: 15px;
       }
+
       section {
-        margin: 14px 10px;
-        padding: 18px;
+        margin: 12px 8px;
+        padding: 16px 14px;
+        border-radius: 10px;
       }
-      header img {
-        width: 140px;
-        height: 140px;
+
+      section h2 {
+        font-size: 1.2rem;
+        padding-bottom: 5px;
       }
-      .tarjeta-sistema {
+
+      section h3 {
+        font-size: 1rem;
+      }
+
+      section p {
+        font-size: 0.94rem;
+      }
+
+      .boton {
+        padding: 10px 14px;
+        font-size: 0.88rem;
+        border-radius: 7px;
+      }
+
+      .grupo-botones {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+      }
+
+      .grupo-botones .boton {
+        width: 100%;
+        padding: 11px 12px;
+        font-size: 0.85rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      /* Tarjetas de mantenimiento mas compactas */
+      .tarjeta-mantenimiento {
         width: 100%;
       }
-      .carrusel-caja {
-        flex-direction: column;
+
+      .cuerpo-mantenimiento {
+        padding: 12px 13px 14px;
       }
+
+      .cuerpo-mantenimiento h3 {
+        font-size: 0.97rem;
+      }
+
+      .cuerpo-mantenimiento p {
+        font-size: 0.85rem;
+      }
+
+      .precio-mantenimiento {
+        font-size: 1.15rem;
+      }
+
+      /* Carrusel: la tarjeta queda entre las dos flechitas */
+      .carrusel-caja {
+        display: grid;
+        grid-template-columns: 34px 1fr 34px;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .flecha {
+        width: 34px;
+        height: 34px;
+        font-size: 0.9rem;
+      }
+
       .carrusel-tarjeta {
         flex-direction: column;
         text-align: center;
+        padding: 14px;
+        min-height: 0;
       }
+
       .carrusel-foto {
         width: 100%;
-        height: 180px;
+        height: 170px;
       }
+
       .carrusel-texto {
         text-align: center;
+      }
+
+      .carrusel-texto h3 {
+        font-size: 1.05rem;
+      }
+
+      .carrusel-texto p {
+        font-size: 0.88rem;
+      }
+
+      /* Tabs del panel de productos, mas chicos */
+      .nav a {
+        margin: 0 4px;
+        font-size: 0.85rem;
+      }
+
+      /* Formulario de opinion */
+      .campo input, .campo select, .campo textarea {
+        padding: 10px 11px;
+        font-size: 0.95rem;
+      }
+
+      header {
+        padding: 18px 14px 22px;
+      }
+
+      header img {
+        width: 130px;
+        height: 130px;
+      }
+
+      header p {
+        font-size: 1.02rem;
+      }
+
+      .tarjeta-sistema {
+        width: 100%;
+      }
+
+      .tarjeta-sistema p {
+        font-size: 0.88rem;
+      }
+
+      .precio-mantenimiento {
+        font-size: 1.15rem;
       }
     }
   </style>
@@ -817,12 +939,12 @@
 
     <div class="rejilla-mantenimiento" id="rejillaMantenimiento"></div>
 
-    <p class="centro" style="margin-top:22px;">
+    <div class="grupo-botones">
       <a class="boton boton-whatsapp" href="https://wa.me/5493757587830" target="_blank">
         <i class="fab fa-whatsapp"></i> Consultar por un mantenimiento
       </a>
       <a class="boton boton-secundario" href="Servicios.html">Ver todos los servicios</a>
-    </p>
+    </div>
   </section>
 
   <!-- ================= SISTEMAS PARA NEGOCIOS =================
@@ -925,9 +1047,9 @@
 
     </div>
 
-    <p class="centro" style="margin-top:20px;">
+    <div class="grupo-botones">
       <a class="boton boton-secundario" href="Productos.html">Ver todos los productos del catálogo</a>
-    </p>
+    </div>
   </section>
 
   <!-- ================= VENTANA DE VISTA PREVIA DEL TRABAJO ================= -->
@@ -1007,14 +1129,14 @@
       <i class="fas fa-sun"></i> Volver al modo claro
     </button>
 
-    <p style="margin-top:18px;">
+    <div class="grupo-botones">
       <a class="boton boton-whatsapp" href="https://wa.me/5493757587830" target="_blank">
         <i class="fab fa-whatsapp"></i> Consultar por WhatsApp
       </a>
       <a class="boton boton-secundario" href="https://www.instagram.com/c_l_a_u_.2007" target="_blank">
         <i class="fab fa-instagram"></i> Escribinos por Instagram
       </a>
-    </p>
+    </div>
   </section>
 
   <!-- ================= SEGUNDO TEXTO EN MOVIMIENTO ================= -->

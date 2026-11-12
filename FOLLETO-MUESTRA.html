@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Folleto de muestra - Servic PC (Proyecto Programación Web)</title>
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+  <style>
+    /* ============================================================
+       FOLLETO IMPRIMIBLE - PROYECTO DE PROGRAMACIÓN WEB
+       Se imprime desde el navegador (Ctrl + P) en una hoja A4.
+       Los colores son los del logo de Servic PC.
+       ============================================================ */
+    :root{
+      --negro:#141414;
+      --rojo:#C1272D;
+      --dorado:#CD9F2C;
+      --verde:#3A9639;
+      --fondo:#F4F5F7;
+      --blanco:#FFFFFF;
+      --borde:#E2E5EA;
+      --texto:#1A1A1A;
+      --texto-2:#5A5F6A;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: var(--fondo);
+      color: var(--texto);
+      line-height: 1.5;
+      margin: 0;
+      padding: 24px 12px;
+    }
+
+    .hoja {
+      max-width: 800px;
+      margin: 0 auto 26px;
+      background-color: var(--blanco);
+      border-radius: 12px;
+      padding: 34px 38px;
+      box-shadow: 0 6px 22px rgba(0,0,0,0.10);
+      border-top: 6px solid var(--rojo);
+    }
+
+    /* ---------- PORTADA ---------- */
+    .portada {
+      text-align: center;
+      background-color: var(--negro);
+      color: #FFFFFF;
+      border-top: none;
+      padding: 40px 30px 34px;
+    }
+
+    .portada img {
+      width: 150px;
+      height: 150px;
+      object-fit: contain;
+    }
+
+    .portada h1 {
+      margin: 10px 0 4px;
+      font-size: 2.4em;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .portada .sub {
+      color: var(--dorado);
+      font-size: 1.1em;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .portada .datos {
+      margin-top: 18px;
+      font-size: 0.95em;
+      color: #D4D4D4;
+    }
+
+    .portada .datos strong { color: #FFFFFF; }
+
+    /* ---------- TIPOGRAFIA ---------- */
+    h2 {
+      color: var(--rojo);
+      border-bottom: 2px solid var(--dorado);
+      padding-bottom: 6px;
+      margin: 0 0 14px;
+      font-size: 1.35em;
+    }
+
+    h3 {
+      color: var(--negro);
+      margin: 18px 0 6px;
+      font-size: 1.05em;
+    }
+
+    p { margin: 0 0 12px; }
+
+    ul, ol { margin: 0 0 12px; padding-left: 22px; }
+    li { margin-bottom: 7px; }
+
+    .destacado {
+      background-color: var(--negro);
+      color: #FFFFFF;
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin: 14px 0;
+    }
+
+    .destacado strong { color: var(--dorado); }
+
+    /* ---------- REJILLAS ---------- */
+    .rejilla {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin: 6px 0 14px;
+    }
+
+    .rejilla > div {
+      flex: 1 1 220px;
+      background-color: #FAFAFB;
+      border: 1px solid var(--borde);
+      border-left: 4px solid var(--rojo);
+      border-radius: 8px;
+      padding: 14px;
+    }
+
+    .rejilla h4 {
+      margin: 0 0 6px;
+      color: var(--negro);
+      font-size: 1em;
+    }
+
+    .rejilla p {
+      margin: 0;
+      font-size: 0.9em;
+      color: var(--texto-2);
+    }
+
+    /* ---------- CODIGO ---------- */
+    code, pre {
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 0.88em;
+    }
+
+    pre {
+      background-color: var(--negro);
+      color: #E8E8E8;
+      padding: 13px 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      line-height: 1.45;
+      margin: 0 0 14px;
+    }
+
+    pre .tag { color: var(--dorado); }
+    pre .atributo { color: #7FD1FF; }
+    pre .texto { color: #E8E8E8; }
+
+    .etiqueta-tecnologia {
+      display: inline-block;
+      background-color: var(--negro);
+      color: var(--dorado);
+      border-radius: 4px;
+      padding: 3px 9px;
+      font-size: 0.82em;
+      font-weight: bold;
+      margin: 0 6px 6px 0;
+    }
+
+    .flecha {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 10px 0;
+      font-size: 0.93em;
+    }
+
+    .flecha .paso {
+      flex: 0 0 26px;
+      height: 26px;
+      border-radius: 50%;
+      background-color: var(--rojo);
+      color: #FFFFFF;
+      font-weight: bold;
+      text-align: center;
+      line-height: 26px;
+      font-size: 0.85em;
+    }
+
+    .pie {
+      text-align: center;
+      color: var(--texto-2);
+      font-size: 0.85em;
+      border-top: 1px solid var(--borde);
+      padding-top: 14px;
+      margin-top: 18px;
+    }
+
+    /* ---------- BOTON DE IMPRESION (no se imprime) ---------- */
+    .barra-imprimir {
+      max-width: 800px;
+      margin: 0 auto 18px;
+      text-align: right;
+    }
+
+    .barra-imprimir button {
+      background-color: var(--rojo);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 8px;
+      padding: 11px 20px;
+      font-size: 0.95em;
+      font-weight: bold;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    /* ---------- AL IMPRIMIR ---------- */
+    @media print {
+      body {
+        background-color: #FFFFFF;
+        padding: 0;
+        font-size: 11.5pt;
+      }
+
+      .barra-imprimir { display: none; }
+
+      .hoja {
+        box-shadow: none;
+        border-radius: 0;
+        padding: 0;
+        margin: 0;
+        max-width: none;
+        page-break-after: always;
+        border-top: none;
+      }
+
+      .portada {
+        border-top: none;
+        padding: 30px 20px;
+      }
+
+      .portada img { width: 120px; height: 120px; }
+
+      h2 { page-break-after: avoid; }
+      .rejilla > div, .destacado, .hoja { page-break-inside: avoid; }
+    }
+
+    /* ---------- EN EL CELULAR ---------- */
+    @media (max-width: 700px) {
+      body { padding: 12px 8px; }
+      .hoja { padding: 22px 18px; }
+      .portada h1 { font-size: 1.7em; }
+      pre { font-size: 0.72em; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="barra-imprimir">
+    <button onclick="window.print()">🖨️ Imprimir el folleto</button>
+  </div>
+
+  <!-- ================= HOJA 1: PORTADA Y QUÉ ES ================= -->
+  <div class="hoja portada">
+    <img src="assets/logo-servic-circular.webp" alt="Logo de Servic PC">
+    <h1>Servic PC</h1>
+    <p class="sub">Página web de un taller de reparación de computadoras</p>
+    <p class="datos">
+      <strong>Proyecto de Programación Web</strong> · 6to Año Técnico en Informática<br>
+      Alumno: <strong>Claudio Sosa</strong> · Wanda, Misiones<br>
+      <strong>https://dioclau829-sudo.github.io/SerVic-Sosa/</strong>
+    </p>
+  </div>
+
+  <div class="hoja">
+    <h2>1. ¿Para qué sirve esta página?</h2>
+    <p>
+      La página de <strong>Servic PC</strong> es el lugar donde el taller se muestra y donde los
+      clientes pueden pedir sin llamar por teléfono. Sirve para tres cosas:
+    </p>
+    <div class="rejilla">
+      <div>
+        <h4>Mostrar los servicios</h4>
+        <p>Los planes de mantenimiento con su precio, los trabajos que hacemos y los sistemas de información para negocios.</p>
+      </div>
+      <div>
+        <h4>Vender repuestos</h4>
+        <p>Un catálogo de más de 60 componentes de computadora con fotos, precios y stock para consultar.</p>
+      </div>
+      <div>
+        <h4>Recibir pedidos</h4>
+        <p>Cada producto tiene un botón que abre el WhatsApp con el pedido ya escrito, listo para enviar.</p>
+      </div>
+    </div>
+
+    <h3>¿Qué promociona con ella?</h3>
+    <ul>
+      <li><strong>Reparación y mantenimiento</strong> de computadoras y notebooks, con garantía de 30 días.</li>
+      <li><strong>Repuestos originales</strong>: memoria RAM, discos SSD y HDD, placas de video, fuentes, gabinetes, cables y herramientas.</li>
+      <li><strong>Sistemas de información a medida</strong> para pymes y profesiones: punto de venta (cobro), turnos y fichas para consultorios, control de stock y facturación.</li>
+    </ul>
+
+    <div class="destacado">
+      <strong>Lo que la hace diferente:</strong> no es una página informativa estática.
+      Tiene un <strong>panel de administración</strong> donde el dueño puede agregar, editar,
+      publicar y borrar productos, revisar las reseñas que mandan los clientes y subir las fotos
+      de los trabajos, sin tocar una sola línea de código.
+    </div>
+  </div>
+
+  <!-- ================= HOJA 2: CON QUE LA HICE ================= -->
+  <div class="hoja">
+    <h2>2. ¿Con qué lenguajes la fabriqué?</h2>
+
+    <h3>HTML5 — la estructura</h3>
+    <p>
+      Es el lenguaje que define <strong>cómo está armado</strong> el sitio: cada sección de la
+      página es una etiqueta. Usé etiquetas semánticas para que la página se entienda sola:
+    </p>
+    <pre><span class="tag">&lt;header&gt;</span>  <span class="atributo">logo</span> <span class="atributo">titulo</span> <span class="atributo">contacto</span>
+<span class="tag">&lt;nav&gt;</span>     <span class="atributo">menu</span> <span class="atributo">con</span> <span class="atributo">enlaces</span> <span class="atributo">a</span> <span class="atributo">otra</span> <span class="atributo">pagina</span>
+<span class="tag">&lt;section&gt;</span> <span class="atributo">bloques</span> <span class="atributo">de</span> <span class="atributo">contenido</span>
+<span class="tag">&lt;footer&gt;</span>  <span class="atributo">datos</span> <span class="atributo">de</span> <span class="atributo">contacto</span></pre>
+    <p>
+      También usé <code>&lt;ol&gt;</code> y <code>&lt;ul&gt;</code> para las listas, <code>&lt;dl&gt;</code>
+      para los horarios, <code>&lt;table&gt;</code> para la comparación de servicios y
+      <code>&lt;marquee&gt;</code> para el texto en movimiento.
+    </p>
+
+    <h3>CSS3 — la apariencia</h3>
+    <p>
+      Es el lenguaje que define <strong>cómo se ve</strong>. Todo el estilo está escrito en una
+      etiqueta <code>&lt;style&gt;</code> dentro del <code>&lt;head&gt;</code> de cada página, y
+      usa clases para poder reusar los estilos:
+    </p>
+    <pre><span class="tag">:root</span> { <span class="atributo">--rojo</span>: <span class="texto">#C1272D</span>; <span class="atributo">--dorado</span>: <span class="texto">#CD9F2C</span>; }
+
+<span class="tag">.tarjeta-producto</span> {
+  <span class="atributo">border</span>: 1px solid var(--borde);
+  <span class="atributo">border-radius</span>: 12px;
+  <span class="atributo">transition</span>: transform 0.3s ease;
+}
+<span class="tag">@media</span> (<span class="atributo">max-width</span>: 700px) { ... }  <span class="texto">/* se achica en el celular */</span></pre>
+    <p>
+      Los colores los saqué <strong>midiendo el logo con un programa</strong>: el negro del
+      círculo, el rojo del texto "Servic" y el dorado del texto "Sosa". Por eso el sitio y el
+      logo se ven del mismo color.
+    </p>
+
+    <h3>JavaScript — el comportamiento</h3>
+    <p>
+      Es el lenguaje que hace que la página <strong>funcione</strong>. Lo usé para:
+    </p>
+    <div class="rejilla">
+      <div>
+        <h4>Catálogo automático</h4>
+        <p>Los productos están en un arreglo de objetos y una función dibuja las tarjetas.</p>
+      </div>
+      <div>
+        <h4>Filtros y ventana modal</h4>
+        <p>Filtrar por categoría y ampliar la foto de un producto en una ventana flotante.</p>
+      </div>
+      <div>
+        <h4>Carrusel</h4>
+        <p>El pasaje automático de los trabajos realizados, con flechas y puntitos.</p>
+      </div>
+      <div>
+        <h4>Panel de administración</h4>
+        <p>Alta, edición y borrado de productos, revisión de reseñas y control de acceso.</p>
+      </div>
+    </div>
+    <pre><span class="tag">function</span> <span class="atributo">cambiarColor</span>() {
+  document.body.style.backgroundColor = <span class="texto">"#0E1116"</span>;  <span class="texto">/* ejemplo de la materia */</span>
+}</pre>
+
+    <h3>Y además usé estas herramientas</h3>
+    <p>
+      <span class="etiqueta-tecnologia">Font Awesome</span>
+      <span class="etiqueta-tecnologia">Google Apps Script</span>
+      <span class="etiqueta-tecnologia">Google Sheets</span>
+      <span class="etiqueta-tecnologia">GitHub Pages</span>
+      <span class="etiqueta-tecnologia">WebP</span>
+      <span class="etiqueta-tecnologia">localStorage</span>
+    </p>
+    <ul>
+      <li><strong>Font Awesome</strong>: la librería de íconos que usamos en la materia.</li>
+      <li><strong>Google Apps Script + Sheets</strong>: el servidor gratuito donde llegan las reseñas.</li>
+      <li><strong>GitHub Pages</strong>: el hosting donde está publicada la página.</li>
+    </ul>
+  </div>
+
+  <!-- ================= HOJA 3: COMO LO LOGRE ================= -->
+  <div class="hoja">
+    <h2>3. ¿Cómo logré hacer la página?</h2>
+
+    <h3>Paso a paso</h3>
+    <div class="flecha"><span class="paso">1</span><div>Diseñé el logo y elegí la paleta de colores, y después armé el contenido: qué servicios ofrezco, qué precios pongo y qué productos vendo.</div></div>
+    <div class="flecha"><span class="paso">2</span><div>Escribí las cuatro páginas en HTML: la portada, los servicios, el catálogo de productos y las reseñas, con su <code>&lt;head&gt;</code> y su <code>&lt;body&gt;</code>.</div></div>
+    <div class="flecha"><span class="paso">3</span><div>Le puse el estilo con CSS: colores, bordes, tarjetas con efecto al pasar el mouse y el diseño para el celular.</div></div>
+    <div class="flecha"><span class="paso">4</span><div>Agregué el JavaScript: el catálogo que se dibila solo, los filtros, el carrusel y el panel de administración.</div></div>
+    <div class="flecha"><span class="paso">5</span><div>Conecté el servidor de reseñas (planilla de Google + Apps Script) para que las opiniones de los clientes me lleguen de verdad.</div></div>
+    <div class="flecha"><span class="paso">6</span><div>Optimicé las imágenes (de 4 MB a 300 KB), publiqué en GitHub Pages y probé todo en el celular.</div></div>
+
+    <h3>¿Y la inteligencia artificial?</h3>
+    <p>
+      Sí: usé una herramienta de inteligencia artificial como <strong>ayuda para corregir el código</strong>
+      y mejorar el estilo. Fue como un profesor auxiliar que revisa lo que yo escribí:
+    </p>
+    <ul>
+      <li>Detectó <strong>errores que no veía</strong>: enlaces del menú que apuntaban a archivos que no existían, una etiqueta <code>&lt;h10&gt;</code> que no es válida en HTML y un atributo <code>alt</code> mal cerrado.</li>
+      <li>Me Plusieurs <strong>el código corregido</strong> con comentarios explicando qué hace cada parte, para que yo lo entendiera y no lo copiara a ciegas.</li>
+      <li>Ayudó con el <strong>panel de administración</strong>, con la conexión al servidor de Google y con el diseño responsive.</li>
+    </ul>
+    <div class="destacado">
+      <strong>Lo importante:</strong> el diseño, los textos, los precios, los servicios y las fotos
+      son míos. La IA fue una herramienta de trabajo, como un editor o un manual:
+      </div>
+      <ul>
+        <li>La idea del proyecto y qué quiero vender es <strong>mía</strong>.</li>
+        <li>Entendí cada cambio que se hizo y lo puedo <strong>explicar</strong> en la presentación.</li>
+        <li>Usé las lecturas de la materia: el material de <strong>HTML</strong>, el de <strong>iconos</strong>, el de <strong>tablas</strong>, el de <strong>listas</strong> y el de <strong>texto en movimiento</strong>.</li>
+      </ul>
+    </div>
+
+    <h3>Lo que aprendí</h3>
+    <ul>
+      <li>Que <strong>HTML, CSS y JavaScript</strong> son tres cosas distintas: estructura, apariencia y comportamiento.</li>
+      <li>Que una web puede ser un <strong>sistema completo</strong>: con base de datos (una planilla), servidor (Apps Script), control de acceso y panel de administración.</li>
+      <li>Que el <strong>versionado con Git</strong> permite guardar el trabajo y publicarlo en la nube.</li>
+      <li>Que hay que <strong>probar en el celular</strong>: la mitad de los clientes mira la página desde el teléfono.</li>
+    </ul>
+
+    <p class="pie">
+      Servic PC · Proyecto de Programación Web · 6to Año Técnico en Informática · Wanda, Misiones<br>
+      La página está publicada en <strong>https://dioclau829-sudo.github.io/SerVic-Sosa/</strong>
+    </p>
+  </div>
+
+</body>
+</html>

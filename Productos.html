@@ -422,6 +422,14 @@
       text-align: center;
     }
 
+    .grupo-botones {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
     /* ---------- PIE DE PAGINA ---------- */
     footer {
       background-color: var(--negro);
@@ -448,20 +456,111 @@
     }
 
     @media (max-width: 700px) {
+      body {
+        font-size: 15px;
+      }
+
       nav a {
-        margin: 0 5px;
-        font-size: 0.95em;
+        margin: 0 4px;
+        font-size: 0.85rem;
       }
+
       section {
-        margin: 14px 10px;
-        padding: 18px;
+        margin: 12px 8px;
+        padding: 16px 14px;
+        border-radius: 10px;
       }
+
+      section h2 {
+        font-size: 1.2rem;
+        padding-bottom: 5px;
+      }
+
+      section p {
+        font-size: 0.94rem;
+      }
+
+      header {
+        padding: 18px 14px 22px;
+      }
+
       header img {
-        width: 140px;
-        height: 140px;
+        width: 130px;
+        height: 130px;
       }
+
+      header p {
+        font-size: 1.02rem;
+      }
+
+      .boton {
+        padding: 10px 14px;
+        font-size: 0.88rem;
+        border-radius: 7px;
+      }
+
+      .grupo-botones {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+      }
+
+      .grupo-botones .boton {
+        width: 100%;
+        padding: 11px 12px;
+        font-size: 0.85rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      /* Filtros mas chicos */
+      .filtros {
+        gap: 6px;
+        margin: 14px 0 4px;
+      }
+
+      .filtro {
+        padding: 7px 12px;
+        font-size: 0.8em;
+      }
+
+      /* Tarjetas de producto */
       .tarjeta-producto {
         width: 100%;
+        padding: 13px;
+      }
+
+      .contenedor-img {
+        height: 150px;
+        margin-bottom: 10px;
+      }
+
+      .titulo-producto {
+        font-size: 0.92em;
+      }
+
+      .precio-producto {
+        font-size: 1.3em;
+      }
+
+      .boton-producto {
+        padding: 10px 8px;
+        font-size: 0.82em;
+      }
+
+      /* Ventana modal mas chica */
+      .contenido-mantenimiento {
+        padding: 14px;
+      }
+
+      .contenido-mantenimiento img,
+      .contenido-mantenimiento video {
+        max-height: 48vh;
+      }
+
+      .cerrar-mantenimiento {
+        font-size: 1.4em;
       }
     }
   </style>
