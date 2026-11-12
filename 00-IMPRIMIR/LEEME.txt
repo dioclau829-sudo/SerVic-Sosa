@@ -1,0 +1,29 @@
+﻿FOLLETO TRÍPTICO DE SERVIC PC
+==========================
+
+FOLLETO-MUESTRA.pdf ......... El folleto para el mostrador (2 hojas A4 apaisadas)
+GUIA-DE-MUESTRA.pdf ........ Tu chuleta para presentar (1 hoja A4 vertical)
+FOLLETO-MUESTRA-1-archivo.html . El folleto en un solo archivo, por si hay que
+                               editarlo o mandarlo a alguien (trae las
+                               imagenes adentro, no necesita la carpeta assets)
+FOLLETO-MUESTRA.html ....... Fuente del folleto (usa ../assets/)
+GUIA-DE-MUESTRA.html ........ Fuente de la chuleta (usa ../assets/)
+DIRECCIONES.txt ............. Todos los links y las claves
+
+CÓMO IMPRIMIR EL FOLLETO
+-------------------------
+1. Abrí FOLLETO-MUESTRA.pdf
+2. Imprimir con estas opciones:
+     - Papel:        A4
+     - Orientación:  Apaisado (horizontal)
+     - Doble cara:   Sí
+     - Voltear por:  BORDE CORTO   <-- esto es lo importante
+     - Escala:       100% (no la cambies)
+3. Doblar:
+     - Primero el tercio DERECHO hacia atrás (la portada queda afuera)
+     - Después el tercio IZQUIERDO hacia atrás
+     - Listo: 6 paneles. Se lee Portada -> Para qué sirve -> Con qué la
+       fabriqué -> El catálogo -> El panel -> Cómo lo logré
+
+Si tu impresora sale con el texto al revés, probá imprimir a una sola cara
+y armá el folleto con dos hojas.

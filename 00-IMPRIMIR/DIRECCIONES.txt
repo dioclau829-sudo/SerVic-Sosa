@@ -1,0 +1,20 @@
+🔗 Las direcciones
+URL
+La web (para probar como cliente)	
+
+	- https://dioclau829-sudo.github.io/SerVic-Sosa/
+
+El panel (tú, como administrador)	
+
+	- https://dioclau829-sudo.github.io/SerVic-Sosa/panel.html
+
+Tu planilla (donde caen las reseñas)	
+
+	- https://docs.google.com/spreadsheets/d/1fDOBrYP742-t55zRb8CQgnAL8mrNCnJP7imbD8ukiRc/edit
+
+El servidor (para verificar)	
+
+	-https://script.google.com/macros/s/AKfycbyLfxVKVXswl6Cp78qVzoK019itjeATPIkjphUJpoC1IWnV01gFibDJpQJMYtRfVwgACA/exec?accion=listar
+
+
+Panel: usuario admin · contraseña servicpc

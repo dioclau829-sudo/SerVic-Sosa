@@ -25,8 +25,8 @@ Mi pagina web/
 │   │   ├── carrusel.js              (el carrusel de trabajos)
 │   │   └── datos.json               (datos publicados, editable y subible)
 │   └── productos/                   (67 fotos + CATALOGO.csv + CREDITS.txt)
-├── _materiales/            (material del docente — NO se publica)
-├── _respaldo-original/     (copia de cómo estaba antes)
+├── 01-MATERIALES/            (material del docente — NO se publica)
+├── 02-RESGUARDO/     (copia de cómo estaba antes)
 ├── PLAN-CATALOGO.md
 ├── GUIA-EXPLICACION.md     ← este archivo
 ├── PRESENTACION-CANVA.md   ← el guion de las diapositivas
@@ -515,6 +515,34 @@ El otro sirve para mostrar el flujo completo de "cliente escribe → vos revisá
 **En el panel NO se cargan reseñas**: las escriben los clientes. Desde el panel solamente se
 puede **aprobar** (se publica), **rechazar** (no se publica) o **borrar**. Ese es el trabajo
 del administrador: decidir qué se ve.
+
+### 13.1 El servidor gratis: las reseñas llegan a vos de verdad
+
+Sin servidor, la opinión que escribe un cliente se guarda en **el navegador de ese cliente**
+(no te llega). Con el **servidor de Google** (una planilla + un Apps Script, todo gratis) la
+opinión llega a tu planilla y vos la ves en la campana.
+
+En `assets/js/datos.js` está el destino:
+
+```js
+var SERVIDOR_RESENAS = "";   /* se pega la dirección /exec de Apps Script */
+```
+
+Y la capa de datos hace el trabajo:
+
+| Función | Qué hace |
+|---|---|
+| `Tienda.hayServidor()` | ¿Hay servidor configurado? |
+| `Tienda.cargarResenasDelServidor()` | Baja las reseñas del servidor (GET `?accion=listar`) |
+| `Tienda.enviarResenaAlServidor(resena)` | Manda una reseña nueva (POST) |
+| `Tienda.cambiarEstadoEnServidor(id, estado)` | Publica o rechaza (POST con la clave) |
+| `Tienda.borrarEnServidor(id)` | Borra (POST con la clave) |
+
+El `fetch` usa `URLSearchParams`, que es un envío "simple": por eso **no pide permiso CORS**
+y funciona desde GitHub Pages.
+
+La **clave de administrador** se guarda solo en el navegador del panel (`localStorage`),
+nunca en el código público. El paso a paso está en `docs/SERVIDOR-RESENAS.md`.
 
 ---
 

@@ -67,12 +67,12 @@ SerVic-Sosa/
 ```
 SUBIR                                    NO SUBIR
 ─────────────────────────────────        ────────────────────────────────
-index.html                              _materiales/      (material del docente)
-Servicios.html                          _respaldo-original/ (copias viejas)
+index.html                              01-MATERIALES/      (material del docente)
+Servicios.html                          02-RESGUARDO/ (copias viejas)
 Productos.html                          .vscode/          (config del editor)
 Reseñas.html                            SerVic-Sosa/      (repo git duplicado)
 panel.html                              *.docx            (el informe viejo)
-assets/  (todo)                        la carpeta _materiales/
+assets/  (todo)                        la carpeta 01-MATERIALES/
 ```
 
 **El panel**: `panel.html` pide clave, así que está protegido por contraseña, pero la URL es
@@ -193,7 +193,7 @@ real en el servidor.
 - [ ] El **panel** entra con `admin` / `servicpc` y cambia la contraseña.
 - [ ] La **campana** se pone verde o roja según la reseña.
 - [ ] El **favicon** aparece en la pestaña.
-- [ ] No subiste `_materiales/`, `_respaldo-original/` ni el `.docx`.
+- [ ] No subiste `01-MATERIALES/`, `02-RESGUARDO/` ni el `.docx`.
 
 ---
 

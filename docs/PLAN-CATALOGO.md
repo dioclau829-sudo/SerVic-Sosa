@@ -67,8 +67,8 @@ Mi pagina web/
 │       ├── *.webp                     (52 imágenes de referencia, Commons)
 │       ├── CATALOGO.csv / .txt        (manifiesto: nombre, categoría, precio)
 │       └── CREDITS.txt                (licencias y autores de cada imagen)
-├── _materiales/                ← material del docente (NO se publica)
-├── _respaldo-original/         ← html-txt-copia (estado previo, por las dudas)
+├── 01-MATERIALES/                ← material del docente (NO se publica)
+├── 02-RESGUARDO/         ← html-txt-copia (estado previo, por las dudas)
 ├── SerVic-Sosa/                ← repo Git (decisión pendiente: ¿A, B o C?)
 └── Informe del Proyecto de Página Web.docx
 ```
@@ -166,7 +166,7 @@ regla `header` duplicada en `Servicios.html` borrada.
 
 ## 6. Orden de implementación cuando se apruebe
 
-1. Respaldo: `_respaldo-original/` con el estado actual (ya está hecho).
+1. Respaldo: `02-RESGUARDO/` con el estado actual (ya está hecho).
 2. `index.html` → `Servicios.html` → `Productos.html` → `Reseñas.html`: enlaces, logo,
    `h1`, `alt`, viewport, paleta, botón de WhatsApp.
 3. `Productos.html`: catálogo nuevo con las tarjetas y los filtros.

@@ -31,6 +31,6 @@
 *.out
 *.app
 
-# Materiales de la materia y respaldos: son locales, no se suben
-_materiales/
-_respaldo-original/
+# Carpetas locales de trabajo: no se suben al repo
+01-MATERIALES/
+02-RESGUARDO/
